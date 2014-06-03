@@ -1,0 +1,4 @@
+<?php
+$this->headTitle()->append('MamuzBlog');
+$this->headTitle()->append($this->post->getTitle());
+echo $this->postPanel($this->post, false);
