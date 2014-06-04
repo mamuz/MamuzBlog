@@ -55,7 +55,7 @@ class QueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->request = new Request();
         $this->routeMatch = new RouteMatch(array('controller' => 'index'));
         $this->event = new MvcEvent();
-        $router = HttpRouter::factory(array());
+        $router = HttpRouter::factory();
 
         $this->params = \Mockery::mock('Zend\Mvc\Controller\Plugin\Params');
         $this->params->shouldReceive('__invoke')->andReturn($this->params);
