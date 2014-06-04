@@ -11,6 +11,8 @@ use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\Http\TreeRouteStack as HttpRouter;
 use Zend\Mvc\Router\RouteMatch;
+use Zend\Mvc\Service\ServiceManagerConfig;
+use Zend\ServiceManager\ServiceManager;
 
 class QueryControllerTest extends \PHPUnit_Framework_TestCase
 {
@@ -35,7 +37,7 @@ class QueryControllerTest extends \PHPUnit_Framework_TestCase
     /** @var \MamuzBlog\Feature\QueryInterface | \Mockery\MockInterface */
     protected $queryInterface;
 
-    /** @var \MamuzBlog\Crypt\AdapterInterfacee | \Mockery\MockInterface */
+    /** @var \MamuzBlog\Crypt\AdapterInterface | \Mockery\MockInterface */
     protected $cryptEngine;
 
     /** @var \Zend\Mvc\Controller\Plugin\Params | \Mockery\MockInterface */
@@ -49,15 +51,11 @@ class QueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->xhrHeaders = new Headers;
         $this->xhrHeaders->addHeaderLine('X_REQUESTED_WITH', 'XMLHttpRequest');
 
-        /** @var \Zend\ServiceManager\ServiceManager $serviceManager */
-        $serviceManager = Bootstrap::getServiceManager();
         $this->fixture = new QueryController($this->queryInterface, $this->cryptEngine);
         $this->request = new Request();
         $this->routeMatch = new RouteMatch(array('controller' => 'index'));
         $this->event = new MvcEvent();
-        $config = $serviceManager->get('Config');
-        $routerConfig = isset($config['router']) ? $config['router'] : array();
-        $router = HttpRouter::factory($routerConfig);
+        $router = HttpRouter::factory(array());
 
         $this->params = \Mockery::mock('Zend\Mvc\Controller\Plugin\Params');
         $this->params->shouldReceive('__invoke')->andReturn($this->params);
@@ -68,7 +66,6 @@ class QueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->event->setRouter($router);
         $this->event->setRouteMatch($this->routeMatch);
         $this->fixture->setEvent($this->event);
-        $this->fixture->setServiceLocator($serviceManager);
     }
 
     public function testExtendingZendActionController()
