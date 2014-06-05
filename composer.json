@@ -1,17 +1,14 @@
 {
     "name"             : "mamuz/mamuz-blog",
-    "description"      : "Simple blog for product owner",
+    "type"             : "library",
+    "description"      : "Provides simple product owner blog feature.",
+    "homepage"         : "https://github.com/mamuz/MamuzBlog",
+    "license"          : "MIT",
     "keywords"         : ["mamuz", "blog"],
     "authors"          : [
         {
             "name" : "Marco Muths",
             "email": "muzzi_is@web.de"
-        }
-    ],
-    "repositories"     : [
-        {
-            "type": "composer",
-            "url" : "http://packages.zendframework.com/"
         }
     ],
     "minimum-stability": "dev",
@@ -25,8 +22,13 @@
         "hashids/hashids"             : "*"
     },
     "require-dev"      : {
-        "satooshi/php-coveralls"   : "dev-master",
-        "phpunit/phpunit"          : "4.1.*",
-        "mockery/mockery"          : "0.9.*"
+        "satooshi/php-coveralls": "dev-master",
+        "phpunit/phpunit"       : "4.1.*",
+        "mockery/mockery"       : "0.9.*"
+    },
+    "autoload"         : {
+        "psr-0": {
+            "MamuzBlog\\": "src/"
+        }
     }
 }

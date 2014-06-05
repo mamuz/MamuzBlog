@@ -19,6 +19,5 @@ if (!isset($loader)) {
 
 /** @var \Composer\Autoload\ClassLoader $loader */
 $loader->add('MamuzBlogTest\\', __DIR__);
-$loader->addClassMap(require __DIR__ . '/../autoload_classmap.php');
 
 unset($file, $loader);
