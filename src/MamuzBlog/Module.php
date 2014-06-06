@@ -16,7 +16,7 @@ class Module implements
     {
         $modules->loadModule('DoctrineModule');
         $modules->loadModule('DoctrineORMModule');
-        $modules->loadModule('TwbBundle');
+        $modules->loadModule('TwbBundle ');
 
         if ($modules instanceof ModuleManager) {
             $this->addDomainManager($modules);
