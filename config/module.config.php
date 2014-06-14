@@ -6,7 +6,7 @@ return array(
             'blogActivePosts' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'       => '/blog[/[:tag][/[p/:page[/]]]]',
+                    'route'       => '/blog[/:tag][/p/:page]',
                     'constraints' => array(
                         'tag'  => '[a-zA-Z0-9_-]*',
                         'page' => '[1-9][0-9]*',
@@ -21,7 +21,7 @@ return array(
             'blogActivePost'  => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'       => '/blog/post[/[:id][/[:title[/]]]]',
+                    'route'       => '/blog/post[/:id][/:title]',
                     'constraints' => array(
                         'id'    => '[a-zA-Z0-9]{9,}',
                         'title' => '[a-zA-Z0-9_+%-]+',
