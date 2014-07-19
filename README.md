@@ -10,23 +10,87 @@
 [![Latest Unstable Version](https://poser.pugx.org/mamuz/mamuz-blog/v/unstable.svg)](https://packagist.org/packages/mamuz/mamuz-blog)
 [![License](https://poser.pugx.org/mamuz/mamuz-blog/license.svg)](https://packagist.org/packages/mamuz/mamuz-blog)
 
+## Domain
+
+ - This module provides a simple read only blog feature.
+ - Posts are persisted in a database.
+ - Markdown is supported for post content.
+ - Post identities are encrypted in frontend.
+ - Posts are searchable by tag, title or encrypted identity.
+
 ## Installation
 
-Run doctrine orm command line to create database table:
+The recommended way to install
+[`mamuz/mamuz-blog`](https://packagist.org/packages/mamuz/mamuz-blog) is through
+[composer](http://getcomposer.org/) by adding dependency to your `composer.json`:
 
-Dump the sql..
-```sh
-./vendor/bin/doctrine-module  orm:schema-tool:update --dump-sql
-```
-Force update
-```sh
-./vendor/bin/doctrine-module  orm:schema-tool:update --force
-```
-In usage of environment variable..
-```sh
-export APPLICATION_ENV=development; ./vendor/bin/doctrine-module  orm:schema-tool:update
+```json
+{
+    "require": {
+        "mamuz/mamuz-blog": "0.*"
+    }
+}
 ```
 
-## Requirements
+After that run `composer update` and enable this module for ZF2 by adding
+`MamuzBlog` to the `modules` key in `./config/application.config.php`:
 
-- Hashids/HashIds to encrypt repository identities
+```php
+// ...
+    'modules' => array(
+        'MamuzBlog',
+    ),
+```
+
+This module is based on [`DoctrineORMModule`](https://github.com/doctrine/DoctrineORMModule)
+and be sure that you have already [configured database connection](https://github.com/doctrine/DoctrineORMModule).
+
+Create database tables with command line tool provided by
+[`DoctrineORMModule`](https://github.com/doctrine/DoctrineORMModule):
+
+### Dump the sql to fire it manually
+```sh
+./vendor/bin/doctrine-module orm:schema-tool:update --dump-sql
+```
+
+### Fire sql automaticly
+
+```sh
+./vendor/bin/doctrine-module orm:schema-tool:update --force
+```
+
+## Configuration
+
+### Post identity encryption
+
+This is supported by [`hashids/hashids`](https://github.com/ivanakimov/hashids.php)
+and wrapped by an own adapter. This adapter have to be configured by copy `./vendor/mamuz-blog/config/crypt.local.php.dist`
+to `./config/autoload/crypt.local.dist` and be sure that file is not under version control.
+The only one you have to do is to change `salt` value.
+If you change `minLength` value, you have to consider the route `id` parameter
+constraint for route `blogActivePost` in default configuration.
+
+### Default configuration
+
+Excepts encryption configuration is this module already configured out of the box, but you can overwrite it by
+adding a config file in `./config/autoload` directory.
+For default configuration see
+[`module.config.php`](https://github.com/mamuz/MamuzContact/blob/master/config/module.config.php)
+
+### Pagination Range
+
+Listing of posts is provided by route `blogActivePosts`. List includes a pagination feature, which seperates
+views to a default range of 2 items. Default range is overwritable by adding a config file in `./config/autoload` directory.
+See `mamuz-blog/pagination/range` key in
+[`module.config.php`](https://github.com/mamuz/MamuzContact/blob/master/config/module.config.php).
+
+## Creating new Posts
+
+Create new entities in `MamuzBlogPost` database table and tag it in related database table `MamuzBlogTag`.
+Content will be rendered with a markdown parser.
+
+## Workflow
+
+If routing is successful to a post entity or to post entities found by active flag,
+post content will be responsed in a new view model. Otherwise in case of fetching one entity
+it will set a 404 status code to http response object.

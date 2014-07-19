@@ -1,10 +1,10 @@
 {
     "name"             : "mamuz/mamuz-blog",
     "type"             : "library",
-    "description"      : "Provides simple product owner blog feature.",
+    "description"      : "Provides simple product owner blog feature for ZF2 with Doctrine",
     "homepage"         : "https://github.com/mamuz/MamuzBlog",
     "license"          : "MIT",
-    "keywords"         : ["mamuz", "blog"],
+    "keywords"         : ["mamuz", "blog", "markdown", "zf2", "doctrine"],
     "authors"          : [
         {
             "name" : "Marco Muths",
@@ -19,7 +19,7 @@
         "doctrine/doctrine-orm-module": "0.*",
         "maglnet/magl-markdown"       : "1.*",
         "neilime/zf2-twb-bundle"      : "2.*@stable",
-        "hashids/hashids"             : "*"
+        "hashids/hashids"             : "dev-master"
     },
     "require-dev"      : {
         "satooshi/php-coveralls": "dev-master",

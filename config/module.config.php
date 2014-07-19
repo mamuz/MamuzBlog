@@ -78,4 +78,9 @@ return array(
             ),
         ),
     ),
+    'mamuz-blog'      => array(
+        'pagination' => array(
+            'range' => 2,
+        ),
+    ),
 );

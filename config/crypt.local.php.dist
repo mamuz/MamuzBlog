@@ -1,0 +1,11 @@
+<?php
+
+return array(
+    'crypt' => array(
+        'hashid' => array(
+            'sault'     => 'mySecretSault',
+            'minLength' => 9,
+            'chars'     => 'bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ1234567890',
+        ),
+    ),
+);
