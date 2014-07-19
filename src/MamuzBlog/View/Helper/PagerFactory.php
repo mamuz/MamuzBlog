@@ -2,6 +2,7 @@
 
 namespace MamuzBlog\View\Helper;
 
+use MamuzBlog\Options\PaginationConfigAwareTrait;
 use MamuzBlog\Options\Range;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
@@ -10,6 +11,8 @@ use Zend\ServiceManager\ServiceManager;
 
 class PagerFactory implements FactoryInterface
 {
+    use PaginationConfigAwareTrait;
+
     /**
      * {@inheritdoc}
      * @return \Zend\View\Helper\HelperInterface
@@ -20,9 +23,9 @@ class PagerFactory implements FactoryInterface
             $serviceLocator = $serviceLocator->getServiceLocator();
         }
 
-        $config = $serviceLocator->get('Config')['mamuz-blog']['pagination'];
+        $rangeConfig = $this->getPaginationRangeConfigBy($serviceLocator);
 
-        $range = new Range($config['range']);
+        $range = new Range($rangeConfig);
 
         return new Pager($range);
     }

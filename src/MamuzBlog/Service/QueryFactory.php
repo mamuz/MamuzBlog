@@ -3,12 +3,15 @@
 namespace MamuzBlog\Service;
 
 use MamuzBlog\Mapper\Db\Query as QueryMapper;
+use MamuzBlog\Options\PaginationConfigAwareTrait;
 use MamuzBlog\Options\Range;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 class QueryFactory implements FactoryInterface
 {
+    use PaginationConfigAwareTrait;
+
     /**
      * {@inheritdoc}
      * @return \MamuzBlog\Feature\QueryInterface
@@ -17,9 +20,9 @@ class QueryFactory implements FactoryInterface
     {
         /** @var \Doctrine\ORM\EntityManagerInterface $entityManager */
         $entityManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
-        $config = $serviceLocator->get('Config')['mamuz-blog']['pagination'];
+        $rangeConfig = $this->getPaginationRangeConfigBy($serviceLocator);
 
-        $queryMapper = new QueryMapper($entityManager, new Range($config['range']));
+        $queryMapper = new QueryMapper($entityManager, new Range($rangeConfig));
         $queryService = new Query($queryMapper);
 
         return $queryService;
