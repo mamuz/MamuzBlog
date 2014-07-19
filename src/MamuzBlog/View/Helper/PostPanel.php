@@ -25,11 +25,11 @@ class PostPanel extends AbstractHelper
         $header = $entity->getTitle();
 
         if ($headerLink) {
-            $url = $this->getView()->url(
+            $url = $this->getRenderer()->url(
                 'blogActivePost',
                 array(
                     'title' => $entity->getTitle(),
-                    'id'    => $this->getView()->hashId($entity->getId())
+                    'id'    => $this->getRenderer()->hashId($entity->getId())
                 )
             );
             $header = '<a href="' . $url . '">' . $header . '</a>';
@@ -37,9 +37,17 @@ class PostPanel extends AbstractHelper
 
         $html = '<h3>' . $header . '</h3>' . PHP_EOL
             . '<div class="well">' . PHP_EOL
-            . $this->getView()->markdown($entity->getContent()) . PHP_EOL
+            . $this->getRenderer()->markdown($entity->getContent()) . PHP_EOL
             . '</div>';
 
         return $html;
+    }
+
+    /**
+     * @return \MamuzBlog\View\Renderer\PhpRenderer
+     */
+    private function getRenderer()
+    {
+        return $this->getView();
     }
 }

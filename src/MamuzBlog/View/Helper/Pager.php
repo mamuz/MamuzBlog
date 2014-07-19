@@ -51,15 +51,38 @@ class Pager extends AbstractHelper
         $currentPage = $params[$pageKey];
 
         if ($currentPage > 1) {
-            $url = $this->getView()->url($route, $paramsPrev);
-            $this->html .= '<a class="prev" href="' . $url . '">&laquo;</a>&nbsp;' . PHP_EOL;
+            $url = $this->buildUrl($route, $paramsPrev);
+            $this->html .= $this->buildAnchor($url, 'prev', '&laquo;');
         }
 
         if ($currentPage < $pagesCount) {
-            $url = $this->getView()->url($route, $paramsNext);
-            $this->html .= '<a class="next" href="' . $url . '">&raquo;</a>' . PHP_EOL;
+            $url = $this->buildUrl($route, $paramsNext);
+            $this->html .= $this->buildAnchor($url, 'next', '&raquo;');
         }
 
         return $this->html;
+    }
+
+    /**
+     * @param string $route
+     * @param mixed  $param
+     * @return string
+     */
+    private function buildUrl($route, $param)
+    {
+        /** @var $renderer \Zend\View\Renderer\PhpRenderer */
+        $renderer = $this->getView();
+        return $renderer->url($route, $param);
+    }
+
+    /**
+     * @param string $url
+     * @param string $class
+     * @param string $text
+     * @return string
+     */
+    private function buildAnchor($url, $class, $text)
+    {
+        return '<a class="' . $class . '" href="' . $url . '">' . $text . '</a>' . PHP_EOL;
     }
 }

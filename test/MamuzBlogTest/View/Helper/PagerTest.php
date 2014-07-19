@@ -47,7 +47,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
 
         $html = $this->fixture->render($this->collection, 'route', array('page' => 2));
 
-        $expected = '<a class="prev" href="prev">&laquo;</a>&nbsp;' . PHP_EOL
+        $expected = '<a class="prev" href="prev">&laquo;</a>' . PHP_EOL
             . '<a class="next" href="next">&raquo;</a>' . PHP_EOL;
 
         $this->assertSame($expected, $html);
@@ -67,7 +67,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
 
         $html = $this->fixture->render($this->collection, 'route', array('page2' => 2), 'page2');
 
-        $expected = '<a class="prev" href="prev">&laquo;</a>&nbsp;' . PHP_EOL
+        $expected = '<a class="prev" href="prev">&laquo;</a>' . PHP_EOL
             . '<a class="next" href="next">&raquo;</a>' . PHP_EOL;
 
         $this->assertSame($expected, $html);
@@ -104,7 +104,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
 
         $html = $this->fixture->render($this->collection, 'route', array('page' => 3));
 
-        $expected = '<a class="prev" href="prev">&laquo;</a>&nbsp;' . PHP_EOL;
+        $expected = '<a class="prev" href="prev">&laquo;</a>' . PHP_EOL;
 
         $this->assertSame($expected, $html);
 

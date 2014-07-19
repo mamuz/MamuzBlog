@@ -9,7 +9,7 @@ class HashIdAdapter implements AdapterInterface
     /** @var Hashids */
     private $hashIds;
 
-    public function __construct(HashIds $hashIds)
+    public function __construct(Hashids $hashIds)
     {
         $this->hashIds = $hashIds;
     }
