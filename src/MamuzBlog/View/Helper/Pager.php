@@ -10,79 +10,97 @@ class Pager extends AbstractHelper
     /** @var RangeInterface */
     private $range;
 
-    /** @var string */
-    private $html;
+    /** @var float */
+    private $pagesCount;
 
-    public function __construct(RangeInterface $range)
+    /** @var string */
+    private $route;
+
+    /** @var mixed */
+    private $pageKey;
+
+    /**
+     * @param RangeInterface $range
+     * @param string         $route
+     * @param mixed          $pageKey
+     */
+    public function __construct(RangeInterface $range, $route, $pageKey)
     {
         $this->range = $range;
+        $this->route = $route;
+        $this->pageKey = $pageKey;
     }
 
     /**
      * {@link render()}
      */
-    public function __invoke(\Countable $collection, $route, array $params, $pageKey = 'page')
+    public function __invoke(\Countable $collection, array $params)
     {
-        return $this->render($collection, $route, $params, $pageKey);
+        return $this->render($collection, $params);
     }
 
     /**
      * @param \Countable $collection
-     * @param string     $route
      * @param array      $params
-     * @param string     $pageKey
      * @return string
      */
-    public function render(\Countable $collection, $route, array $params, $pageKey = 'page')
+    public function render(\Countable $collection, array $params)
     {
-        $this->html = '';
+        $this->calculatePagesCountBy($collection);
 
-        $totalCount = count($collection);
-        $pagesCount = ceil($totalCount / $this->range->getSize());
-
-        if ($pagesCount < 2) {
-            return $this->html;
+        if ($this->pagesCount < 2) {
+            return '';
         }
 
         $paramsNext = $paramsPrev = $params;
-        $paramsNext[$pageKey]++;
-        $paramsPrev[$pageKey]--;
+        $paramsNext[$this->pageKey]++;
+        $paramsPrev[$this->pageKey]--;
 
-        $currentPage = $params[$pageKey];
+        $currentPage = $params[$this->pageKey];
 
+        $html = '';
         if ($currentPage > 1) {
-            $url = $this->buildUrl($route, $paramsPrev);
-            $this->html .= $this->buildAnchor($url, 'prev', '&laquo;');
+            $html .= $this->buildAnchor($paramsPrev, 'prev');
         }
 
-        if ($currentPage < $pagesCount) {
-            $url = $this->buildUrl($route, $paramsNext);
-            $this->html .= $this->buildAnchor($url, 'next', '&raquo;');
+        if ($currentPage < $this->pagesCount) {
+            $html .= $this->buildAnchor($paramsNext, 'next');
         }
 
-        return $this->html;
+        return $html;
     }
 
     /**
-     * @param string $route
+     * @param \Countable $collection
+     * @return void
+     */
+    private function calculatePagesCountBy(\Countable $collection)
+    {
+        $totalCount = count($collection);
+        $this->pagesCount = ceil($totalCount / $this->range->getSize());
+    }
+
+    /**
      * @param mixed  $param
+     * @param string $type
      * @return string
      */
-    private function buildUrl($route, $param)
+    private function buildAnchor($param, $type)
+    {
+        $url = $this->buildUrl($param);
+        $text = $type == 'next' ? '&raquo;' : '&laquo;';
+
+        return '<a class="' . $type . '" href="' . $url . '">' . $text . '</a>' . PHP_EOL;
+    }
+
+    /**
+     * @param mixed $param
+     * @return string
+     */
+    private function buildUrl($param)
     {
         /** @var $renderer \Zend\View\Renderer\PhpRenderer */
         $renderer = $this->getView();
-        return $renderer->url($route, $param);
-    }
-
-    /**
-     * @param string $url
-     * @param string $class
-     * @param string $text
-     * @return string
-     */
-    private function buildAnchor($url, $class, $text)
-    {
-        return '<a class="' . $class . '" href="' . $url . '">' . $text . '</a>' . PHP_EOL;
+        return $renderer->url($this->route, $param);
     }
 }
