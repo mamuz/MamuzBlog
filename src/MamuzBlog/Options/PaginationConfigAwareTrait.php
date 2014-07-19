@@ -8,7 +8,7 @@ trait PaginationConfigAwareTrait
 {
     /**
      * @param ServiceLocatorInterface $serviceLocator
-     * @return array
+     * @return integer
      */
     private function getPaginationRangeConfigBy(ServiceLocatorInterface $serviceLocator)
     {
