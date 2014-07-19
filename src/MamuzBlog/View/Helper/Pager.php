@@ -16,6 +16,9 @@ class Pager extends AbstractHelper
     /** @var string */
     private $route;
 
+    /** @var array */
+    private $params;
+
     /** @var mixed */
     private $pageKey;
 
@@ -52,11 +55,22 @@ class Pager extends AbstractHelper
             return '';
         }
 
-        $paramsNext = $paramsPrev = $params;
+        $this->params = $params;
+
+        return $this->toHtml();
+    }
+
+    /**
+     * @return string
+     */
+    private function toHtml()
+    {
+        $paramsNext = $paramsPrev = $this->params;
+
         $paramsNext[$this->pageKey]++;
         $paramsPrev[$this->pageKey]--;
 
-        $currentPage = $params[$this->pageKey];
+        $currentPage = $this->params[$this->pageKey];
 
         $html = '';
         if ($currentPage > 1) {
