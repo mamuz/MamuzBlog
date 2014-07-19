@@ -1,7 +1,7 @@
 # MamuzBlog
 
 [![Build Status](https://travis-ci.org/mamuz/MamuzBlog.svg?branch=master)](https://travis-ci.org/mamuz/MamuzBlog)
-[![Dependency Status](https://www.versioneye.com/user/projects/538f788746c473980c00001d/badge.svg?style=flat)](https://www.versioneye.com/user/projects/538f788746c473980c00001d)
+[![Dependency Status](https://www.versioneye.com/user/projects/538f788746c473980c00001d/badge.svg)](https://www.versioneye.com/user/projects/538f788746c473980c00001d)
 [![Coverage Status](https://coveralls.io/repos/mamuz/MamuzBlog/badge.png?branch=master)](https://coveralls.io/r/mamuz/MamuzBlog?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mamuz/MamuzBlog/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mamuz/MamuzBlog/?branch=master)
 
