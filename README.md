@@ -72,7 +72,7 @@ constraint for route `blogActivePost` in default configuration.
 
 ### Default configuration
 
-Excepts encryption configuration is this module already configured out of the box, but you can overwrite it by
+Excepts encryption configuration this module is already configured out of the box, but you can overwrite it by
 adding a config file in `./config/autoload` directory.
 For default configuration see
 [`module.config.php`](https://github.com/mamuz/MamuzContact/blob/master/config/module.config.php)
@@ -92,5 +92,5 @@ Content will be rendered with a markdown parser.
 ## Workflow
 
 If routing is successful to a post entity or to post entities found by active flag,
-post content will be responsed in a new view model. Otherwise in case of fetching one entity
+post content will be responsed in a new view model. Otherwise in case of fetching one entity which doesnt exist
 it will set a 404 status code to http response object.
