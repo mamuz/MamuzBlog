@@ -52,6 +52,7 @@ return array(
     ),
     'view_helpers'    => array(
         'invokables' => array(
+            'postMeta'  => 'MamuzBlog\View\Helper\PostMeta',
             'postPanel' => 'MamuzBlog\View\Helper\PostPanel',
         ),
         'factories'  => array(

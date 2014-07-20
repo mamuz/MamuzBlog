@@ -3,7 +3,6 @@
 namespace MamuzBlog\View\Helper;
 
 use MamuzBlog\Options\RangeInterface;
-use Zend\View\Helper\AbstractHelper;
 
 class Pager extends AbstractHelper
 {
@@ -113,8 +112,6 @@ class Pager extends AbstractHelper
      */
     private function buildUrl($param)
     {
-        /** @var $renderer \Zend\View\Renderer\PhpRenderer */
-        $renderer = $this->getView();
-        return $renderer->url($this->route, $param);
+        return $this->getRenderer()->url($this->route, $param);
     }
 }

@@ -17,13 +17,14 @@ class PostPanelTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->renderer = \Mockery::mock('Zend\View\Renderer\RendererInterface');
-        $this->renderer->shouldReceive('markdown')->with('content')->andReturn('_content_');
-
         $this->post = \Mockery::mock('MamuzBlog\Entity\Post');
         $this->post->shouldReceive('getId')->andReturn('id');
         $this->post->shouldReceive('getTitle')->andReturn('title');
         $this->post->shouldReceive('getContent')->andReturn('content');
+
+        $this->renderer = \Mockery::mock('Zend\View\Renderer\RendererInterface');
+        $this->renderer->shouldReceive('markdown')->with('content')->andReturn('_content_');
+        $this->renderer->shouldReceive('postMeta')->with($this->post)->andReturn('_meta_');
 
         $this->fixture = new PostPanel;
         $this->fixture->setView($this->renderer);
@@ -31,6 +32,7 @@ class PostPanelTest extends \PHPUnit_Framework_TestCase
 
     public function testExtendingAbstractHelper()
     {
+        $this->assertInstanceOf('MamuzBlog\View\Helper\AbstractHelper', $this->fixture);
         $this->assertInstanceOf('Zend\View\Helper\AbstractHelper', $this->fixture);
     }
 
@@ -46,6 +48,7 @@ class PostPanelTest extends \PHPUnit_Framework_TestCase
         $expected = '<h3><a href="url">title</a></h3>' . PHP_EOL
             . '<div class="well">' . PHP_EOL
             . '_content_' . PHP_EOL
+            . '_meta_' . PHP_EOL
             . '</div>';
 
         $this->assertSame($expected, $html);
@@ -62,6 +65,7 @@ class PostPanelTest extends \PHPUnit_Framework_TestCase
         $expected = '<h3>title</h3>' . PHP_EOL
             . '<div class="well">' . PHP_EOL
             . '_content_' . PHP_EOL
+            . '_meta_' . PHP_EOL
             . '</div>';
 
         $this->assertSame($expected, $html);

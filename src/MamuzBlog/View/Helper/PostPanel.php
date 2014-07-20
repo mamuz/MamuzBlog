@@ -3,7 +3,6 @@
 namespace MamuzBlog\View\Helper;
 
 use MamuzBlog\Entity\Post as PostEntity;
-use Zend\View\Helper\AbstractHelper;
 
 class PostPanel extends AbstractHelper
 {
@@ -38,16 +37,9 @@ class PostPanel extends AbstractHelper
         $html = '<h3>' . $header . '</h3>' . PHP_EOL
             . '<div class="well">' . PHP_EOL
             . $this->getRenderer()->markdown($entity->getContent()) . PHP_EOL
+            . $this->getRenderer()->postMeta($entity) . PHP_EOL
             . '</div>';
 
         return $html;
-    }
-
-    /**
-     * @return \MamuzBlog\View\Renderer\PhpRenderer
-     */
-    private function getRenderer()
-    {
-        return $this->getView();
     }
 }

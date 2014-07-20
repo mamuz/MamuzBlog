@@ -34,6 +34,7 @@ class PagerTest extends \PHPUnit_Framework_TestCase
 
     public function testExtendingAbstractHelper()
     {
+        $this->assertInstanceOf('MamuzBlog\View\Helper\AbstractHelper', $this->fixture);
         $this->assertInstanceOf('Zend\View\Helper\AbstractHelper', $this->fixture);
     }
 
