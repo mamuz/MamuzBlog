@@ -19,9 +19,6 @@ class PostTest extends \PHPUnit_Framework_TestCase
         $createdAt = new \DateTime;
         $modifiedAt = new \DateTime;
         $tags = $this->fixture->getTags();
-        $this->fixture->setId(12);
-        $this->fixture->setCreatedAt($createdAt);
-        $this->fixture->setModifiedAt($modifiedAt);
         $clone = clone $this->fixture;
 
         $this->assertNull($clone->getId());
@@ -33,22 +30,14 @@ class PostTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($tags, $clone->getTags());
     }
 
-    public function testMutateAndAccessCreatedAt()
+    public function testAccessCreatedAt()
     {
         $this->assertInstanceOf('\DateTime', $this->fixture->getCreatedAt());
-        $expected = new \DateTime;
-        $result = $this->fixture->setCreatedAt($expected);
-        $this->assertSame($expected, $this->fixture->getCreatedAt());
-        $this->assertSame($result, $this->fixture);
     }
 
-    public function testMutateAndAccessModifiedAt()
+    public function testAccessModifiedAt()
     {
         $this->assertInstanceOf('\DateTime', $this->fixture->getCreatedAt());
-        $expected = new \DateTime;
-        $result = $this->fixture->setModifiedAt($expected);
-        $this->assertSame($expected, $this->fixture->getModifiedAt());
-        $this->assertSame($result, $this->fixture);
     }
 
     public function testMutateAndAccessTitle()
@@ -59,12 +48,9 @@ class PostTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, $this->fixture);
     }
 
-    public function testMutateAndAccessId()
+    public function testAccessId()
     {
-        $expected = 'foo';
-        $result = $this->fixture->setId($expected);
-        $this->assertSame($expected, $this->fixture->getId());
-        $this->assertSame($result, $this->fixture);
+        $this->assertNull($this->fixture->getId());
     }
 
     public function testMutateAndAccessContent()

@@ -117,16 +117,6 @@ class Post
     }
 
     /**
-     * @param int $id
-     * @return Post
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
-
-    /**
      * @return int
      */
     public function getId()
@@ -207,31 +197,11 @@ class Post
     }
 
     /**
-     * @param \DateTime $createdAt
-     * @return Post
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-        return $this;
-    }
-
-    /**
      * @return \DateTime
      */
     public function getCreatedAt()
     {
         return $this->createdAt;
-    }
-
-    /**
-     * @param \DateTime $modifiedAt
-     * @return Post
-     */
-    public function setModifiedAt($modifiedAt)
-    {
-        $this->modifiedAt = $modifiedAt;
-        return $this;
     }
 
     /**

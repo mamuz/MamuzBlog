@@ -17,7 +17,6 @@ class TagTest extends \PHPUnit_Framework_TestCase
     public function testClone()
     {
         $posts = $this->fixture->getPosts();
-        $this->fixture->setId(12);
         $clone = clone $this->fixture;
 
         $this->assertNull($clone->getId());
@@ -25,11 +24,9 @@ class TagTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($posts, $clone->getPosts());
     }
 
-    public function testMutateAndAccessId()
+    public function testAccessId()
     {
-        $expected = 'foo';
-        $this->fixture->setId($expected);
-        $this->assertSame($expected, $this->fixture->getId());
+        $this->assertNull($this->fixture->getId());
     }
 
     public function testMutateAndAccessName()
