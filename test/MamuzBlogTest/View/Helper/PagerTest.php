@@ -46,10 +46,18 @@ class PagerTest extends \PHPUnit_Framework_TestCase
         $this->renderer->shouldReceive('url')->with('route', array('page' => 1))->andReturn('prev');
         $this->renderer->shouldReceive('url')->with('route', array('page' => 3))->andReturn('next');
 
+        $this->renderer
+            ->shouldReceive('anchor')
+            ->with('next', 'Next Page', '&raquo;', 'next')
+            ->andReturn('_next_');
+        $this->renderer
+            ->shouldReceive('anchor')
+            ->with('prev', 'Previous Page', '&laquo;', 'prev')
+            ->andReturn('_prev_');
+
         $html = $this->fixture->render($this->collection, array('page' => 2));
 
-        $expected = '<a class="prev" href="prev">&laquo;</a>' . PHP_EOL
-            . '<a class="next" href="next">&raquo;</a>' . PHP_EOL;
+        $expected = '_prev_' . PHP_EOL . '_next_' . PHP_EOL;
 
         $this->assertSame($expected, $html);
 
@@ -65,9 +73,14 @@ class PagerTest extends \PHPUnit_Framework_TestCase
         }
         $this->renderer->shouldReceive('url')->with('route', array('page' => 2))->andReturn('next');
 
+        $this->renderer
+            ->shouldReceive('anchor')
+            ->with('next', 'Next Page', '&raquo;', 'next')
+            ->andReturn('_next_');
+
         $html = $this->fixture->render($this->collection, array('page' => 1));
 
-        $expected = '<a class="next" href="next">&raquo;</a>' . PHP_EOL;
+        $expected = '_next_' . PHP_EOL;
 
         $this->assertSame($expected, $html);
 
@@ -83,9 +96,14 @@ class PagerTest extends \PHPUnit_Framework_TestCase
         }
         $this->renderer->shouldReceive('url')->with('route', array('page' => 2))->andReturn('prev');
 
+        $this->renderer
+            ->shouldReceive('anchor')
+            ->with('prev', 'Previous Page', '&laquo;', 'prev')
+            ->andReturn('_prev_');
+
         $html = $this->fixture->render($this->collection, array('page' => 3));
 
-        $expected = '<a class="prev" href="prev">&laquo;</a>' . PHP_EOL;
+        $expected = '_prev_' . PHP_EOL;
 
         $this->assertSame($expected, $html);
 

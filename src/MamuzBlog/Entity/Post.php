@@ -24,7 +24,7 @@ class Post
     private $id;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="string", nullable=false)
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Filter({"name":"StringTrim"})
      * @Annotation\Validator({"name":"Alnum", "options": {"allowWhiteSpace":"false"}})
@@ -35,7 +35,7 @@ class Post
     private $title = '';
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text", nullable=false)
      * @Annotation\Attributes({"type":"text"})
      * @Annotation\Filter({"name":"StripTags"})
      * @Annotation\Filter({"name":"StringTrim"})
@@ -44,6 +44,17 @@ class Post
      * @var string
      */
     private $content = '';
+
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     * @Annotation\Attributes({"type":"text"})
+     * @Annotation\Filter({"name":"StripTags"})
+     * @Annotation\Filter({"name":"StringTrim"})
+     * @Annotation\Validator({"name":"StringLength", "options": {"min":"3", "max":"1000"}})
+     * @Annotation\Options({"label":"Description"})
+     * @var string
+     */
+    private $description = '';
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
@@ -157,6 +168,24 @@ class Post
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * @param string $description
+     * @return Post
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 
     /**

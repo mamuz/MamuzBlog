@@ -8,7 +8,7 @@ return array(
                 'options' => array(
                     'route'       => '/blog[/:tag][/p/:page]',
                     'constraints' => array(
-                        'tag'  => '[a-zA-Z0-9_-]*',
+                        'tag'  => '[a-zA-Z0-9_+%-]*',
                         'page' => '[1-9][0-9]*',
                     ),
                     'defaults'    => array(
@@ -52,8 +52,11 @@ return array(
     ),
     'view_helpers'    => array(
         'invokables' => array(
-            'postMeta'  => 'MamuzBlog\View\Helper\PostMeta',
-            'postPanel' => 'MamuzBlog\View\Helper\PostPanel',
+            'anchor'         => 'MamuzBlog\View\Helper\Anchor',
+            'panel'          => 'MamuzBlog\View\Helper\Panel',
+            'postMeta'       => 'MamuzBlog\View\Helper\PostMeta',
+            'postPanel'      => 'MamuzBlog\View\Helper\PostPanel',
+            'postPanelShort' => 'MamuzBlog\View\Helper\PostPanelShort',
         ),
         'factories'  => array(
             'hashId' => 'MamuzBlog\View\Helper\HashIdFactory',

@@ -20,15 +20,37 @@ class PostMeta extends AbstractHelper
      */
     public function render(PostEntity $entity)
     {
-        $html = '<div style="border-top:1px solid white">' . PHP_EOL
-            . $this->getRenderer()->dateFormat($entity->getModifiedAt()) . PHP_EOL
-            . $this->buildBadges($entity->getTags()) . PHP_EOL
-            . '</div>';
+        $html = '<span>' . $this->createDate($entity->getModifiedAt()) . '</span>' . PHP_EOL
+            . '<span class="pull-right">' . $this->createBadges($entity->getTags()) . '</span>';
 
         return $html;
     }
 
-    private function buildBadges(array $tags)
+    /**
+     * @param \DateTime $dateTime
+     * @return string
+     */
+    private function createDate(\DateTime $dateTime)
+    {
+        $dateString = $this->getRenderer()->dateFormat(
+            $dateTime,
+            \IntlDateFormatter::LONG,
+            \IntlDateFormatter::NONE
+        );
+
+        $html = $this->getRenderer()->glyphicon('calendar')
+            . '<time datetime="' . $dateTime->format('Y-m-d') . '" pubdate="pubdate">'
+            . $dateString
+            . '</time>';
+
+        return $html;
+    }
+
+    /**
+     * @param array $tags
+     * @return string
+     */
+    private function createBadges(array $tags)
     {
         $html = '';
 
@@ -39,9 +61,8 @@ class PostMeta extends AbstractHelper
                 'blogActivePosts',
                 array('tag' => $tagName)
             );
-            $tagNameTranslated = $this->getRenderer()->translate($tagName);
-            $badge = $this->getRenderer()->badge($tagNameTranslated);
-            $html .= '<a title="' . $tagNameTranslated . '" href="' . $url . '"> ' . $badge . ' </a>' . PHP_EOL;
+            $badge = $this->getRenderer()->badge($this->getRenderer()->translate($tagName));
+            $html .= $this->getRenderer()->anchor($url, 'Go to specific list', $badge) . PHP_EOL;
         }
 
         return $html;

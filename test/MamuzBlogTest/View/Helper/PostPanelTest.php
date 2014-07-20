@@ -18,13 +18,13 @@ class PostPanelTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->post = \Mockery::mock('MamuzBlog\Entity\Post');
-        $this->post->shouldReceive('getId')->andReturn('id');
         $this->post->shouldReceive('getTitle')->andReturn('title');
         $this->post->shouldReceive('getContent')->andReturn('content');
 
         $this->renderer = \Mockery::mock('Zend\View\Renderer\RendererInterface');
         $this->renderer->shouldReceive('markdown')->with('content')->andReturn('_content_');
         $this->renderer->shouldReceive('postMeta')->with($this->post)->andReturn('_meta_');
+        $this->renderer->shouldReceive('panel')->with('title', '_content_', '_meta_')->andReturn('_panel_');
 
         $this->fixture = new PostPanel;
         $this->fixture->setView($this->renderer);
@@ -38,40 +38,12 @@ class PostPanelTest extends \PHPUnit_Framework_TestCase
 
     public function testRender()
     {
-        $this->renderer->shouldReceive('hashId')->with('id')->andReturn('id_');
-        $this->renderer->shouldReceive('url')
-            ->with('blogActivePost', array('title' => 'title', 'id' => 'id_'))
-            ->andReturn('url');
-
         $html = $this->fixture->render($this->post);
 
-        $expected = '<h3><a href="url">title</a></h3>' . PHP_EOL
-            . '<div class="well">' . PHP_EOL
-            . '_content_' . PHP_EOL
-            . '_meta_' . PHP_EOL
-            . '</div>';
-
-        $this->assertSame($expected, $html);
+        $this->assertSame('_panel_', $html);
 
         $invoke = $this->fixture;
         $html = $invoke($this->post);
-        $this->assertSame($expected, $html);
-    }
-
-    public function testRenderWithoutHeaderLink()
-    {
-        $html = $this->fixture->render($this->post, false);
-
-        $expected = '<h3>title</h3>' . PHP_EOL
-            . '<div class="well">' . PHP_EOL
-            . '_content_' . PHP_EOL
-            . '_meta_' . PHP_EOL
-            . '</div>';
-
-        $this->assertSame($expected, $html);
-
-        $invoke = $this->fixture;
-        $html = $invoke($this->post, false);
-        $this->assertSame($expected, $html);
+        $this->assertSame('_panel_', $html);
     }
 }

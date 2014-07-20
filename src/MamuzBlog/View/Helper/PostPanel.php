@@ -6,40 +6,62 @@ use MamuzBlog\Entity\Post as PostEntity;
 
 class PostPanel extends AbstractHelper
 {
+    /** @var PostEntity */
+    protected $entity;
+
+    /** @var string */
+    protected $header;
+
+    /** @var string */
+    protected $content;
+
+    /** @var string */
+    protected $footer;
+
     /**
      * {@link render()}
      */
-    public function __invoke(PostEntity $entity, $headerLink = true)
+    public function __invoke(PostEntity $entity)
     {
-        return $this->render($entity, $headerLink);
+        return $this->render($entity);
     }
 
     /**
      * @param PostEntity $entity
-     * @param bool       $headerLink
      * @return string
      */
-    public function render(PostEntity $entity, $headerLink = true)
+    public function render(PostEntity $entity)
     {
-        $header = $entity->getTitle();
+        $this->entity = $entity;
 
-        if ($headerLink) {
-            $url = $this->getRenderer()->url(
-                'blogActivePost',
-                array(
-                    'title' => $entity->getTitle(),
-                    'id'    => $this->getRenderer()->hashId($entity->getId())
-                )
-            );
-            $header = '<a href="' . $url . '">' . $header . '</a>';
-        }
+        $this->createHeader();
+        $this->createContent();
+        $this->createFooter();
 
-        $html = '<h3>' . $header . '</h3>' . PHP_EOL
-            . '<div class="well">' . PHP_EOL
-            . $this->getRenderer()->markdown($entity->getContent()) . PHP_EOL
-            . $this->getRenderer()->postMeta($entity) . PHP_EOL
-            . '</div>';
+        return $this->getRenderer()->panel($this->header, $this->content, $this->footer);
+    }
 
-        return $html;
+    /**
+     * @return void
+     */
+    protected function createHeader()
+    {
+        $this->header = $this->entity->getTitle();
+    }
+
+    /**
+     * @return void
+     */
+    protected function createContent()
+    {
+        $this->content = $this->getRenderer()->markdown($this->entity->getContent());
+    }
+
+    /**
+     * @return void
+     */
+    protected function createFooter()
+    {
+        $this->footer = $this->getRenderer()->postMeta($this->entity);
     }
 }

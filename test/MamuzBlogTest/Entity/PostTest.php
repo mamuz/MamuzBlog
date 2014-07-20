@@ -75,6 +75,14 @@ class PostTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, $this->fixture);
     }
 
+    public function testMutateAndAccessDescription()
+    {
+        $expected = 'foo';
+        $result = $this->fixture->setDescription($expected);
+        $this->assertSame($expected, $this->fixture->getDescription());
+        $this->assertSame($result, $this->fixture);
+    }
+
     public function testMutateAndAccessActive()
     {
         $this->assertFalse($this->fixture->isActive());

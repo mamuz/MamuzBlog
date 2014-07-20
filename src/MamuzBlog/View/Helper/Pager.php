@@ -73,11 +73,11 @@ class Pager extends AbstractHelper
 
         $html = '';
         if ($currentPage > 1) {
-            $html .= $this->buildAnchor($paramsPrev, 'prev');
+            $html .= $this->createAnchor($paramsPrev, 'prev');
         }
 
         if ($currentPage < $this->pagesCount) {
-            $html .= $this->buildAnchor($paramsNext, 'next');
+            $html .= $this->createAnchor($paramsNext, 'next');
         }
 
         return $html;
@@ -98,19 +98,20 @@ class Pager extends AbstractHelper
      * @param string $type
      * @return string
      */
-    private function buildAnchor($param, $type)
+    private function createAnchor($param, $type)
     {
-        $url = $this->buildUrl($param);
+        $url = $this->createUrl($param);
         $text = $type == 'next' ? '&raquo;' : '&laquo;';
+        $title = $type == 'next' ? 'Next Page' : 'Previous Page';
 
-        return '<a class="' . $type . '" href="' . $url . '">' . $text . '</a>' . PHP_EOL;
+        return $this->getRenderer()->anchor($url, $title, $text, $type) . PHP_EOL;
     }
 
     /**
      * @param mixed $param
      * @return string
      */
-    private function buildUrl($param)
+    private function createUrl($param)
     {
         return $this->getRenderer()->url($this->route, $param);
     }

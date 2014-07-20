@@ -4,7 +4,7 @@ $this->headTitle()->append($this->translate('Blog'));
 echo '<h1>' . $this->translate('Blog') . '</h1>' . PHP_EOL;
 
 foreach ($this->collection as $entity) {
-    echo $this->postPanel($entity) . PHP_EOL;
+    echo $this->postPanelShort($entity) . PHP_EOL;
 }
 
 echo $this->pager($this->collection, $this->routeParams) . PHP_EOL;
