@@ -47,10 +47,10 @@ class PostMeta extends AbstractHelper
     }
 
     /**
-     * @param array $tags
+     * @param \Traversable $tags
      * @return string
      */
-    private function createBadges(array $tags)
+    private function createBadges(\Traversable $tags)
     {
         $html = '';
 

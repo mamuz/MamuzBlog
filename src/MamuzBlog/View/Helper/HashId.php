@@ -3,9 +3,9 @@
 namespace MamuzBlog\View\Helper;
 
 use MamuzBlog\Crypt\AdapterInterface;
-use Zend\View\Helper\AbstractHelper;
+use Zend\View\Helper\AbstractHelper as ZendAbstractHelper;
 
-class HashId extends AbstractHelper
+class HashId extends ZendAbstractHelper
 {
     /** @var AdapterInterface */
     private $cryptEngine;
