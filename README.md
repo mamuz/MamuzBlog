@@ -17,6 +17,7 @@
  - Markdown is supported for post content.
  - Post identities are encrypted in frontend.
  - Posts are searchable by tag, title or encrypted identity.
+ - twitter-Bootstrap 2/3 compatible
 
 ## Installation
 

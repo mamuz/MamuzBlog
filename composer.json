@@ -4,7 +4,7 @@
     "description"      : "Provides simple product owner blog feature for ZF2 with Doctrine",
     "homepage"         : "https://github.com/mamuz/MamuzBlog",
     "license"          : "MIT",
-    "keywords"         : ["mamuz", "blog", "markdown", "zf2", "doctrine"],
+    "keywords"         : ["mamuz", "blog", "markdown", "zf2", "doctrine", "twitter-bootstrap"],
     "authors"          : [
         {
             "name" : "Marco Muths",
