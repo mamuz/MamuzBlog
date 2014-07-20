@@ -6,7 +6,7 @@ use Zend\View\Renderer\PhpRenderer as ZendPhpRenderer;
 
 /**
  * @method string markdown($text)
- * @method string anchor($href, $title, $content)
+ * @method string anchor($href, $title, $content, $class = null)
  * @method string hashId($id)
  * @method string panel($header, $content, $footer)
  * @method string postMeta(\MamuzBlog\Entity\Post $entity)
