@@ -1,4 +1,6 @@
 <?php
-$this->headTitle()->append('MamuzBlog');
+
+$this->headTitle()->append($this->translate('Blog'));
 $this->headTitle()->append($this->post->getTitle());
-echo $this->postPanel($this->post, false);
+
+echo $this->postPanel($this->post, false) . PHP_EOL;

@@ -1,14 +1,10 @@
 <?php
 
-$posts = '';
+$this->headTitle()->append($this->translate('Blog'));
+echo '<h1>' . $this->translate('Blog') . '</h1>' . PHP_EOL;
+
 foreach ($this->collection as $entity) {
-    $posts .= $this->postPanel($entity);
-    $posts .= $this->pager($this->collection, $this->routeParams);
+    echo $this->postPanel($entity) . PHP_EOL;
 }
 
-if (!$this->isTerminal) {
-    $this->headTitle()->append('MamuzBlog');
-    $posts = '<div class="list">' . $posts . '</div>';
-}
-
-echo $posts;
+echo $this->pager($this->collection, $this->routeParams) . PHP_EOL;
