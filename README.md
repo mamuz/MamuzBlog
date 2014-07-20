@@ -65,7 +65,7 @@ Create database tables with command line tool provided by
 
 This is supported by [`hashids/hashids`](https://github.com/ivanakimov/hashids.php)
 and wrapped by an own adapter. This adapter have to be configured by copy `./vendor/mamuz-blog/config/crypt.local.php.dist`
-to `./config/autoload/crypt.local.dist` and be sure that file is not under version control.
+to `./config/autoload/crypt.local.php` and be sure that file is not under version control.
 The only one you have to do is to change `salt` value.
 If you change `minLength` value, you have to consider the route `id` parameter
 constraint for route `blogActivePost` in default configuration.
