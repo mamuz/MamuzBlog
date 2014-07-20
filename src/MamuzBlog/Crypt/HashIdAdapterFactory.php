@@ -16,7 +16,7 @@ class HashIdAdapterFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
-        $config = $serviceLocator->get('Config');
+        $config = (array) $serviceLocator->get('Config');
         $this->validate($config);
 
         $hashIdconfig = $config['crypt']['hashid'];
