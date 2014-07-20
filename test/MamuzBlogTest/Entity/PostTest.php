@@ -9,35 +9,46 @@ class PostTest extends \PHPUnit_Framework_TestCase
     /** @var Post */
     protected $fixture;
 
+    /** @var \DateTime */
+    protected $createdAt;
+
+    /** @var \DateTime */
+    protected $modifiedAt;
+
     protected function setUp()
     {
-        $this->fixture = new Post;
+        $this->createdAt = new \DateTime;
+        $this->modifiedAt = new \DateTime;
+        $this->fixture = new Post(1, $this->createdAt, $this->modifiedAt);
+    }
+
+    public function testCreationWithoutArguments()
+    {
+        $fixture = new Post;
+        $this->assertNull($fixture->getId());
+        $this->assertInstanceOf('\DateTime', $fixture->getCreatedAt());
+        $this->assertInstanceOf('\DateTime', $fixture->getCreatedAt());
     }
 
     public function testClone()
     {
-        $createdAt = new \DateTime;
-        $modifiedAt = new \DateTime;
-        $tags = $this->fixture->getTags();
         $clone = clone $this->fixture;
 
         $this->assertNull($clone->getId());
-        $this->assertNotSame($createdAt, $clone->getCreatedAt());
-        $this->assertEquals($createdAt, $clone->getCreatedAt());
-        $this->assertNotSame($modifiedAt, $clone->getModifiedAt());
-        $this->assertEquals($modifiedAt, $clone->getModifiedAt());
-        $this->assertNotSame($tags, $clone->getTags());
-        $this->assertEquals($tags, $clone->getTags());
+        $this->assertNotSame($this->createdAt, $clone->getCreatedAt());
+        $this->assertEquals($this->createdAt, $clone->getCreatedAt());
+        $this->assertNotSame($this->modifiedAt, $clone->getModifiedAt());
+        $this->assertEquals($this->modifiedAt, $clone->getModifiedAt());
     }
 
     public function testAccessCreatedAt()
     {
-        $this->assertInstanceOf('\DateTime', $this->fixture->getCreatedAt());
+        $this->assertSame($this->createdAt, $this->fixture->getCreatedAt());
     }
 
     public function testAccessModifiedAt()
     {
-        $this->assertInstanceOf('\DateTime', $this->fixture->getCreatedAt());
+        $this->assertSame($this->modifiedAt, $this->fixture->getModifiedAt());
     }
 
     public function testMutateAndAccessTitle()
@@ -50,7 +61,7 @@ class PostTest extends \PHPUnit_Framework_TestCase
 
     public function testAccessId()
     {
-        $this->assertNull($this->fixture->getId());
+        $this->assertSame(1, $this->fixture->getId());
     }
 
     public function testMutateAndAccessContent()

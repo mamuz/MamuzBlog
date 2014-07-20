@@ -19,7 +19,7 @@ class Post
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      * @Annotation\Exclude()
-     * @var int
+     * @var int|null
      */
     private $id;
 
@@ -88,10 +88,12 @@ class Post
     /**
      * init datetime objects
      */
-    public function __construct()
+    public function __construct($id = null, \DateTime $createdAt = null, \DateTime $modifiedAt = null)
     {
+        $this->id = $id ? (int) $id : null;
         $this->tags = new ArrayCollection();
-        $this->init();
+        $this->createdAt = $createdAt ? : new \DateTime;
+        $this->modifiedAt = $modifiedAt ? : new \DateTime;
     }
 
     /**
@@ -101,23 +103,12 @@ class Post
     public function __clone()
     {
         $this->id = null;
-        if ($this->tags) {
-            $this->tags = clone $this->tags;
-        }
-        $this->init();
-    }
-
-    /**
-     * set createdAt and modifiedAt to now
-     */
-    private function init()
-    {
         $this->createdAt = new \DateTime;
         $this->modifiedAt = new \DateTime;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getId()
     {

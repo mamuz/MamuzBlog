@@ -19,7 +19,7 @@ class Tag
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      * @Annotation\Exclude()
-     * @var int
+     * @var int|null
      */
     private $id;
 
@@ -42,26 +42,24 @@ class Tag
     private $posts;
 
     /**
-     * init posts collection
+     * @param int|null $id
      */
-    public function __construct()
+    public function __construct($id = null)
     {
+        $this->id = $id ? (int) $id : null;
         $this->posts = new ArrayCollection();
     }
 
     /**
-     * provide deep clone and destroy identity
+     * destroy identity
      */
     public function __clone()
     {
         $this->id = null;
-        if ($this->posts) {
-            $this->posts = clone $this->posts;
-        }
     }
 
     /**
-     * @return int
+     * @return int|null
      */
     public function getId()
     {

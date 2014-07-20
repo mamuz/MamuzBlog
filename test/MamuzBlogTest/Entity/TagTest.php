@@ -11,22 +11,24 @@ class TagTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->fixture = new Tag;
+        $this->fixture = new Tag(1);
+    }
+
+    public function testCreationWithoutIdentity()
+    {
+        $fixture = new Tag;
+        $this->assertNull($fixture->getId());
     }
 
     public function testClone()
     {
-        $posts = $this->fixture->getPosts();
         $clone = clone $this->fixture;
-
         $this->assertNull($clone->getId());
-        $this->assertNotSame($posts, $clone->getPosts());
-        $this->assertEquals($posts, $clone->getPosts());
     }
 
     public function testAccessId()
     {
-        $this->assertNull($this->fixture->getId());
+        $this->assertSame(1, $this->fixture->getId());
     }
 
     public function testMutateAndAccessName()
