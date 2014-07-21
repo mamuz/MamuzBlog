@@ -30,6 +30,6 @@ class Anchor extends AbstractHelper
             $class = '';
         }
 
-        return '<a title="' . $title . '" href="' . $href . '"' . $class . '> '. $content . ' </a>';
+        return '<a title="' . $title . '" href="' . $href . '"' . $class . '>'. $content . '</a>';
     }
 }
