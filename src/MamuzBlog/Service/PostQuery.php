@@ -2,17 +2,17 @@
 
 namespace MamuzBlog\Service;
 
-use MamuzBlog\Feature\QueryInterface;
+use MamuzBlog\Feature\PostQueryInterface;
 
-class Query implements QueryInterface
+class PostQuery implements PostQueryInterface
 {
-    /** @var QueryInterface */
+    /** @var PostQueryInterface */
     private $mapper;
 
     /**
-     * @param QueryInterface $mapper
+     * @param PostQueryInterface $mapper
      */
-    public function __construct(QueryInterface $mapper)
+    public function __construct(PostQueryInterface $mapper)
     {
         $this->mapper = $mapper;
     }

@@ -4,12 +4,12 @@ namespace MamuzBlog\Mapper\Db;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
-use MamuzBlog\Feature\QueryInterface;
+use MamuzBlog\Feature\PostQueryInterface;
 use MamuzBlog\Options\Constraint;
 use MamuzBlog\Options\ConstraintInterface;
 use MamuzBlog\Options\RangeInterface;
 
-class Query implements QueryInterface
+class PostQuery implements PostQueryInterface
 {
     const REPOSITORY = 'MamuzBlog\Entity\Post';
 

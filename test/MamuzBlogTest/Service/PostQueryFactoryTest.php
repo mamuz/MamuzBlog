@@ -2,16 +2,16 @@
 
 namespace MamuzBlogTest\Service;
 
-use MamuzBlog\Service\QueryFactory;
+use MamuzBlog\Service\PostQueryFactory;
 
-class QueryFactoryTest extends \PHPUnit_Framework_TestCase
+class PostQueryFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var QueryFactory */
+    /** @var PostQueryFactory */
     protected $fixture;
 
     protected function setUp()
     {
-        $this->fixture = new QueryFactory;
+        $this->fixture = new PostQueryFactory;
     }
 
     public function testImplementingFactoryInterface()
@@ -30,6 +30,6 @@ class QueryFactoryTest extends \PHPUnit_Framework_TestCase
 
         $service = $this->fixture->createService($sm);
 
-        $this->assertInstanceOf('MamuzBlog\Feature\QueryInterface', $service);
+        $this->assertInstanceOf('MamuzBlog\Feature\PostQueryInterface', $service);
     }
 }

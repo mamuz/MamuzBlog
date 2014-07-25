@@ -3,27 +3,27 @@
 namespace MamuzBlog\Controller;
 
 use MamuzBlog\Crypt\AdapterInterface;
-use MamuzBlog\Feature\QueryInterface;
+use MamuzBlog\Feature\PostQueryInterface;
 use Zend\Http\PhpEnvironment\Request as HttpRequest;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ModelInterface;
 use Zend\View\Model\ViewModel;
 
-class QueryController extends AbstractActionController
+class PostQueryController extends AbstractActionController
 {
-    /** @var QueryInterface */
+    /** @var PostQueryInterface */
     private $queryService;
 
     /** @var AdapterInterface */
     private $cryptEngine;
 
     /**
-     * @param QueryInterface   $queryService
-     * @param AdapterInterface $cryptEngine
+     * @param PostQueryInterface $queryService
+     * @param AdapterInterface   $cryptEngine
      */
     public function __construct(
-        QueryInterface $queryService,
+        PostQueryInterface $queryService,
         AdapterInterface $cryptEngine
     ) {
         $this->queryService = $queryService;

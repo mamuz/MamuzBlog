@@ -12,7 +12,7 @@ return array(
                         'page' => '[1-9][0-9]*',
                     ),
                     'defaults'    => array(
-                        'controller' => 'MamuzBlog\Controller\Query',
+                        'controller' => 'MamuzBlog\PostController\Query',
                         'action'     => 'activePosts',
                         'page'       => 1,
                     ),
@@ -27,7 +27,7 @@ return array(
                         'title' => '[a-zA-Z0-9_+%-]+',
                     ),
                     'defaults'    => array(
-                        'controller' => 'MamuzBlog\Controller\Query',
+                        'controller' => 'MamuzBlog\PostController\Query',
                         'action'     => 'activePost',
                     ),
                 ),
@@ -36,7 +36,7 @@ return array(
     ),
     'controllers'     => array(
         'factories' => array(
-            'MamuzBlog\Controller\Query' => 'MamuzBlog\Controller\QueryControllerFactory'
+            'MamuzBlog\Controller\PostQuery' => 'MamuzBlog\Controller\PostQueryControllerFactory'
         ),
     ),
     'service_manager' => array(
@@ -47,7 +47,7 @@ return array(
     'blog_domain'     => array(
         'factories' => array(
             'MamuzBlog\Crypt\HashIdAdapter' => 'MamuzBlog\Crypt\HashIdAdapterFactory',
-            'MamuzBlog\Service\Query'       => 'MamuzBlog\Service\QueryFactory',
+            'MamuzBlog\Service\PostQuery'   => 'MamuzBlog\Service\PostQueryFactory',
         ),
     ),
     'view_helpers'    => array(

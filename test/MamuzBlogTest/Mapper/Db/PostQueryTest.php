@@ -2,11 +2,11 @@
 
 namespace MamuzBlogTest\Mapper\Db;
 
-use MamuzBlog\Mapper\Db\Query;
+use MamuzBlog\Mapper\Db\PostQuery;
 
-class QueryTest extends \PHPUnit_Framework_TestCase
+class PostQueryTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Query */
+    /** @var PostQuery */
     protected $fixture;
 
     /** @var \Doctrine\Common\Persistence\ObjectManager | \Mockery\MockInterface */
@@ -26,14 +26,14 @@ class QueryTest extends \PHPUnit_Framework_TestCase
         $this->entity = \Mockery::mock('MamuzBlog\Entity\Post');
         $this->entityManager = \Mockery::mock('Doctrine\ORM\EntityManagerInterface');
         $this->range = \Mockery::mock('MamuzBlog\Options\RangeInterface');
-        $this->repository = Query::REPOSITORY;
+        $this->repository = PostQuery::REPOSITORY;
 
-        $this->fixture = new Query($this->entityManager, $this->range);
+        $this->fixture = new PostQuery($this->entityManager, $this->range);
     }
 
-    public function testImplementingQueryInterface()
+    public function testImplementingPostQueryInterface()
     {
-        $this->assertInstanceOf('MamuzBlog\Feature\QueryInterface', $this->fixture);
+        $this->assertInstanceOf('MamuzBlog\Feature\PostQueryInterface', $this->fixture);
     }
 
     public function testFindActivePostById()

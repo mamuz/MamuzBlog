@@ -4,11 +4,11 @@ namespace MamuzBlog\Feature;
 
 use MamuzBlog\Entity\Post;
 
-interface QueryInterface
+interface PostQueryInterface
 {
     /**
      * @param int $currentPage
-     * @return QueryInterface
+     * @return PostQueryInterface
      */
     public function setCurrentPage($currentPage);
 

@@ -2,8 +2,7 @@
 
 namespace MamuzBlogTest\Controller;
 
-use MamuzBlog\Controller\QueryController;
-use MamuzBlogTest\Bootstrap;
+use MamuzBlog\Controller\PostQueryController;
 use Zend\Console\Request as ConsoleRequest;
 use Zend\Http\Headers;
 use Zend\Http\PhpEnvironment\Request;
@@ -11,10 +10,9 @@ use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\Http\TreeRouteStack as HttpRouter;
 use Zend\Mvc\Router\RouteMatch;
-use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\ServiceManager\ServiceManager;
 
-class QueryControllerTest extends \PHPUnit_Framework_TestCase
+class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
 {
     /** @var \Zend\Mvc\Controller\AbstractActionController */
     protected $fixture;
@@ -34,7 +32,7 @@ class QueryControllerTest extends \PHPUnit_Framework_TestCase
     /** @var Headers */
     protected $xhrHeaders;
 
-    /** @var \MamuzBlog\Feature\QueryInterface | \Mockery\MockInterface */
+    /** @var \MamuzBlog\Feature\PostQueryInterface | \Mockery\MockInterface */
     protected $queryInterface;
 
     /** @var \MamuzBlog\Crypt\AdapterInterface | \Mockery\MockInterface */
@@ -46,12 +44,12 @@ class QueryControllerTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->cryptEngine = \Mockery::mock('MamuzBlog\Crypt\AdapterInterface');
-        $this->queryInterface = \Mockery::mock('MamuzBlog\Feature\QueryInterface');
+        $this->queryInterface = \Mockery::mock('MamuzBlog\Feature\PostQueryInterface');
 
         $this->xhrHeaders = new Headers;
         $this->xhrHeaders->addHeaderLine('X_REQUESTED_WITH', 'XMLHttpRequest');
 
-        $this->fixture = new QueryController($this->queryInterface, $this->cryptEngine);
+        $this->fixture = new PostQueryController($this->queryInterface, $this->cryptEngine);
         $this->request = new Request();
         $this->routeMatch = new RouteMatch(array('controller' => 'index'));
         $this->event = new MvcEvent();

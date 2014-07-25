@@ -6,7 +6,7 @@ use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class QueryControllerFactory implements FactoryInterface
+class PostQueryControllerFactory implements FactoryInterface
 {
     /**
      * {@inheritdoc}
@@ -20,13 +20,13 @@ class QueryControllerFactory implements FactoryInterface
         /** @var ServiceLocatorInterface $domainManager */
         $domainManager = $serviceLocator->get('MamuzBlog\DomainManager');
 
-        /** @var \MamuzBlog\Feature\QueryInterface $queryService */
-        $queryService = $domainManager->get('MamuzBlog\Service\Query');
+        /** @var \MamuzBlog\Feature\PostQueryInterface $queryService */
+        $queryService = $domainManager->get('MamuzBlog\Service\PostQuery');
 
         /** @var \MamuzBlog\Crypt\AdapterInterface $cryptEngine */
         $cryptEngine = $domainManager->get('MamuzBlog\Crypt\HashIdAdapter');
 
-        $controller = new QueryController($queryService, $cryptEngine);
+        $controller = new PostQueryController($queryService, $cryptEngine);
 
         return $controller;
     }

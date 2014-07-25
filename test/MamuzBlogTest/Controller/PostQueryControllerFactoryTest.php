@@ -2,16 +2,16 @@
 
 namespace MamuzBlogTest\Controller;
 
-use MamuzBlog\Controller\QueryControllerFactory;
+use MamuzBlog\Controller\PostQueryControllerFactory;
 
-class QueryControllerFactoryTest extends \PHPUnit_Framework_TestCase
+class PostQueryControllerFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var QueryControllerFactory */
+    /** @var PostQueryControllerFactory */
     protected $fixture;
 
     protected function setUp()
     {
-        $this->fixture = new QueryControllerFactory;
+        $this->fixture = new PostQueryControllerFactory;
     }
 
     public function testImplementingFactoryInterface()
@@ -22,11 +22,11 @@ class QueryControllerFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreation()
     {
         $cryptEngine = \Mockery::mock('MamuzBlog\Crypt\AdapterInterface');
-        $queryInterface = \Mockery::mock('MamuzBlog\Feature\QueryInterface');
+        $queryInterface = \Mockery::mock('MamuzBlog\Feature\PostQueryInterface');
         $sm = \Mockery::mock('Zend\ServiceManager\ServiceLocatorInterface');
         $sm->shouldReceive('getServiceLocator')->andReturn($sm);
         $sm->shouldReceive('get')->with('MamuzBlog\DomainManager')->andReturn($sm);
-        $sm->shouldReceive('get')->with('MamuzBlog\Service\Query')->andReturn($queryInterface);
+        $sm->shouldReceive('get')->with('MamuzBlog\Service\PostQuery')->andReturn($queryInterface);
         $sm->shouldReceive('get')->with('MamuzBlog\Crypt\HashIdAdapter')->andReturn($cryptEngine);
 
         $controller = $this->fixture->createService($sm);
@@ -42,10 +42,10 @@ class QueryControllerFactoryTest extends \PHPUnit_Framework_TestCase
         $sl->shouldReceive('getServiceLocator')->andReturn($sm);
 
         $cryptEngine = \Mockery::mock('MamuzBlog\Crypt\AdapterInterface');
-        $queryInterface = \Mockery::mock('MamuzBlog\Feature\QueryInterface');
+        $queryInterface = \Mockery::mock('MamuzBlog\Feature\PostQueryInterface');
         $sm->shouldReceive('getServiceLocator')->andReturn($sm);
         $sm->shouldReceive('get')->with('MamuzBlog\DomainManager')->andReturn($sm);
-        $sm->shouldReceive('get')->with('MamuzBlog\Service\Query')->andReturn($queryInterface);
+        $sm->shouldReceive('get')->with('MamuzBlog\Service\PostQuery')->andReturn($queryInterface);
         $sm->shouldReceive('get')->with('MamuzBlog\Crypt\HashIdAdapter')->andReturn($cryptEngine);
 
         $controller = $this->fixture->createService($sl);

@@ -2,14 +2,14 @@
 
 namespace MamuzBlogTest\Service;
 
-use MamuzBlog\Service\Query;
+use MamuzBlog\Service\PostQuery;
 
-class QueryTest extends \PHPUnit_Framework_TestCase
+class PostQueryTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var Query */
+    /** @var PostQuery */
     protected $fixture;
 
-    /** @var \MamuzBlog\Feature\QueryInterface | \Mockery\MockInterface */
+    /** @var \MamuzBlog\Feature\PostQueryInterface | \Mockery\MockInterface */
     protected $mapper;
 
     /** @var \MamuzBlog\Entity\Post | \Mockery\MockInterface */
@@ -18,14 +18,14 @@ class QueryTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->entity = \Mockery::mock('MamuzBlog\Entity\Post');
-        $this->mapper = \Mockery::mock('MamuzBlog\Feature\QueryInterface');
+        $this->mapper = \Mockery::mock('MamuzBlog\Feature\PostQueryInterface');
 
-        $this->fixture = new Query($this->mapper);
+        $this->fixture = new PostQuery($this->mapper);
     }
 
-    public function testImplementingQueryInterface()
+    public function testImplementingPostQueryInterface()
     {
-        $this->assertInstanceOf('MamuzBlog\Feature\QueryInterface', $this->fixture);
+        $this->assertInstanceOf('MamuzBlog\Feature\PostQueryInterface', $this->fixture);
     }
 
     public function testSetCurrentPage()
