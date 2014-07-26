@@ -32,10 +32,10 @@ return array(
                     ),
                 ),
             ),
-            'blogTag'         => array(
+            'blogTags'        => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'       => '/blog/tag[/p/:page]',
+                    'route'       => '/blog/tags[/p/:page]',
                     'constraints' => array(
                         'page' => '[1-9][0-9]*',
                     ),

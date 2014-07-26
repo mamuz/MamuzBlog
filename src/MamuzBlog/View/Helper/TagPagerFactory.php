@@ -26,6 +26,6 @@ class TagPagerFactory implements FactoryInterface
         $rangeConfig = $this->getPaginationRangeConfigBy($serviceLocator);
         $range = new Range($rangeConfig['tag']);
 
-        return new Pager($range, 'blogTag', 'page');
+        return new Pager($range, 'blogTags', 'page');
     }
 }
