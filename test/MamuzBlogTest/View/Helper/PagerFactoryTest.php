@@ -21,7 +21,7 @@ class PagerFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreation()
     {
-        $config = array('mamuz-blog' => array('pagination' => array('range' => 3)));
+        $config = array('mamuz-blog' => array('pagination' => array('range' => array('post' => 3))));
 
         $sm = \Mockery::mock('Zend\ServiceManager\ServiceLocatorInterface');
         $sm->shouldReceive('get')->with('Config')->andReturn($config);
@@ -33,7 +33,7 @@ class PagerFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreationWithServiceAwareness()
     {
-        $config = array('mamuz-blog' => array('pagination' => array('range' => 3)));
+        $config = array('mamuz-blog' => array('pagination' => array('range' => array('post' => 3))));
 
         $sm = \Mockery::mock('Zend\ServiceManager\ServiceLocatorInterface');
         $sm->shouldReceive('get')->with('Config')->andReturn($config);
@@ -50,7 +50,7 @@ class PagerFactoryTest extends \PHPUnit_Framework_TestCase
         $sl = \Mockery::mock('Zend\ServiceManager\AbstractPluginManager');
         $sl->shouldReceive('getServiceLocator')->andReturn($sm);
 
-        $config = array('mamuz-blog' => array('pagination' => array('range' => 3)));
+        $config = array('mamuz-blog' => array('pagination' => array('range' => array('post' => 3))));
         $sm->shouldReceive('get')->with('Config')->andReturn($config);
 
         $helper = $this->fixture->createService($sl);

@@ -84,7 +84,10 @@ return array(
     ),
     'mamuz-blog'      => array(
         'pagination' => array(
-            'range' => 2,
+            'range' => array(
+                'post' => 2,
+                'tag'  => 10,
+            ),
         ),
     ),
 );

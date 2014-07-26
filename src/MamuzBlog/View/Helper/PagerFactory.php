@@ -24,7 +24,7 @@ class PagerFactory implements FactoryInterface
         }
 
         $rangeConfig = $this->getPaginationRangeConfigBy($serviceLocator);
-        $range = new Range($rangeConfig);
+        $range = new Range($rangeConfig['post']);
 
         return new Pager($range, 'blogActivePosts', 'page');
     }

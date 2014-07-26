@@ -2,19 +2,19 @@
 
 namespace MamuzBlog\Service;
 
-use MamuzBlog\Mapper\Db\PostQuery as PostQueryMapper;
+use MamuzBlog\Mapper\Db\TagQuery as TagQueryMapper;
 use MamuzBlog\Options\PaginationConfigAwareTrait;
 use MamuzBlog\Options\Range;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class PostQueryFactory implements FactoryInterface
+class TagQueryFactory implements FactoryInterface
 {
     use PaginationConfigAwareTrait;
 
     /**
      * {@inheritdoc}
-     * @return \MamuzBlog\Feature\PostQueryInterface
+     * @return \MamuzBlog\Feature\TagQueryInterface
      */
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
@@ -22,8 +22,8 @@ class PostQueryFactory implements FactoryInterface
         $entityManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
         $rangeConfig = $this->getPaginationRangeConfigBy($serviceLocator);
 
-        $queryMapper = new PostQueryMapper($entityManager, new Range($rangeConfig['post']));
-        $queryService = new PostQuery($queryMapper);
+        $queryMapper = new TagQueryMapper($entityManager, new Range($rangeConfig['tag']));
+        $queryService = new TagQuery($queryMapper);
 
         return $queryService;
     }

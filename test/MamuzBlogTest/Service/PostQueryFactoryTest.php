@@ -21,7 +21,7 @@ class PostQueryFactoryTest extends \PHPUnit_Framework_TestCase
 
     public function testCreation()
     {
-        $config = array('mamuz-blog' => array('pagination' => array('range' => 3)));
+        $config = array('mamuz-blog' => array('pagination' => array('range' => array('post' => 3))));
 
         $entityManager = \Mockery::mock('Doctrine\ORM\EntityManager');
         $sm = \Mockery::mock('Zend\ServiceManager\ServiceLocatorInterface');
