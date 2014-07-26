@@ -8,7 +8,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ModelInterface;
 
 /**
- * @method \MamuzBlog\Controller\Plugin\CreateViewModel createViewModel($variables = null, $options = null)
+ * @method \MamuzBlog\Controller\Plugin\ViewModelFactory viewModelFactory()
  */
 class TagQueryController extends AbstractActionController
 {
@@ -33,7 +33,7 @@ class TagQueryController extends AbstractActionController
         $currentPage = $this->params()->fromRoute('page', 1);
         $this->queryService->setCurrentPage($currentPage);
 
-        return $this->createViewModel(
+        return $this->viewModelFactory()->create(
             array(
                 'collection'  => $this->queryService->findTags(),
                 'routeParams' => $this->params()->fromRoute(),

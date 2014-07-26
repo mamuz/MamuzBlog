@@ -9,7 +9,7 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ModelInterface;
 
 /**
- * @method \MamuzBlog\Controller\Plugin\CreateViewModel createViewModel($variables = null, $options = null)
+ * @method \MamuzBlog\Controller\Plugin\ViewModelFactory viewModelFactory()
  */
 class PostQueryController extends AbstractActionController
 {
@@ -47,7 +47,7 @@ class PostQueryController extends AbstractActionController
             $collection = $this->queryService->findActivePosts();
         }
 
-        return $this->createViewModel(
+        return $this->viewModelFactory()->create(
             array(
                 'collection'  => $collection,
                 'routeParams' => $this->params()->fromRoute(),
@@ -71,7 +71,7 @@ class PostQueryController extends AbstractActionController
             return $this->nullResponse();
         }
 
-        return $this->createViewModel(array('post' => $post));
+        return $this->viewModelFactory()->create(array('post' => $post));
     }
 
     /**

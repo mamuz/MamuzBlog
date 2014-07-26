@@ -3,7 +3,6 @@
 namespace MamuzBlogTest\Controller;
 
 use MamuzBlog\Controller\PostQueryController;
-use Zend\Console\Request as ConsoleRequest;
 use Zend\Http\Headers;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
@@ -41,8 +40,15 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
     /** @var \Zend\Mvc\Controller\Plugin\Params | \Mockery\MockInterface */
     protected $params;
 
+    /** @var \MamuzBlog\Controller\Plugin\ViewModelFactory | \Mockery\MockInterface */
+    protected $viewModelFactory;
+
+    /** @var \Zend\View\Model\ModelInterface | \Mockery\MockInterface */
+    protected $viewModel;
+
     protected function setUp()
     {
+        $this->viewModel = \Mockery::mock('Zend\View\Model\ModelInterface');
         $this->cryptEngine = \Mockery::mock('MamuzBlog\Crypt\AdapterInterface');
         $this->queryInterface = \Mockery::mock('MamuzBlog\Feature\PostQueryInterface');
 
@@ -55,10 +61,12 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->event = new MvcEvent();
         $router = HttpRouter::factory();
 
+        $this->viewModelFactory = \Mockery::mock('MamuzBlog\Controller\Plugin\ViewModelFactory');
         $this->params = \Mockery::mock('Zend\Mvc\Controller\Plugin\Params');
         $this->params->shouldReceive('__invoke')->andReturn($this->params);
         $pluginManager = \Mockery::mock('Zend\Mvc\Controller\PluginManager')->shouldIgnoreMissing();
         $pluginManager->shouldReceive('get')->with('params', null)->andReturn($this->params);
+        $pluginManager->shouldReceive('get')->with('viewModelFactory', null)->andReturn($this->viewModelFactory);
 
         $this->fixture->setPluginManager($pluginManager);
         $this->event->setRouter($router);
@@ -86,43 +94,21 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->routeMatch->setParam('action', 'activePosts');
 
-        // HTTP
+        $this->viewModelFactory
+            ->shouldReceive('create')
+            ->with(
+                array(
+                    'collection'  => $posts,
+                    'routeParams' => $params,
+                )
+            )
+            ->andReturn($this->viewModel);
+
         $result = $this->fixture->dispatch($this->request);
         $response = $this->fixture->getResponse();
 
-        $this->assertInstanceOf('Zend\View\Model\ModelInterface', $result);
+        $this->assertSame($this->viewModel, $result);
         $this->assertEquals(200, $response->getStatusCode());
-
-        $viewVariables = $result->getVariables();
-        $this->assertSame($params, $viewVariables['routeParams']);
-        $this->assertSame($posts, $viewVariables['collection']);
-        $this->assertFalse($viewVariables['isTerminal']);
-
-        // XHR
-        $this->request->setHeaders($this->xhrHeaders);
-        $result = $this->fixture->dispatch($this->request);
-        $response = $this->fixture->getResponse();
-
-        $this->assertInstanceOf('Zend\View\Model\ModelInterface', $result);
-        $this->assertEquals(200, $response->getStatusCode());
-
-        $viewVariables = $result->getVariables();
-        $this->assertSame($params, $viewVariables['routeParams']);
-        $this->assertSame($posts, $viewVariables['collection']);
-        $this->assertTrue($viewVariables['isTerminal']);
-
-        // CLI
-        $this->request = new ConsoleRequest;
-        $result = $this->fixture->dispatch($this->request);
-        $response = $this->fixture->getResponse();
-
-        $this->assertInstanceOf('Zend\View\Model\ModelInterface', $result);
-        $this->assertEquals(200, $response->getStatusCode());
-
-        $viewVariables = $result->getVariables();
-        $this->assertSame($params, $viewVariables['routeParams']);
-        $this->assertSame($posts, $viewVariables['collection']);
-        $this->assertTrue($viewVariables['isTerminal']);
     }
 
     public function testActivePostsWithTagCanBeAccessed()
@@ -140,16 +126,21 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->queryInterface->shouldReceive('findActivePostsByTag')->with($tag)->andReturn($posts);
         $this->routeMatch->setParam('action', 'activePosts');
 
+        $this->viewModelFactory
+            ->shouldReceive('create')
+            ->with(
+                array(
+                    'collection'  => $posts,
+                    'routeParams' => $params,
+                )
+            )
+            ->andReturn($this->viewModel);
+
         $result = $this->fixture->dispatch($this->request);
         $response = $this->fixture->getResponse();
 
-        $this->assertInstanceOf('Zend\View\Model\ModelInterface', $result);
+        $this->assertSame($this->viewModel, $result);
         $this->assertEquals(200, $response->getStatusCode());
-
-        $viewVariables = $result->getVariables();
-        $this->assertSame($params, $viewVariables['routeParams']);
-        $this->assertSame($posts, $viewVariables['collection']);
-        $this->assertFalse($viewVariables['isTerminal']);
     }
 
     public function testActivePostWithPostCanBeAccessed()
@@ -163,40 +154,16 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
 
         $this->routeMatch->setParam('action', 'activePost');
 
-        // HTTP
+        $this->viewModelFactory
+            ->shouldReceive('create')
+            ->with(array('post' => $post))
+            ->andReturn($this->viewModel);
+
         $result = $this->fixture->dispatch($this->request);
         $response = $this->fixture->getResponse();
 
-        $this->assertInstanceOf('Zend\View\Model\ModelInterface', $result);
+        $this->assertSame($this->viewModel, $result);
         $this->assertEquals(200, $response->getStatusCode());
-
-        $viewVariables = $result->getVariables();
-        $this->assertSame($post, $viewVariables['post']);
-        $this->assertFalse($viewVariables['isTerminal']);
-
-        // XHR
-        $this->request->setHeaders($this->xhrHeaders);
-        $result = $this->fixture->dispatch($this->request);
-        $response = $this->fixture->getResponse();
-
-        $this->assertInstanceOf('Zend\View\Model\ModelInterface', $result);
-        $this->assertEquals(200, $response->getStatusCode());
-
-        $viewVariables = $result->getVariables();
-        $this->assertSame($post, $viewVariables['post']);
-        $this->assertTrue($viewVariables['isTerminal']);
-
-        // CLI
-        $this->request = new ConsoleRequest;
-        $result = $this->fixture->dispatch($this->request);
-        $response = $this->fixture->getResponse();
-
-        $this->assertInstanceOf('Zend\View\Model\ModelInterface', $result);
-        $this->assertEquals(200, $response->getStatusCode());
-
-        $viewVariables = $result->getVariables();
-        $this->assertSame($post, $viewVariables['post']);
-        $this->assertTrue($viewVariables['isTerminal']);
     }
 
     public function testActivePostWithoutPostCanBeAccessed()
