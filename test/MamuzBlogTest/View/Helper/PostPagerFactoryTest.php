@@ -2,16 +2,16 @@
 
 namespace MamuzBlogTest\View\Helper;
 
-use MamuzBlog\View\Helper\PagerFactory;
+use MamuzBlog\View\Helper\PostPagerFactory;
 
 class PagerFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var PagerFactory */
+    /** @var PostPagerFactory */
     protected $fixture;
 
     protected function setUp()
     {
-        $this->fixture = new PagerFactory;
+        $this->fixture = new PostPagerFactory;
     }
 
     public function testImplementingFactoryInterface()
