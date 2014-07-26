@@ -1,7 +1,7 @@
 <?php
 
 return array(
-    'router'          => array(
+    'router'             => array(
         'routes' => array(
             'blogActivePosts' => array(
                 'type'    => 'segment',
@@ -48,25 +48,30 @@ return array(
             ),
         ),
     ),
-    'controllers'     => array(
+    'controllers'        => array(
         'factories' => array(
             'MamuzBlog\Controller\PostQuery' => 'MamuzBlog\Controller\PostQueryControllerFactory',
             'MamuzBlog\Controller\TagQuery'  => 'MamuzBlog\Controller\TagQueryControllerFactory',
         ),
     ),
-    'service_manager' => array(
+    'controller_plugins' => array(
+        'invokables' => array(
+            'createViewModel' => 'MamuzBlog\Controller\Plugin\CreateViewModel',
+        ),
+    ),
+    'service_manager'    => array(
         'factories' => array(
             'MamuzBlog\DomainManager' => 'MamuzBlog\DomainManager\Factory',
         ),
     ),
-    'blog_domain'     => array(
+    'blog_domain'        => array(
         'factories' => array(
             'MamuzBlog\Crypt\HashIdAdapter' => 'MamuzBlog\Crypt\HashIdAdapterFactory',
             'MamuzBlog\Service\PostQuery'   => 'MamuzBlog\Service\PostQueryFactory',
             'MamuzBlog\Service\TagQuery'    => 'MamuzBlog\Service\TagQueryFactory',
         ),
     ),
-    'view_helpers'    => array(
+    'view_helpers'       => array(
         'invokables' => array(
             'anchor'         => 'MamuzBlog\View\Helper\Anchor',
             'panel'          => 'MamuzBlog\View\Helper\Panel',
@@ -80,12 +85,12 @@ return array(
             'tagPager'  => 'MamuzBlog\View\Helper\TagPagerFactory',
         ),
     ),
-    'view_manager'    => array(
+    'view_manager'       => array(
         'template_map'        => include __DIR__ . '/../template_map.php',
         'template_path_stack' => array(__DIR__ . '/../view'),
         'strategies'          => array('ViewJsonStrategy'),
     ),
-    'doctrine'        => array(
+    'doctrine'           => array(
         'driver' => array(
             'mamuz_blog_entities' => array(
                 'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
@@ -99,7 +104,7 @@ return array(
             ),
         ),
     ),
-    'mamuz-blog'      => array(
+    'mamuz-blog'         => array(
         'pagination' => array(
             'range' => array(
                 'post' => 2,

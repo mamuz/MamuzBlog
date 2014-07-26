@@ -4,12 +4,13 @@ namespace MamuzBlog\Controller;
 
 use MamuzBlog\Crypt\AdapterInterface;
 use MamuzBlog\Feature\PostQueryInterface;
-use Zend\Http\PhpEnvironment\Request as HttpRequest;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ModelInterface;
-use Zend\View\Model\ViewModel;
 
+/**
+ * @method \MamuzBlog\Controller\Plugin\CreateViewModel createViewModel($variables = null, $options = null)
+ */
 class PostQueryController extends AbstractActionController
 {
     /** @var PostQueryInterface */
@@ -85,29 +86,5 @@ class PostQueryController extends AbstractActionController
         $response->setStatusCode(Response::STATUS_CODE_404);
 
         return null;
-    }
-
-    /**
-     * Create ViewModel instance
-     * and set terminal mode by HttpRequest
-     *
-     * @param null|array|\Traversable $variables
-     * @param null|array|\Traversable $options
-     * @return ModelInterface
-     */
-    private function createViewModel($variables = null, $options = null)
-    {
-        $viewModel = new ViewModel($variables, $options);
-        $request = $this->getRequest();
-
-        if ($request instanceof HttpRequest) {
-            $viewModel->setTerminal($request->isXmlHttpRequest());
-        } else {
-            $viewModel->setTerminal(true);
-        }
-
-        $viewModel->setVariable('isTerminal', $viewModel->terminate());
-
-        return $viewModel;
     }
 }
