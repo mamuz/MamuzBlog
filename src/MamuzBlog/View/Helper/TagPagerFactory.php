@@ -9,7 +9,7 @@ use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\ServiceManager;
 
-class PagerFactory implements FactoryInterface
+class TagPagerFactory implements FactoryInterface
 {
     use PaginationConfigAwareTrait;
 
@@ -24,8 +24,8 @@ class PagerFactory implements FactoryInterface
         }
 
         $rangeConfig = $this->getPaginationRangeConfigBy($serviceLocator);
-        $range = new Range($rangeConfig['post']);
+        $range = new Range($rangeConfig['tag']);
 
-        return new Pager($range, 'blogActivePosts', 'page');
+        return new Pager($range, 'blogTag', 'page');
     }
 }

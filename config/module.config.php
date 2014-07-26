@@ -32,11 +32,26 @@ return array(
                     ),
                 ),
             ),
+            'blogTag'         => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'       => '/blog/tag[/p/:page]',
+                    'constraints' => array(
+                        'page' => '[1-9][0-9]*',
+                    ),
+                    'defaults'    => array(
+                        'controller' => 'MamuzBlog\TagController\Query',
+                        'action'     => 'list',
+                        'page'       => 1,
+                    ),
+                ),
+            ),
         ),
     ),
     'controllers'     => array(
         'factories' => array(
-            'MamuzBlog\Controller\PostQuery' => 'MamuzBlog\Controller\PostQueryControllerFactory'
+            'MamuzBlog\Controller\PostQuery' => 'MamuzBlog\Controller\PostQueryControllerFactory',
+            'MamuzBlog\Controller\TagQuery'  => 'MamuzBlog\Controller\TagQueryControllerFactory',
         ),
     ),
     'service_manager' => array(
@@ -48,6 +63,7 @@ return array(
         'factories' => array(
             'MamuzBlog\Crypt\HashIdAdapter' => 'MamuzBlog\Crypt\HashIdAdapterFactory',
             'MamuzBlog\Service\PostQuery'   => 'MamuzBlog\Service\PostQueryFactory',
+            'MamuzBlog\Service\TagQuery'    => 'MamuzBlog\Service\TagQueryFactory',
         ),
     ),
     'view_helpers'    => array(
@@ -59,8 +75,9 @@ return array(
             'postPanelShort' => 'MamuzBlog\View\Helper\PostPanelShort',
         ),
         'factories'  => array(
-            'hashId' => 'MamuzBlog\View\Helper\HashIdFactory',
-            'pager'  => 'MamuzBlog\View\Helper\PagerFactory',
+            'hashId'    => 'MamuzBlog\View\Helper\HashIdFactory',
+            'postPager' => 'MamuzBlog\View\Helper\PostPagerFactory',
+            'tagPager'  => 'MamuzBlog\View\Helper\TagPagerFactory',
         ),
     ),
     'view_manager'    => array(
