@@ -20,10 +20,10 @@
         "doctrine/doctrine-orm-module": "0.*",
         "maglnet/magl-markdown"       : "1.*",
         "neilime/zf2-twb-bundle"      : "2.*@stable",
-        "hashids/hashids"             : "dev-master"
+        "hashids/hashids"             : "0.3.*@dev"
     },
     "require-dev"      : {
-        "satooshi/php-coveralls": "dev-master",
+        "satooshi/php-coveralls": "0.6.*",
         "phpunit/phpunit"       : "4.1.*",
         "mockery/mockery"       : "0.9.*"
     },
