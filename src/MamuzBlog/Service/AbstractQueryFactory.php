@@ -24,9 +24,9 @@ abstract class AbstractQueryFactory implements FactoryInterface
         $entityManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
         $this->setEntityManager($entityManager);
 
-        $rangeConfig = $this->getPaginationRangeConfigBy($serviceLocator);
+        $this->rangeConfig = $this->getPaginationRangeConfigBy($serviceLocator);
 
-        return $this->createQueryService($serviceLocator);
+        return $this->createQueryService();
     }
 
     /**
