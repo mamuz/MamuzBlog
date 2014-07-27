@@ -3,7 +3,6 @@
 namespace MamuzBlog\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
-use MamuzBlog\Options\AbstractPaginationConfigProvider;
 use MamuzBlog\Options\PaginationConfigProviderTrait;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
