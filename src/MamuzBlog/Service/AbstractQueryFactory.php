@@ -47,8 +47,7 @@ abstract class AbstractQueryFactory implements FactoryInterface
     }
 
     /**
-     * @param ServiceLocatorInterface $serviceLocator
      * @return object
      */
-    abstract protected function createQueryService(ServiceLocatorInterface $serviceLocator);
+    abstract protected function createQueryService();
 }
