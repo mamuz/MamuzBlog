@@ -26,10 +26,10 @@ class ViewModelFactory extends AbstractPlugin
     }
 
     /**
-     * @param \IteratorAggregate $collection
+     * @param array|\Traversable $collection
      * @return ModelInterface
      */
-    public function createFor(\IteratorAggregate $collection)
+    public function createFor($collection)
     {
         return $this->create(
             array(
