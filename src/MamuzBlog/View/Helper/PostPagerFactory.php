@@ -2,17 +2,15 @@
 
 namespace MamuzBlog\View\Helper;
 
-use MamuzBlog\Options\PaginationConfigAccessTrait;
+use MamuzBlog\Options\AbstractPaginationConfigProvider;
 use MamuzBlog\Options\Range;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\ServiceManager;
 
-class PostPagerFactory implements FactoryInterface
+class PostPagerFactory extends AbstractPaginationConfigProvider implements FactoryInterface
 {
-    use PaginationConfigAccessTrait;
-
     /**
      * {@inheritdoc}
      * @return \Zend\View\Helper\HelperInterface
