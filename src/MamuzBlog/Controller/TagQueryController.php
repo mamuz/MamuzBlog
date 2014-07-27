@@ -9,6 +9,7 @@ use Zend\View\Model\ModelInterface;
 
 /**
  * @method \MamuzBlog\Controller\Plugin\ViewModelFactory viewModelFactory()
+ * @method \MamuzBlog\Controller\Plugin\RouteParam routeParam()
  */
 class TagQueryController extends AbstractActionController
 {
@@ -30,14 +31,9 @@ class TagQueryController extends AbstractActionController
      */
     public function listAction()
     {
-        $currentPage = $this->params()->fromRoute('page', 1);
-        $this->queryService->setCurrentPage($currentPage);
+        $this->routeParam()->mapPageTo($this->queryService);
+        $collection = $this->queryService->findTags();
 
-        return $this->viewModelFactory()->create(
-            array(
-                'collection'  => $this->queryService->findTags(),
-                'routeParams' => $this->params()->fromRoute(),
-            )
-        );
+        return $this->viewModelFactory()->createFor($collection);
     }
 }

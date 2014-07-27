@@ -28,9 +28,6 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
     /** @var MvcEvent */
     protected $event;
 
-    /** @var Headers */
-    protected $xhrHeaders;
-
     /** @var \MamuzBlog\Feature\PostQueryInterface | \Mockery\MockInterface */
     protected $queryInterface;
 
@@ -43,6 +40,9 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
     /** @var \MamuzBlog\Controller\Plugin\ViewModelFactory | \Mockery\MockInterface */
     protected $viewModelFactory;
 
+    /** @var \MamuzBlog\Controller\Plugin\RouteParam | \Mockery\MockInterface */
+    protected $routeParam;
+
     /** @var \Zend\View\Model\ModelInterface | \Mockery\MockInterface */
     protected $viewModel;
 
@@ -51,9 +51,7 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->viewModel = \Mockery::mock('Zend\View\Model\ModelInterface');
         $this->cryptEngine = \Mockery::mock('MamuzBlog\Crypt\AdapterInterface');
         $this->queryInterface = \Mockery::mock('MamuzBlog\Feature\PostQueryInterface');
-
-        $this->xhrHeaders = new Headers;
-        $this->xhrHeaders->addHeaderLine('X_REQUESTED_WITH', 'XMLHttpRequest');
+        $this->routeParam = \Mockery::mock('Zend\View\Model\RouteParam');
 
         $this->fixture = new PostQueryController($this->queryInterface, $this->cryptEngine);
         $this->request = new Request();
@@ -67,6 +65,7 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
         $pluginManager = \Mockery::mock('Zend\Mvc\Controller\PluginManager')->shouldIgnoreMissing();
         $pluginManager->shouldReceive('get')->with('params', null)->andReturn($this->params);
         $pluginManager->shouldReceive('get')->with('viewModelFactory', null)->andReturn($this->viewModelFactory);
+        $pluginManager->shouldReceive('get')->with('routeParam', null)->andReturn($this->routeParam);
 
         $this->fixture->setPluginManager($pluginManager);
         $this->event->setRouter($router);
@@ -81,27 +80,21 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testActivePostsWithoutTagCanBeAccessed()
     {
-        $page = 'foo';
         $params = array(2, 1);
-        $posts = array(1, 2);
+        $posts = new \ArrayObject;
 
-        $this->params->shouldReceive('fromRoute')->with('page', 1)->andReturn($page);
+        $this->routeParam->shouldReceive('mapPageTo')->with($this->queryInterface);
+
         $this->params->shouldReceive('fromRoute')->with('tag')->andReturn(null);
         $this->params->shouldReceive('fromRoute')->andReturn($params);
 
-        $this->queryInterface->shouldReceive('setCurrentPage')->with($page);
         $this->queryInterface->shouldReceive('findActivePosts')->andReturn($posts);
 
         $this->routeMatch->setParam('action', 'activePosts');
 
         $this->viewModelFactory
-            ->shouldReceive('create')
-            ->with(
-                array(
-                    'collection'  => $posts,
-                    'routeParams' => $params,
-                )
-            )
+            ->shouldReceive('createFor')
+            ->with($posts)
             ->andReturn($this->viewModel);
 
         $result = $this->fixture->dispatch($this->request);
@@ -113,27 +106,21 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testActivePostsWithTagCanBeAccessed()
     {
-        $page = 'foo';
         $tag = 'bar';
         $params = array(2, 1);
-        $posts = array(1, 2);
+        $posts = new \ArrayObject;
 
-        $this->params->shouldReceive('fromRoute')->with('page', 1)->andReturn($page);
+        $this->routeParam->shouldReceive('mapPageTo')->with($this->queryInterface);
+
         $this->params->shouldReceive('fromRoute')->with('tag')->andReturn($tag);
         $this->params->shouldReceive('fromRoute')->andReturn($params);
 
-        $this->queryInterface->shouldReceive('setCurrentPage')->with($page);
         $this->queryInterface->shouldReceive('findActivePostsByTag')->with($tag)->andReturn($posts);
         $this->routeMatch->setParam('action', 'activePosts');
 
         $this->viewModelFactory
-            ->shouldReceive('create')
-            ->with(
-                array(
-                    'collection'  => $posts,
-                    'routeParams' => $params,
-                )
-            )
+            ->shouldReceive('createFor')
+            ->with($posts)
             ->andReturn($this->viewModel);
 
         $result = $this->fixture->dispatch($this->request);

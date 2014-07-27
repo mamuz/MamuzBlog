@@ -2,29 +2,13 @@
 
 namespace MamuzBlog\Controller;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
-
-class TagQueryControllerFactory implements FactoryInterface
+class TagQueryControllerFactory extends AbstractQueryControllerFactory
 {
-    /**
-     * {@inheritdoc}
-     * @return \Zend\Mvc\Controller\AbstractController
-     */
-    public function createService(ServiceLocatorInterface $serviceLocator)
+    protected function createController()
     {
-        if ($serviceLocator instanceof ServiceLocatorAwareInterface) {
-            $serviceLocator = $serviceLocator->getServiceLocator();
-        }
-        /** @var ServiceLocatorInterface $domainManager */
-        $domainManager = $serviceLocator->get('MamuzBlog\DomainManager');
-
         /** @var \MamuzBlog\Feature\TagQueryInterface $queryService */
-        $queryService = $domainManager->get('MamuzBlog\Service\TagQuery');
+        $queryService = $this->getDomainManager()->get('MamuzBlog\Service\TagQuery');
 
-        $controller = new TagQueryController($queryService);
-
-        return $controller;
+        return new TagQueryController($queryService);
     }
 }

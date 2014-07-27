@@ -3,8 +3,6 @@
 namespace MamuzBlog\Controller\Plugin;
 
 use Zend\Http\PhpEnvironment\Request as HttpRequest;
-use Zend\Mvc\Controller\AbstractController as MvcController;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
 use Zend\View\Model\ModelInterface;
 use Zend\View\Model\ViewModel;
 
@@ -28,6 +26,20 @@ class ViewModelFactory extends AbstractPlugin
     }
 
     /**
+     * @param \IteratorAggregate $collection
+     * @return ModelInterface
+     */
+    public function createFor(\IteratorAggregate $collection)
+    {
+        return $this->create(
+            array(
+                'collection'  => $collection,
+                'routeParams' => $this->getMvcController()->params()->fromRoute(),
+            )
+        );
+    }
+
+    /**
      * @return bool
      */
     private function isTerminal()
@@ -44,8 +56,7 @@ class ViewModelFactory extends AbstractPlugin
      */
     private function getHttpRequest()
     {
-        $controller = $this->getController();
-        if ($controller instanceof MvcController) {
+        if ($controller = $this->getMvcController()) {
             $request = $controller->getRequest();
             if ($request instanceof HttpRequest) {
                 return $request;

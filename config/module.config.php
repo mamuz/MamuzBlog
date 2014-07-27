@@ -57,6 +57,7 @@ return array(
     'controller_plugins' => array(
         'invokables' => array(
             'viewModelFactory' => 'MamuzBlog\Controller\Plugin\ViewModelFactory',
+            'routeParam'       => 'MamuzBlog\Controller\Plugin\RouteParam',
         ),
     ),
     'service_manager'    => array(

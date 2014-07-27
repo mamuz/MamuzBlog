@@ -3,14 +3,14 @@
 namespace MamuzBlog\Service;
 
 use MamuzBlog\Mapper\Db\PostQuery as PostQueryMapper;
-use MamuzBlog\Options\PaginationConfigAwareTrait;
+use MamuzBlog\Options\PaginationConfigAccessTrait;
 use MamuzBlog\Options\Range;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 class PostQueryFactory implements FactoryInterface
 {
-    use PaginationConfigAwareTrait;
+    use PaginationConfigAccessTrait;
 
     /**
      * {@inheritdoc}

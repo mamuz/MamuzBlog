@@ -4,16 +4,10 @@ namespace MamuzBlog\Feature;
 
 use MamuzBlog\Entity\Tag;
 
-interface TagQueryInterface
+interface TagQueryInterface extends Pageable
 {
     /**
-     * @param int $currentPage
-     * @return TagQueryInterface
-     */
-    public function setCurrentPage($currentPage);
-
-    /**
-     * @return Tag[]
+     * @return Tag[]|\Countable|\IteratorAggregate
      */
     public function findTags();
 }

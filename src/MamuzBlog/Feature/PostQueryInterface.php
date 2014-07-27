@@ -4,22 +4,16 @@ namespace MamuzBlog\Feature;
 
 use MamuzBlog\Entity\Post;
 
-interface PostQueryInterface
+interface PostQueryInterface extends Pageable
 {
     /**
-     * @param int $currentPage
-     * @return PostQueryInterface
-     */
-    public function setCurrentPage($currentPage);
-
-    /**
-     * @return Post[]
+     * @return Post[]|\Countable|\IteratorAggregate
      */
     public function findActivePosts();
 
     /**
      * @param string $tag
-     * @return Post[]
+     * @return Post[]|\Countable|\IteratorAggregate
      */
     public function findActivePostsByTag($tag);
 

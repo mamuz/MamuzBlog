@@ -10,6 +10,7 @@ use Zend\View\Model\ModelInterface;
 
 /**
  * @method \MamuzBlog\Controller\Plugin\ViewModelFactory viewModelFactory()
+ * @method \MamuzBlog\Controller\Plugin\RouteParam routeParam()
  */
 class PostQueryController extends AbstractActionController
 {
@@ -38,8 +39,7 @@ class PostQueryController extends AbstractActionController
      */
     public function activePostsAction()
     {
-        $currentPage = $this->params()->fromRoute('page', 1);
-        $this->queryService->setCurrentPage($currentPage);
+        $this->routeParam()->mapPageTo($this->queryService);
 
         if ($tag = $this->params()->fromRoute('tag')) {
             $collection = $this->queryService->findActivePostsByTag($tag);
@@ -47,12 +47,7 @@ class PostQueryController extends AbstractActionController
             $collection = $this->queryService->findActivePosts();
         }
 
-        return $this->viewModelFactory()->create(
-            array(
-                'collection'  => $collection,
-                'routeParams' => $this->params()->fromRoute(),
-            )
-        );
+        return $this->viewModelFactory()->createFor($collection);
     }
 
     /**

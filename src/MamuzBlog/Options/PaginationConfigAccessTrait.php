@@ -4,7 +4,7 @@ namespace MamuzBlog\Options;
 
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-trait PaginationConfigAwareTrait
+trait PaginationConfigAccessTrait
 {
     /**
      * @param ServiceLocatorInterface $serviceLocator
