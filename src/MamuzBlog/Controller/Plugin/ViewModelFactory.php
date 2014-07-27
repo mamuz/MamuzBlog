@@ -26,7 +26,7 @@ class ViewModelFactory extends AbstractPlugin
     }
 
     /**
-     * @param array|\Traversable $collection
+     * @param array|\Traversable|\Countable $collection
      * @return ModelInterface
      */
     public function createFor($collection)
