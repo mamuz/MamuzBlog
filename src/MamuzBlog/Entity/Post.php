@@ -90,20 +90,19 @@ class Post
      */
     public function __construct($id = null, \DateTime $createdAt = null, \DateTime $modifiedAt = null)
     {
-        $this->id = $this->determine((int) $id);
-        $this->createdAt = $this->determine($createdAt, new \DateTime);
-        $this->modifiedAt = $this->determine($modifiedAt, new \DateTime);
+        $this->id = $id;
+        $this->createdAt = $this->determineDate($createdAt);
+        $this->modifiedAt = $this->determineDate($modifiedAt);
         $this->tags = new ArrayCollection();
     }
 
     /**
-     * @param mixed $value
-     * @param mixed $default
-     * @return mixed
+     * @param null|\DateTime $value
+     * @return \DateTime
      */
-    private function determine($value, $default = null)
+    private function determineDate($value)
     {
-        return $value ? : $default;
+        return $value ? : new \DateTime;
     }
 
     /**
