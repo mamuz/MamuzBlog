@@ -3,15 +3,11 @@
 namespace MamuzBlog\Service;
 
 use MamuzBlog\Mapper\Db\TagQuery as TagQueryMapper;
-use MamuzBlog\Options\PaginationConfigAccessTrait;
 use MamuzBlog\Options\Range;
-use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class TagQueryFactory implements FactoryInterface
+class TagQueryFactory extends AbstractQueryFactory
 {
-    use PaginationConfigAccessTrait;
-
     /**
      * {@inheritdoc}
      * @return \MamuzBlog\Feature\TagQueryInterface
