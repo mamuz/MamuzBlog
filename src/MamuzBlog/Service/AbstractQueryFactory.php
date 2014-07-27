@@ -4,19 +4,27 @@ namespace MamuzBlog\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 use MamuzBlog\Options\AbstractPaginationConfigProvider;
+use MamuzBlog\Options\PaginationConfigProviderTrait;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-abstract class AbstractQueryFactory extends AbstractPaginationConfigProvider implements FactoryInterface
+abstract class AbstractQueryFactory implements FactoryInterface
 {
+    use PaginationConfigProviderTrait;
+
     /** @var EntityManagerInterface */
     private $entityManager;
+
+    /** @var array */
+    protected $rangeConfig;
 
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         /** @var EntityManagerInterface $entityManager */
         $entityManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
         $this->setEntityManager($entityManager);
+
+        $rangeConfig = $this->getPaginationRangeConfigBy($serviceLocator);
 
         return $this->createQueryService($serviceLocator);
     }

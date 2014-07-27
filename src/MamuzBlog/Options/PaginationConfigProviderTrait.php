@@ -4,13 +4,13 @@ namespace MamuzBlog\Options;
 
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-abstract class AbstractPaginationConfigProvider
+trait PaginationConfigProviderTrait
 {
     /**
      * @param ServiceLocatorInterface $serviceLocator
      * @return array
      */
-    protected function getPaginationRangeConfigBy(ServiceLocatorInterface $serviceLocator)
+    private function getPaginationRangeConfigBy(ServiceLocatorInterface $serviceLocator)
     {
         return $serviceLocator->get('Config')['mamuz-blog']['pagination']['range'];
     }

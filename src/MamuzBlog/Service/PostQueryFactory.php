@@ -14,9 +14,7 @@ class PostQueryFactory extends AbstractQueryFactory
      */
     public function createQueryService(ServiceLocatorInterface $serviceLocator)
     {
-        $rangeConfig = $this->getPaginationRangeConfigBy($serviceLocator);
-
-        $queryMapper = new PostQueryMapper($this->getEntityManager(), new Range($rangeConfig['post']));
+        $queryMapper = new PostQueryMapper($this->getEntityManager(), new Range($this->rangeConfig['post']));
         $queryService = new PostQuery($queryMapper);
 
         return $queryService;

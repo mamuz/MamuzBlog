@@ -2,14 +2,16 @@
 
 namespace MamuzBlog\View\Helper;
 
-use MamuzBlog\Options\AbstractPaginationConfigProvider;
+use MamuzBlog\Options\PaginationConfigProviderTrait;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\ServiceManager\ServiceManager;
 
-abstract class AbstractPagerFactory extends AbstractPaginationConfigProvider implements FactoryInterface
+abstract class AbstractPagerFactory implements FactoryInterface
 {
+    use PaginationConfigProviderTrait;
+
     /** @var array */
     protected $rangeConfig;
 

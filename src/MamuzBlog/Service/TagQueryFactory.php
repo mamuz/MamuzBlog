@@ -14,9 +14,7 @@ class TagQueryFactory extends AbstractQueryFactory
      */
     public function createQueryService(ServiceLocatorInterface $serviceLocator)
     {
-        $rangeConfig = $this->getPaginationRangeConfigBy($serviceLocator);
-
-        $queryMapper = new TagQueryMapper($this->getEntityManager(), new Range($rangeConfig['tag']));
+        $queryMapper = new TagQueryMapper($this->getEntityManager(), new Range($this->rangeConfig['tag']));
         $queryService = new TagQuery($queryMapper);
 
         return $queryService;
