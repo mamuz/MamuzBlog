@@ -37,14 +37,14 @@ class PostQueryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, $this->fixture);
     }
 
-    public function testfindActivePosts()
+    public function testFindActivePosts()
     {
         $this->mapper->shouldReceive('findActivePosts')->andReturn(array($this->entity));
 
         $this->assertSame(array($this->entity), $this->fixture->findActivePosts());
     }
 
-    public function testfindActivePostsByTag()
+    public function testFindActivePostsByTag()
     {
         $tag = 'foo';
         $this->mapper
@@ -55,7 +55,7 @@ class PostQueryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(array($this->entity), $this->fixture->findActivePostsByTag($tag));
     }
 
-    public function testfindActivePostById()
+    public function testFindActivePostById()
     {
         $id = 'foo';
         $this->mapper

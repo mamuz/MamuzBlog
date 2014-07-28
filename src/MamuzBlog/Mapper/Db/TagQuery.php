@@ -17,7 +17,7 @@ class TagQuery extends AbstractQuery implements TagQueryInterface
 
     protected function getDql(ConstraintInterface $constraint)
     {
-        $dql = 'SELECT p, t FROM ' . self::REPOSITORY;
+        $dql = 'SELECT t FROM ' . self::REPOSITORY;
 
         return $dql;
     }
