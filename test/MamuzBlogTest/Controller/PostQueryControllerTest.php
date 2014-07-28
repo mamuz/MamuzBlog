@@ -3,7 +3,6 @@
 namespace MamuzBlogTest\Controller;
 
 use MamuzBlog\Controller\PostQueryController;
-use Zend\Http\Headers;
 use Zend\Http\PhpEnvironment\Request;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\MvcEvent;
@@ -80,16 +79,11 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testActivePostsWithoutTagCanBeAccessed()
     {
-        $params = array(2, 1);
         $posts = new \ArrayObject;
 
         $this->routeParam->shouldReceive('mapPageTo')->with($this->queryInterface);
-
         $this->params->shouldReceive('fromRoute')->with('tag')->andReturn(null);
-        $this->params->shouldReceive('fromRoute')->andReturn($params);
-
         $this->queryInterface->shouldReceive('findActivePosts')->andReturn($posts);
-
         $this->routeMatch->setParam('action', 'activePosts');
 
         $this->viewModelFactory
@@ -107,14 +101,10 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
     public function testActivePostsWithTagCanBeAccessed()
     {
         $tag = 'bar';
-        $params = array(2, 1);
         $posts = new \ArrayObject;
 
         $this->routeParam->shouldReceive('mapPageTo')->with($this->queryInterface);
-
         $this->params->shouldReceive('fromRoute')->with('tag')->andReturn($tag);
-        $this->params->shouldReceive('fromRoute')->andReturn($params);
-
         $this->queryInterface->shouldReceive('findActivePostsByTag')->with($tag)->andReturn($posts);
         $this->routeMatch->setParam('action', 'activePosts');
 
