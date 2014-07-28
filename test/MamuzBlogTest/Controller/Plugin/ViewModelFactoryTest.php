@@ -73,10 +73,8 @@ class ViewModelFactoryTest extends \PHPUnit_Framework_TestCase
         $params->shouldReceive('__invoke')->andReturn($params);
         $params->shouldReceive('fromRoute')->andReturn($params);
 
-        $httpRequest = \Mockery::mock('Zend\Http\PhpEnvironment\Request');
-        $httpRequest->shouldReceive('isXmlHttpRequest')->andReturn(false);
         $controller = \Mockery::mock('Zend\Mvc\Controller\AbstractController');
-        $controller->shouldReceive('getRequest')->andReturn($httpRequest);
+        $controller->shouldReceive('getRequest')->andReturn(null);
         $controller->shouldReceive('params')->andReturn($params);
         $this->fixture->setController($controller);
 
