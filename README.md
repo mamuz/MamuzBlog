@@ -76,7 +76,7 @@ constraint for route `blogActivePost` in default configuration.
 Excepts encryption configuration this module is already configured out of the box, but you can overwrite it by
 adding a config file in `./config/autoload` directory.
 For default configuration see
-[`module.config.php`](https://github.com/mamuz/MamuzContact/blob/master/config/module.config.php)
+[`module.config.php`](https://github.com/mamuz/MamuzBlog/blob/master/config/module.config.php)
 
 ### Pagination Range
 
@@ -85,14 +85,14 @@ For default configuration see
 Listing of posts is provided by route `blogActivePosts`. List includes a pagination feature, which seperates
 views to a default range of 2 items. Default range is overwritable by adding a config file in `./config/autoload` directory.
 See `mamuz-blog/pagination/range/post` key in
-[`module.config.php`](https://github.com/mamuz/MamuzContact/blob/master/config/module.config.php).
+[`module.config.php`](https://github.com/mamuz/MamuzBlog/blob/master/config/module.config.php).
 
 #### Tags
 
 Listing of tags is provided by route `blogTags`. List includes a pagination feature, which seperates
 views to a default range of 10 items. Default range is overwritable by adding a config file in `./config/autoload` directory.
 See `mamuz-blog/pagination/range/tag` key in
-[`module.config.php`](https://github.com/mamuz/MamuzContact/blob/master/config/module.config.php).
+[`module.config.php`](https://github.com/mamuz/MamuzBlog/blob/master/config/module.config.php).
 
 ## Creating new Posts
 
