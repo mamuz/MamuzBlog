@@ -12,7 +12,7 @@ return array(
                         'page' => '[1-9][0-9]*',
                     ),
                     'defaults'    => array(
-                        'controller' => 'MamuzBlog\PostController\Query',
+                        'controller' => 'MamuzBlog\Controller\PostQuery',
                         'action'     => 'activePosts',
                         'page'       => 1,
                     ),
@@ -27,7 +27,7 @@ return array(
                         'title' => '[a-zA-Z0-9_+%-]+',
                     ),
                     'defaults'    => array(
-                        'controller' => 'MamuzBlog\PostController\Query',
+                        'controller' => 'MamuzBlog\Controller\PostQuery',
                         'action'     => 'activePost',
                     ),
                 ),
@@ -40,7 +40,7 @@ return array(
                         'page' => '[1-9][0-9]*',
                     ),
                     'defaults'    => array(
-                        'controller' => 'MamuzBlog\TagController\Query',
+                        'controller' => 'MamuzBlog\Controller\TagQuery',
                         'action'     => 'list',
                         'page'       => 1,
                     ),
