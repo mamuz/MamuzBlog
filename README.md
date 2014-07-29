@@ -28,7 +28,7 @@ The recommended way to install
 ```json
 {
     "require": {
-        "mamuz/mamuz-blog": "0.*"
+        "mamuz/mamuz-blog": "1.*"
     }
 }
 ```
