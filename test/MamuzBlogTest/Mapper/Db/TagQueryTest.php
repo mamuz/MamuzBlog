@@ -60,13 +60,13 @@ class TagQueryTest extends \PHPUnit_Framework_TestCase
         return $query;
     }
 
-    public function testFindTags()
+    public function testFindUsedTags()
     {
         $params = array('active' => true);
-        $dql = 'SELECT t FROM ' . $this->repository;
+        $dql = 'SELECT t FROM ' . $this->repository . ' t';
 
         $query = $this->createQuery($dql, $params);
-        $result = $this->fixture->findTags();
+        $result = $this->fixture->findUsedTags();
 
         $this->assertInstanceOf('\IteratorAggregate', $result);
         $this->assertSame($query, $result->getQuery());

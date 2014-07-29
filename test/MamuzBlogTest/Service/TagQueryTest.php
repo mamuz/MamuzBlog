@@ -37,11 +37,11 @@ class TagQueryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, $this->fixture);
     }
 
-    public function testFindActiveTags()
+    public function testFindUsedTags()
     {
         $tags = array($this->entity, $this->entity);
-        $this->mapper->shouldReceive('findTags')->andReturn($tags);
+        $this->mapper->shouldReceive('findUsedTags')->andReturn($tags);
 
-        $this->assertSame($tags, $this->fixture->findTags());
+        $this->assertSame($tags, $this->fixture->findUsedTags());
     }
 }

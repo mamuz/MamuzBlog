@@ -9,5 +9,5 @@ interface TagQueryInterface extends Pageable
     /**
      * @return Tag[]|\Countable|\IteratorAggregate
      */
-    public function findTags();
+    public function findUsedTags();
 }

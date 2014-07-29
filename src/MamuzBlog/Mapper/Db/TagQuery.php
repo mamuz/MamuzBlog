@@ -10,14 +10,14 @@ class TagQuery extends AbstractQuery implements TagQueryInterface
 {
     const REPOSITORY = 'MamuzBlog\Entity\Tag';
 
-    public function findTags()
+    public function findUsedTags()
     {
         return $this->createPaginator(new Constraint);
     }
 
     protected function getDql(ConstraintInterface $constraint)
     {
-        $dql = 'SELECT t FROM ' . self::REPOSITORY;
+        $dql = 'SELECT t FROM ' . self::REPOSITORY . ' t';
 
         return $dql;
     }

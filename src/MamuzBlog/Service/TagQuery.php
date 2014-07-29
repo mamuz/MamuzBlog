@@ -23,8 +23,8 @@ class TagQuery implements TagQueryInterface
         return $this;
     }
 
-    public function findTags()
+    public function findUsedTags()
     {
-        return $this->mapper->findTags();
+        return $this->mapper->findUsedTags();
     }
 }

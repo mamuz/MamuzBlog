@@ -3,9 +3,12 @@
 $this->headTitle()->append($this->translate('Blog'));
 echo '<h1>' . $this->translate('Blog') . '</h1>' . PHP_EOL;
 
+echo '<ul>' . PHP_EOL;
 foreach ($this->collection as $entity) {
     /** @var \MamuzBlog\Entity\Tag $entity */
-    echo $entity->getName() . PHP_EOL;
+    $posts = $entity->getPosts();
+    echo '<li>' . $entity->getName() . ' (' . count($posts) . ')</li>' . PHP_EOL;
 }
+echo '</ul>' . PHP_EOL;
 
 echo $this->tagPager($this->collection, $this->routeParams) . PHP_EOL;

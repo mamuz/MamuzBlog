@@ -72,7 +72,7 @@ class TagQueryControllerTest extends \PHPUnit_Framework_TestCase
         $tags = new \ArrayObject;
 
         $this->routeParam->shouldReceive('mapPageTo')->with($this->queryInterface);
-        $this->queryInterface->shouldReceive('findTags')->andReturn($tags);
+        $this->queryInterface->shouldReceive('findUsedTags')->andReturn($tags);
         $this->routeMatch->setParam('action', 'list');
 
         $this->viewModelFactory

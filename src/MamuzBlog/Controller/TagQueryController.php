@@ -32,7 +32,7 @@ class TagQueryController extends AbstractActionController
     public function listAction()
     {
         $this->routeParam()->mapPageTo($this->queryService);
-        $collection = $this->queryService->findTags();
+        $collection = $this->queryService->findUsedTags();
 
         return $this->viewModelFactory()->createFor($collection);
     }
