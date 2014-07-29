@@ -3,4 +3,5 @@
 return array(
     'mamuz-blog/post-query/active-posts' => __DIR__ . '/view/mamuz-blog/post-query/active-posts.phtml',
     'mamuz-blog/post-query/active-post'  => __DIR__ . '/view/mamuz-blog/post-query/active-post.phtml',
+    'mamuz-blog/tag-query/list'          => __DIR__ . '/view/mamuz-blog/tag-query/list.phtml',
 );
