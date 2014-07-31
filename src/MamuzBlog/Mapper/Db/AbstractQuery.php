@@ -55,6 +55,7 @@ abstract class AbstractQuery implements Pageable
         $maxResults = $this->range->getSize();
         $dql = $this->getDql($constraint);
 
+        /** @var \Doctrine\DBAL\Query\QueryBuilder $query */
         $query = $this->getEntityManager()->createQuery($dql);
         $query->setFirstResult($firstResult)->setMaxResults($maxResults);
 
