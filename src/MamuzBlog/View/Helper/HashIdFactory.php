@@ -5,7 +5,6 @@ namespace MamuzBlog\View\Helper;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\ServiceManager\ServiceManager;
 
 class HashIdFactory implements FactoryInterface
 {
