@@ -45,6 +45,10 @@ abstract class AbstractQuery implements Pageable
         return $this;
     }
 
+    /**
+     * @param ConstraintInterface $constraint
+     * @return Paginator
+     */
     protected function createPaginator(ConstraintInterface $constraint)
     {
         $firstResult = $this->range->getOffsetBy($this->currentPage);
