@@ -6,7 +6,6 @@ use Hashids\Hashids;
 use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\ServiceManager\ServiceManager;
 
 class HashIdAdapterFactory implements FactoryInterface
 {

@@ -3,7 +3,6 @@
 namespace MamuzBlog\Controller;
 
 use MamuzBlog\Feature\TagQueryInterface;
-use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ModelInterface;
 
