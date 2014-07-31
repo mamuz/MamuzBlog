@@ -5,6 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/mamuz/MamuzBlog/badge.png?branch=master)](https://coveralls.io/r/mamuz/MamuzBlog?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mamuz/MamuzBlog/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mamuz/MamuzBlog/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/8ed31e07-75b3-462c-a6ca-fce63b401eb8/mini.png)](https://insight.sensiolabs.com/projects/8ed31e07-75b3-462c-a6ca-fce63b401eb8)
+[![HHVM Status](http://hhvm.h4cc.de/badge/mamuz/mamuz-blog.png)](http://hhvm.h4cc.de/package/mamuz/mamuz-blog)
 
 [![Latest Stable Version](https://poser.pugx.org/mamuz/mamuz-blog/v/stable.svg)](https://packagist.org/packages/mamuz/mamuz-blog)
 [![Total Downloads](https://poser.pugx.org/mamuz/mamuz-blog/downloads.svg)](https://packagist.org/packages/mamuz/mamuz-blog)
