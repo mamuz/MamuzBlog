@@ -8,6 +8,7 @@ use Zend\View\Renderer\PhpRenderer as ZendPhpRenderer;
  * @method string markdown($text)
  * @method string anchor($href, $title, $content, $class = null)
  * @method string hashId($id)
+ * @method string slugify($value)
  * @method string panel($header, $content, $footer)
  * @method string postMeta(\MamuzBlog\Entity\Post $entity)
  * @method string badge($message = null, array $attributes = null)

@@ -20,7 +20,7 @@ class PostPanelShort extends PostPanel
         $this->url = $this->getRenderer()->url(
             'blogActivePost',
             array(
-                'title' => $this->entity->getTitle(),
+                'title' => $this->getRenderer()->slugify($this->entity->getTitle()),
                 'id'    => $this->getRenderer()->hashId($this->entity->getId())
             )
         );

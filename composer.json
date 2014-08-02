@@ -20,7 +20,8 @@
         "doctrine/doctrine-orm-module": "0.*",
         "maglnet/magl-markdown"       : "1.*",
         "neilime/zf2-twb-bundle"      : "2.*@stable",
-        "hashids/hashids"             : "0.3.*@dev"
+        "hashids/hashids"             : "0.3.*@dev",
+        "cocur/slugify"               : "0.*"
     },
     "require-dev"      : {
         "satooshi/php-coveralls": "0.6.*",

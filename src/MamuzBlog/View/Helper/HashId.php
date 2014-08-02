@@ -28,7 +28,7 @@ class HashId extends ZendAbstractHelper
 
     /**
      * @param mixed $id
-     * @return mixed string
+     * @return string
      */
     public function encrypt($id)
     {
