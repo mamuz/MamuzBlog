@@ -26,6 +26,7 @@ class PostPanelShortTest extends \PHPUnit_Framework_TestCase
         $this->renderer = \Mockery::mock('Zend\View\Renderer\RendererInterface');
         $this->renderer->shouldReceive('markdown')->with('desc')->andReturn('_content_');
         $this->renderer->shouldReceive('hashId')->with(12)->andReturn('hashId');
+        $this->renderer->shouldReceive('slugify')->with('title')->andReturn('title');
         $this->renderer->shouldReceive('url')->with(
             'blogActivePost',
             array('title' => 'title', 'id' => 'hashId')

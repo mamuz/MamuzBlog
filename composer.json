@@ -1,7 +1,7 @@
 {
     "name"             : "mamuz/mamuz-blog",
     "type"             : "library",
-    "description": "Provides blog feature for ZF2 with Doctrine",
+    "description"      : "Provides blog feature for ZF2 with Doctrine",
     "homepage"         : "https://github.com/mamuz/MamuzBlog",
     "license"          : "MIT",
     "keywords"         : ["mamuz", "blog", "markdown", "zf2", "doctrine", "twitter-bootstrap"],
