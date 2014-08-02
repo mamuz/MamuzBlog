@@ -112,6 +112,7 @@ class Post
     public function __clone()
     {
         $this->id = null;
+        $this->active = false;
         $this->createdAt = new \DateTime;
         $this->modifiedAt = new \DateTime;
     }
