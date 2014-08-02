@@ -14,12 +14,14 @@
 
 ## Domain
 
- - This module provides a simple read only blog feature.
- - Posts are persisted in a database.
- - Markdown is supported for post content.
- - Post identities are encrypted in frontend.
- - Posts are searchable by tag, title or encrypted identity.
- - twitter-Bootstrap 2/3 compatible
+ - This module provides a read only blog feature.
+ - Post content is rendered with a markdown parser.
+ - Each post can have one or more tag.
+ - Posts are searchable by tag or encrypted identity.
+ - View of posts list is provided, same is true for tags.
+ - To keep security rules links to a dedicated post contains an encrypted identity.
+ - Links to dedicated posts also ends with slugified post title to meet SEO.
+ - Views are twitter-Bootstrap 2 and twitter-Bootstrap 3 compatible.
 
 ## Installation
 
