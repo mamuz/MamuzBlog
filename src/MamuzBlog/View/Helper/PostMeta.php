@@ -57,8 +57,8 @@ class PostMeta extends AbstractHelper
         foreach ($tags as $tag) {
             /** @var \MamuzBlog\Entity\Tag $tag */
             $tagName = $tag->getName();
-            $badge = $this->getRenderer()->badge($this->getRenderer()->translate($tagName));
-            $html .= $this->getRenderer()->tagAnchor($tagName, $badge) . PHP_EOL;
+            $content = $this->getRenderer()->badge($this->getRenderer()->translate($tagName));
+            $html .= $this->getRenderer()->tagAnchor($tagName, $content) . PHP_EOL;
         }
 
         return $html;
