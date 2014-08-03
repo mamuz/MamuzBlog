@@ -4,7 +4,6 @@ namespace MamuzBlog\Mapper\Db;
 
 use MamuzBlog\Feature\TagQueryInterface;
 use MamuzBlog\Options\Constraint;
-use MamuzBlog\Options\ConstraintInterface;
 
 class TagQuery extends AbstractQuery implements TagQueryInterface
 {
@@ -15,10 +14,9 @@ class TagQuery extends AbstractQuery implements TagQueryInterface
         return $this->createPaginator(new Constraint);
     }
 
-    protected function getDql(ConstraintInterface $constraint)
+    protected function getQuery()
     {
         $dql = 'SELECT t FROM ' . self::REPOSITORY . ' t';
-
-        return $dql;
+        return $this->getEntityManager()->createQuery($dql);
     }
 }

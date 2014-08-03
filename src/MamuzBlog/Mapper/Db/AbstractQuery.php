@@ -5,7 +5,6 @@ namespace MamuzBlog\Mapper\Db;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use MamuzBlog\Feature\Pageable;
-use MamuzBlog\Options\ConstraintInterface;
 use MamuzBlog\Options\RangeInterface;
 
 abstract class AbstractQuery implements Pageable
@@ -31,6 +30,12 @@ abstract class AbstractQuery implements Pageable
         $this->range = $range;
     }
 
+    public function setCurrentPage($currentPage)
+    {
+        $this->currentPage = (int) $currentPage;
+        return $this;
+    }
+
     /**
      * @return EntityManagerInterface
      */
@@ -39,36 +44,22 @@ abstract class AbstractQuery implements Pageable
         return $this->entityManager;
     }
 
-    public function setCurrentPage($currentPage)
-    {
-        $this->currentPage = (int) $currentPage;
-        return $this;
-    }
-
     /**
-     * @param ConstraintInterface $constraint
      * @return Paginator
      */
-    protected function createPaginator(ConstraintInterface $constraint)
+    protected function createPaginator()
     {
         $firstResult = $this->range->getOffsetBy($this->currentPage);
         $maxResults = $this->range->getSize();
-        $dql = $this->getDql($constraint);
 
-        /** @var \Doctrine\DBAL\Query\QueryBuilder $query */
-        $query = $this->getEntityManager()->createQuery($dql);
+        $query = $this->getQuery();
         $query->setFirstResult($firstResult)->setMaxResults($maxResults);
-
-        if (!$constraint->isEmpty()) {
-            $query->setParameters($constraint->toArray());
-        }
 
         return new Paginator($query);
     }
 
     /**
-     * @param ConstraintInterface $constraint
-     * @return string
+     * @return \Doctrine\ORM\QueryBuilder
      */
-    abstract protected function getDql(ConstraintInterface $constraint);
+    abstract protected function getQuery();
 }
