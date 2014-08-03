@@ -25,6 +25,7 @@ class Tag extends AbstractHelper
             $content = $this->getRenderer()->translate($tagName) . $this->getRenderer()->badge($postCount);
             return $this->getRenderer()->tagAnchor($tagName, $content);
         }
+
         return '';
     }
 }
