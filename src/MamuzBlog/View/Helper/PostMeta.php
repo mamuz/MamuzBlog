@@ -57,12 +57,8 @@ class PostMeta extends AbstractHelper
         foreach ($tags as $tag) {
             /** @var \MamuzBlog\Entity\Tag $tag */
             $tagName = $tag->getName();
-            $url = $this->getRenderer()->url(
-                'blogActivePosts',
-                array('tag' => $tagName)
-            );
             $badge = $this->getRenderer()->badge($this->getRenderer()->translate($tagName));
-            $html .= $this->getRenderer()->anchor($url, 'Go to specific list', $badge) . PHP_EOL;
+            $html .= $this->getRenderer()->tagAnchor($tagName, $badge) . PHP_EOL;
         }
 
         return $html;

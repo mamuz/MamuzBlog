@@ -35,24 +35,16 @@ class PostMetaTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('dateFormat')
             ->with($modifiedAt, \IntlDateFormatter::LONG, \IntlDateFormatter::NONE)
             ->andReturn('datestring');
-        $this->renderer
-            ->shouldReceive('url')
-            ->with(
-                'blogActivePosts',
-                array('tag' => 'tag1')
-            )->andReturn('url1');
-        $this->renderer
-            ->shouldReceive('url')
-            ->with(
-                'blogActivePosts',
-                array('tag' => 'tag2')
-            )->andReturn('url2');
         $this->renderer->shouldReceive('translate')->with('tag1')->andReturn('_tag1');
         $this->renderer->shouldReceive('translate')->with('tag2')->andReturn('_tag2');
         $this->renderer->shouldReceive('badge')->with('_tag1')->andReturn('badge1');
         $this->renderer->shouldReceive('badge')->with('_tag2')->andReturn('badge2');
-        $this->renderer->shouldReceive('anchor')->with('url1', 'Go to specific list', 'badge1')->andReturn('anchor1');
-        $this->renderer->shouldReceive('anchor')->with('url2', 'Go to specific list', 'badge2')->andReturn('anchor2');
+        $this->renderer
+            ->shouldReceive('tagAnchor')
+            ->with('tag1', 'badge1')->andReturn('anchor1');
+        $this->renderer
+            ->shouldReceive('tagAnchor')
+            ->with('tag2', 'badge2')->andReturn('anchor2');
 
         $this->fixture = new PostMeta;
         $this->fixture->setView($this->renderer);

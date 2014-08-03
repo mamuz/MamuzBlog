@@ -28,7 +28,7 @@ class Slug extends ZendAbstractHelper
 
     /**
      * @param mixed $value
-     * @return mixed
+     * @return string
      */
     public function filter($value)
     {

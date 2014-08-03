@@ -76,6 +76,8 @@ return array(
         'invokables' => array(
             'anchor'         => 'MamuzBlog\View\Helper\Anchor',
             'panel'          => 'MamuzBlog\View\Helper\Panel',
+            'tag'            => 'MamuzBlog\View\Helper\Tag',
+            'tagAnchor'      => 'MamuzBlog\View\Helper\TagAnchor',
             'postMeta'       => 'MamuzBlog\View\Helper\PostMeta',
             'postPanel'      => 'MamuzBlog\View\Helper\PostPanel',
             'postPanelShort' => 'MamuzBlog\View\Helper\PostPanelShort',

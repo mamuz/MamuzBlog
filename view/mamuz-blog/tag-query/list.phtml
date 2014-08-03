@@ -5,9 +5,9 @@ echo '<h1>' . $this->translate('Blog') . '</h1>' . PHP_EOL;
 
 echo '<ul>' . PHP_EOL;
 foreach ($this->collection as $entity) {
-    /** @var \MamuzBlog\Entity\Tag $entity */
-    $posts = $entity->getPosts();
-    echo '<li>' . $entity->getName() . ' (' . count($posts) . ')</li>' . PHP_EOL;
+    if ($item = $this->tag($entity)) {
+        echo '<li>' . $item . '</li>' . PHP_EOL;
+    }
 }
 echo '</ul>' . PHP_EOL;
 
