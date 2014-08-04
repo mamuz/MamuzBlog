@@ -25,8 +25,11 @@ class TagTest extends \PHPUnit_Framework_TestCase
 
         $this->renderer = \Mockery::mock('Zend\View\Renderer\RendererInterface');
         $this->renderer->shouldReceive('translate')->with('tagname')->andReturn('_tagname_');
-        $this->renderer->shouldReceive('badge')->with(count($this->posts))->andReturn('badge');
-        $this->renderer->shouldReceive('tagAnchor')->with('tagname', '_tagname_badge')->andReturn('anchor');
+        $this->renderer
+            ->shouldReceive('badge')
+            ->with(count($this->posts), array('class' => 'pull-right'))
+            ->andReturn('badge');
+        $this->renderer->shouldReceive('tagAnchor')->with('tagname', 'badge_tagname_')->andReturn('anchor');
 
         $this->fixture = new Tag;
         $this->fixture->setView($this->renderer);

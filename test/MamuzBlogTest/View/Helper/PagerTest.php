@@ -57,7 +57,10 @@ class PagerTest extends \PHPUnit_Framework_TestCase
 
         $html = $this->fixture->render($this->collection, array('page' => 2));
 
-        $expected = '_prev_' . PHP_EOL . '_next_' . PHP_EOL;
+        $expected = '<ul class="pager">' . PHP_EOL
+            . '<li>_prev_</li>' . PHP_EOL
+            . '<li>_next_</li>' . PHP_EOL
+            . '</ul>';
 
         $this->assertSame($expected, $html);
 
@@ -80,7 +83,9 @@ class PagerTest extends \PHPUnit_Framework_TestCase
 
         $html = $this->fixture->render($this->collection, array('page' => 1));
 
-        $expected = '_next_' . PHP_EOL;
+        $expected = '<ul class="pager">' . PHP_EOL
+            . '<li>_next_</li>' . PHP_EOL
+            . '</ul>';
 
         $this->assertSame($expected, $html);
 
@@ -103,7 +108,9 @@ class PagerTest extends \PHPUnit_Framework_TestCase
 
         $html = $this->fixture->render($this->collection, array('page' => 3));
 
-        $expected = '_prev_' . PHP_EOL;
+        $expected = '<ul class="pager">' . PHP_EOL
+            . '<li>_prev_</li>' . PHP_EOL
+            . '</ul>';
 
         $this->assertSame($expected, $html);
 

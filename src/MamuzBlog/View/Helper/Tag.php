@@ -22,7 +22,8 @@ class Tag extends AbstractHelper
     {
         if ($postCount = count($entity->getPosts())) {
             $tagName = $entity->getName();
-            $content = $this->getRenderer()->translate($tagName) . $this->getRenderer()->badge($postCount);
+            $content = $this->getRenderer()->badge($postCount, array('class' => 'pull-right'))
+                . $this->getRenderer()->translate($tagName);
             return $this->getRenderer()->tagAnchor($tagName, $content);
         }
 
