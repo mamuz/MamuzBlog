@@ -1,5 +1,9 @@
 <?php
 
+if ($this->currentTag) {
+    $this->headTitle()->append($this->translate($this->currentTag));
+}
+
 $items = array();
 foreach ($this->collection as $entity) {
     /** @var \MamuzBlog\Entity\Tag $entity */
