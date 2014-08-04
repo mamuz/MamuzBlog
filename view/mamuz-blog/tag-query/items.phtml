@@ -1,0 +1,20 @@
+<?php
+
+$items = array();
+foreach ($this->collection as $entity) {
+    /** @var \MamuzBlog\Entity\Tag $entity */
+    if ($item = $this->tag($entity)) {
+        $active = $entity->getName() === $this->currentTag ? ' class="active"' : '';
+        $items[] = '<li' . $active . '>' . $item . '</li>';
+    }
+}
+
+echo '<h2>' . $this->translate('Tags') . '</h2>' . PHP_EOL;
+
+if (!empty($items)) {
+    echo '<ul class="nav nav-pills nav-stacked">' . PHP_EOL;
+    echo implode(PHP_EOL, $items);
+    echo '</ul>' . PHP_EOL;
+} else {
+    echo $this->alert($this->translate('No tags found'), array('class' => 'info')) . PHP_EOL;
+}

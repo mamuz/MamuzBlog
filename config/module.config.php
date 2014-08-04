@@ -86,6 +86,7 @@ return array(
             'hashId'    => 'MamuzBlog\View\Helper\HashIdFactory',
             'postPager' => 'MamuzBlog\View\Helper\PostPagerFactory',
             'tagPager'  => 'MamuzBlog\View\Helper\TagPagerFactory',
+            'tagList'   => 'MamuzBlog\View\Helper\TagListFactory',
             'slugify'   => 'MamuzBlog\View\Helper\SlugFactory',
         ),
     ),

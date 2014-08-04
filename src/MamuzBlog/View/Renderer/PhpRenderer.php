@@ -12,6 +12,7 @@ use Zend\View\Renderer\PhpRenderer as ZendPhpRenderer;
  * @method string panel($header, $content, $footer)
  * @method string postMeta(\MamuzBlog\Entity\Post $entity)
  * @method string tag(\MamuzBlog\Entity\Tag $entity)
+ * @method string tagList()
  * @method string tagAnchor($tagName, $content)
  * @method string badge($message = null, array $attributes = null)
  * @method string glyphicon($name, array $attributes = null)

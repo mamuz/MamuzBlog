@@ -1,24 +1,15 @@
 <?php
-// @todo provide partial
+
 $this->headTitle()->append($this->translate('Blog'));
 $this->headTitle()->append($this->translate('Tags'));
 echo '<h1>' . $this->translate('Blog') . '</h1>' . PHP_EOL;
-echo '<h2>' . $this->translate('Tags') . '</h2>' . PHP_EOL;
 
-$items = array();
-foreach ($this->collection as $entity) {
-    if ($item = $this->tag($entity)) {
-        // @todo class="active"
-        $items[] = '<li>' . $item . '</li>';
-    }
-}
-
-if (!empty($items)) {
-    echo '<ul class="nav nav-pills nav-stacked">' . PHP_EOL;
-    echo implode(PHP_EOL, $items);
-    echo '</ul>' . PHP_EOL;
-} else {
-    echo $this->alert($this->translate('No tags found'), array('class' => 'info')) . PHP_EOL;
-}
+echo $this->partial(
+    'mamuz-blog/tag-query/items',
+    array(
+        'collection' => $this->collection,
+        'currentTag' => false,
+    )
+);
 
 echo $this->tagPager($this->collection, $this->routeParams) . PHP_EOL;
