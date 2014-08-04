@@ -8,9 +8,6 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 
 class TagListFactory implements FactoryInterface
 {
-    /** @var array */
-    protected $rangeConfig;
-
     /**
      * {@inheritdoc}
      * @return \Zend\View\Helper\HelperInterface
