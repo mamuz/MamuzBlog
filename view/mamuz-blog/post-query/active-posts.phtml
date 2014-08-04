@@ -3,12 +3,8 @@
 $this->headTitle()->append($this->translate('Blog'));
 echo '<h1>' . $this->translate('Blog') . '</h1>' . PHP_EOL;
 
-if (sizeof($this->collection) > 0) {
-    foreach ($this->collection as $entity) {
-        echo $this->postPanelShort($entity) . PHP_EOL;
-    }
-} else {
-    echo $this->alert($this->translate('No posts found'), array('info')) . PHP_EOL;
+foreach ($this->collection as $entity) {
+    echo $this->postPanelShort($entity) . PHP_EOL;
 }
 
 echo $this->postPager($this->collection, $this->routeParams) . PHP_EOL;

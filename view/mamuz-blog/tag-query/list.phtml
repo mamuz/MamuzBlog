@@ -18,7 +18,7 @@ if (!empty($items)) {
     echo implode(PHP_EOL, $items);
     echo '</ul>' . PHP_EOL;
 } else {
-    echo $this->alert($this->translate('No tags found'), array('info')) . PHP_EOL;
+    echo $this->alert($this->translate('No tags found'), array('class' => 'info')) . PHP_EOL;
 }
 
 echo $this->tagPager($this->collection, $this->routeParams) . PHP_EOL;
