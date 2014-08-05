@@ -37,22 +37,13 @@ class PostQuery extends AbstractQuery implements PostQueryInterface
 
     protected function getQuery()
     {
-        if (!$this->constraint->isEmpty()) {
-            $constraintString = 'WHERE ' . $this->constraint->toString() . ' ';
-        } else {
-            $constraintString = '';
-        }
-
         $dql = 'SELECT p, t FROM ' . self::REPOSITORY . ' p LEFT JOIN p.tags t '
-            . $constraintString
+            . 'WHERE ' . $this->constraint->toString() . ' '
             . 'ORDER BY p.createdAt DESC';
 
+        /** @var \Doctrine\DBAL\Query\QueryBuilder $query */
         $query = $this->getEntityManager()->createQuery($dql);
-
-        if (!$this->constraint->isEmpty()) {
-            /** @var \Doctrine\DBAL\Query\QueryBuilder $query */
-            $query->setParameters($this->constraint->toArray());
-        }
+        $query->setParameters($this->constraint->toArray());
 
         return $query;
     }
