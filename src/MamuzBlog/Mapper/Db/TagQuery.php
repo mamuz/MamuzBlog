@@ -3,7 +3,6 @@
 namespace MamuzBlog\Mapper\Db;
 
 use MamuzBlog\Feature\TagQueryInterface;
-use MamuzBlog\Options\Constraint;
 
 class TagQuery extends AbstractQuery implements TagQueryInterface
 {
@@ -11,7 +10,7 @@ class TagQuery extends AbstractQuery implements TagQueryInterface
 
     public function findUsedTags()
     {
-        return $this->createPaginator(new Constraint);
+        return $this->createPaginator();
     }
 
     protected function getQuery()
