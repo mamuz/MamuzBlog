@@ -71,19 +71,24 @@ class Pager extends AbstractHelper
 
         $currentPage = $this->params[$this->pageKey];
 
-        $pages = array();
+        $pagers = array();
         if ($currentPage > 1) {
-            $pages[] = $this->createAnchor($paramsPrev, 'prev');
+            $pagers[] = $this->createAnchor($paramsPrev, 'prev');
         }
 
         if ($currentPage < $this->pagesCount) {
-            $pages[] = $this->createAnchor($paramsNext, 'next');
+            $pagers[] = $this->createAnchor($paramsNext, 'next');
         }
 
+        return $this->renderListBy($pagers);
+    }
+
+    private function renderListBy($pagers)
+    {
         $html = '';
-        if (!empty($pages)) {
+        if (!empty($pagers)) {
             $html = '<ul class="pager">' . PHP_EOL
-                . '<li>' . implode('</li>' . PHP_EOL . '<li>', $pages) . '</li>' . PHP_EOL
+                . '<li>' . implode('</li>' . PHP_EOL . '<li>', $pagers) . '</li>' . PHP_EOL
                 . '</ul>';
         }
 
