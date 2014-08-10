@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./test/Bootstrap.php" colors="true">
+<phpunit bootstrap="./tests/Bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="MamuzBlog Testsuite">
-            <directory>./test</directory>
+            <directory>./tests</directory>
         </testsuite>
     </testsuites>
     <listeners>

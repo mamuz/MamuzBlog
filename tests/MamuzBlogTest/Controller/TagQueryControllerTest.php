@@ -8,7 +8,6 @@ use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\Http\TreeRouteStack as HttpRouter;
 use Zend\Mvc\Router\RouteMatch;
-use Zend\ServiceManager\ServiceManager;
 
 class TagQueryControllerTest extends \PHPUnit_Framework_TestCase
 {
