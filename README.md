@@ -73,7 +73,7 @@ and wrapped by an own adapter. This adapter have to be configured by copy `./ven
 to `./config/autoload/crypt.local.php` and be sure that file is not under version control.
 The only one you have to do is to change `salt` value.
 If you change `minLength` value, you have to consider the route `id` parameter
-constraint for route `blogActivePost` in default configuration.
+constraint for route `blogPublishedPost` in default configuration.
 
 ### Default configuration
 
@@ -86,7 +86,7 @@ For default configuration see
 
 #### Posts
 
-Listing of posts is provided by route `blogActivePosts`. List includes a pagination feature, which seperates
+Listing of posts is provided by route `blogPublishedPosts`. List includes a pagination feature, which seperates
 views to a default range of 2 items. Default range is overwritable by adding a config file in `./config/autoload` directory.
 See `mamuz-blog/pagination/range/post` key in
 [`module.config.php`](https://github.com/mamuz/MamuzBlog/blob/master/config/module.config.php).
@@ -105,6 +105,6 @@ Content will be rendered with a markdown parser.
 
 ## Workflow
 
-If routing is successful to a post entity or to post entities found by active flag,
+If routing is successful to a post entity or to post entities found by published flag,
 post content will be responsed in a new view model. Otherwise in case of fetching one entity which doesnt exist
 it will set a 404 status code to http response object.
