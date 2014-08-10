@@ -18,7 +18,7 @@ class PostPanelShort extends PostPanel
     private function createUrl()
     {
         $this->url = $this->getRenderer()->url(
-            'blogActivePost',
+            'blogPublishedPost',
             array(
                 'title' => $this->getRenderer()->slugify($this->entity->getTitle()),
                 'id'    => $this->getRenderer()->hashId($this->entity->getId())

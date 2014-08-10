@@ -8,7 +8,7 @@ $items = array();
 foreach ($this->collection as $entity) {
     /** @var \MamuzBlog\Entity\Tag $entity */
     if ($item = $this->tag($entity)) {
-        $active = $entity->getName() === $this->currentTag ? ' class="active"' : '';
+        $active = $entity->getName() === $this->currentTag ? ' class="published"' : '';
         $items[] = '<li' . $active . '>' . $item . '</li>';
     }
 }

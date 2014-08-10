@@ -3,7 +3,7 @@
 return array(
     'router'             => array(
         'routes' => array(
-            'blogActivePosts' => array(
+            'blogPublishedPosts' => array(
                 'type'    => 'segment',
                 'options' => array(
                     'route'       => '/blog[/:tag][/p/:page]',
@@ -13,12 +13,12 @@ return array(
                     ),
                     'defaults'    => array(
                         'controller' => 'MamuzBlog\Controller\PostQuery',
-                        'action'     => 'activePosts',
+                        'action'     => 'publishedPosts',
                         'page'       => 1,
                     ),
                 ),
             ),
-            'blogActivePost'  => array(
+            'blogPublishedPost'  => array(
                 'type'    => 'segment',
                 'options' => array(
                     'route'       => '/blog/post[/:id][/:title]',
@@ -28,11 +28,11 @@ return array(
                     ),
                     'defaults'    => array(
                         'controller' => 'MamuzBlog\Controller\PostQuery',
-                        'action'     => 'activePost',
+                        'action'     => 'publishedPost',
                     ),
                 ),
             ),
-            'blogTags'        => array(
+            'blogTags'           => array(
                 'type'    => 'segment',
                 'options' => array(
                     'route'       => '/blog/tags[/p/:page]',

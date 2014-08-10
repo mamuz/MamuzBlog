@@ -1,10 +1,6 @@
 <?php
 
-error_reporting(E_ALL | E_STRICT);
-
-if (function_exists('xdebug_disable')) {
-    xdebug_disable();
-}
+error_reporting(E_ALL);
 
 $file = __DIR__ . '/../vendor/autoload.php';
 if (file_exists($file)) {
@@ -12,9 +8,7 @@ if (file_exists($file)) {
 }
 
 if (!isset($loader)) {
-    throw new \RuntimeException(
-        'vendor/autoload.php could not be found. Did you run `php composer.phar install`?'
-    );
+    throw new \RuntimeException('Cannot find vendor/autoload.php');
 }
 
 /** @var \Composer\Autoload\ClassLoader $loader */

@@ -37,32 +37,32 @@ class PostQueryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, $this->fixture);
     }
 
-    public function testFindActivePosts()
+    public function testFindPublishedPosts()
     {
-        $this->mapper->shouldReceive('findActivePosts')->andReturn(array($this->entity));
+        $this->mapper->shouldReceive('findPublishedPosts')->andReturn(array($this->entity));
 
-        $this->assertSame(array($this->entity), $this->fixture->findActivePosts());
+        $this->assertSame(array($this->entity), $this->fixture->findPublishedPosts());
     }
 
-    public function testFindActivePostsByTag()
+    public function testFindPublishedPostsByTag()
     {
         $tag = 'foo';
         $this->mapper
-            ->shouldReceive('findActivePostsByTag')
+            ->shouldReceive('findPublishedPostsByTag')
             ->with($tag)
             ->andReturn(array($this->entity));
 
-        $this->assertSame(array($this->entity), $this->fixture->findActivePostsByTag($tag));
+        $this->assertSame(array($this->entity), $this->fixture->findPublishedPostsByTag($tag));
     }
 
-    public function testFindActivePostById()
+    public function testFindPublishedPostById()
     {
         $id = 'foo';
         $this->mapper
-            ->shouldReceive('findActivePostById')
+            ->shouldReceive('findPublishedPostById')
             ->with($id)
             ->andReturn($this->entity);
 
-        $this->assertSame($this->entity, $this->fixture->findActivePostById($id));
+        $this->assertSame($this->entity, $this->fixture->findPublishedPostById($id));
     }
 }

@@ -36,7 +36,7 @@ class PostQueryTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('MamuzBlog\Feature\PostQueryInterface', $this->fixture);
     }
 
-    public function testFindActivePostById()
+    public function testFindPublishedPostById()
     {
         $id = 234;
         $this->entityManager
@@ -44,10 +44,10 @@ class PostQueryTest extends \PHPUnit_Framework_TestCase
             ->with($this->repository, $id)
             ->andReturn($this->entity);
 
-        $this->assertSame($this->entity, $this->fixture->findActivePostById($id));
+        $this->assertSame($this->entity, $this->fixture->findPublishedPostById($id));
     }
 
-    public function testFindNotActivePostById()
+    public function testFindNotPublishedPostById()
     {
         $id = 234;
         $this->entityManager
@@ -55,7 +55,7 @@ class PostQueryTest extends \PHPUnit_Framework_TestCase
             ->with($this->repository, $id)
             ->andReturn(null);
 
-        $this->assertNull($this->fixture->findActivePostById($id));
+        $this->assertNull($this->fixture->findPublishedPostById($id));
     }
 
     public function testFluentInterfaceForCurrentPage()
@@ -82,30 +82,30 @@ class PostQueryTest extends \PHPUnit_Framework_TestCase
         return $query;
     }
 
-    public function testFindActivePosts()
+    public function testFindPublishedPosts()
     {
-        $params = array('active' => true);
+        $params = array('published' => true);
         $dql = 'SELECT p, t FROM ' . $this->repository . ' p LEFT JOIN p.tags t '
-            . 'WHERE p.active = :active '
+            . 'WHERE p.published = :published '
             . 'ORDER BY p.createdAt DESC';
 
         $query = $this->createQuery($dql, $params);
-        $result = $this->fixture->findActivePosts();
+        $result = $this->fixture->findPublishedPosts();
 
         $this->assertInstanceOf('\IteratorAggregate', $result);
         $this->assertSame($query, $result->getQuery());
     }
 
-    public function testFindActivePostsByTag()
+    public function testFindPublishedPostsByTag()
     {
         $tag = 'foo';
-        $params = array('active' => true, 'tag' => $tag);
+        $params = array('published' => true, 'tag' => $tag);
         $dql = 'SELECT p, t FROM ' . $this->repository . ' p LEFT JOIN p.tags t '
-            . 'WHERE p.active = :active AND t.name = :tag '
+            . 'WHERE p.published = :published AND t.name = :tag '
             . 'ORDER BY p.createdAt DESC';
 
         $query = $this->createQuery($dql, $params);
-        $result = $this->fixture->findActivePostsByTag($tag);
+        $result = $this->fixture->findPublishedPostsByTag($tag);
 
         $this->assertInstanceOf('\IteratorAggregate', $result);
         $this->assertSame($query, $result->getQuery());

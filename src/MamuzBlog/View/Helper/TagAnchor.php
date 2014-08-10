@@ -20,7 +20,7 @@ class TagAnchor extends AbstractHelper
     public function render($tagName, $content)
     {
         $url = $this->getRenderer()->url(
-            'blogActivePosts',
+            'blogPublishedPosts',
             array('tag' => $tagName)
         );
         return $this->getRenderer()->anchor($url, 'Go to specific list', $content);

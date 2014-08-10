@@ -59,10 +59,10 @@ class Post
     /**
      * @ORM\Column(type="boolean", nullable=false)
      * @Annotation\Filter({"name":"Boolean"})
-     * @Annotation\Options({"label":"Active"})
+     * @Annotation\Options({"label":"Published"})
      * @var bool
      */
-    private $active = false;
+    private $published = false;
 
     /**
      * @ORM\ManyToMany(targetEntity="Tag", inversedBy="posts")
@@ -112,7 +112,7 @@ class Post
     public function __clone()
     {
         $this->id = null;
-        $this->active = false;
+        $this->published = false;
         $this->createdAt = new \DateTime;
         $this->modifiedAt = new \DateTime;
     }
@@ -180,21 +180,21 @@ class Post
     }
 
     /**
-     * @param boolean $active
+     * @param boolean $published
      * @return Post
      */
-    public function setActive($active)
+    public function setPublished($published)
     {
-        $this->active = $active;
+        $this->published = $published;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isActive()
+    public function isPublished()
     {
-        return $this->active;
+        return $this->published;
     }
 
     /**

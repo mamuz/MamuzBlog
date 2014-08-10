@@ -13,23 +13,23 @@ class PostQuery extends AbstractQuery implements PostQueryInterface
     /** @var ConstraintInterface */
     private $constraint;
 
-    public function findActivePostById($id)
+    public function findPublishedPostById($id)
     {
         return $this->getEntityManager()->find(self::REPOSITORY, $id);
     }
 
-    public function findActivePosts()
+    public function findPublishedPosts()
     {
         $this->constraint = new Constraint;
-        $this->constraint->add('active', 'p.active = :active', true);
+        $this->constraint->add('published', 'p.published = :published', true);
 
         return $this->createPaginator();
     }
 
-    public function findActivePostsByTag($tag)
+    public function findPublishedPostsByTag($tag)
     {
         $this->constraint = new Constraint;
-        $this->constraint->add('active', 'p.active = :active', 1);
+        $this->constraint->add('published', 'p.published = :published', 1);
         $this->constraint->add('tag', 'AND t.name = :tag', $tag);
 
         return $this->createPaginator();

@@ -9,6 +9,6 @@ class PostPagerFactory extends AbstractPagerFactory
     protected function createPager()
     {
         $range = new Range($this->rangeConfig['post']);
-        return new Pager($range, 'blogActivePosts', 'page');
+        return new Pager($range, 'blogPublishedPosts', 'page');
     }
 }

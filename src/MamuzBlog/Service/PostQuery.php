@@ -23,18 +23,18 @@ class PostQuery implements PostQueryInterface
         return $this;
     }
 
-    public function findActivePosts()
+    public function findPublishedPosts()
     {
-        return $this->mapper->findActivePosts();
+        return $this->mapper->findPublishedPosts();
     }
 
-    public function findActivePostsByTag($tag)
+    public function findPublishedPostsByTag($tag)
     {
-        return $this->mapper->findActivePostsByTag($tag);
+        return $this->mapper->findPublishedPostsByTag($tag);
     }
 
-    public function findActivePostById($id)
+    public function findPublishedPostById($id)
     {
-        return $this->mapper->findActivePostById($id);
+        return $this->mapper->findPublishedPostById($id);
     }
 }

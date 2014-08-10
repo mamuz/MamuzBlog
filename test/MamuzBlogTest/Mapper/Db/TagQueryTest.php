@@ -62,7 +62,7 @@ class TagQueryTest extends \PHPUnit_Framework_TestCase
 
     public function testFindUsedTags()
     {
-        $params = array('active' => true);
+        $params = array('published' => true);
         $dql = 'SELECT t FROM ' . $this->repository . ' t';
 
         $query = $this->createQuery($dql, $params);

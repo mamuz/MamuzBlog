@@ -8,7 +8,6 @@ use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\MvcEvent;
 use Zend\Mvc\Router\Http\TreeRouteStack as HttpRouter;
 use Zend\Mvc\Router\RouteMatch;
-use Zend\ServiceManager\ServiceManager;
 
 class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
 {
@@ -77,14 +76,14 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Zend\Mvc\Controller\AbstractActionController', $this->fixture);
     }
 
-    public function testActivePostsWithoutTagCanBeAccessed()
+    public function testPublishedPostsWithoutTagCanBeAccessed()
     {
         $posts = new \ArrayObject;
 
         $this->routeParam->shouldReceive('mapPageTo')->with($this->queryInterface);
         $this->params->shouldReceive('fromRoute')->with('tag')->andReturn(null);
-        $this->queryInterface->shouldReceive('findActivePosts')->andReturn($posts);
-        $this->routeMatch->setParam('action', 'activePosts');
+        $this->queryInterface->shouldReceive('findPublishedPosts')->andReturn($posts);
+        $this->routeMatch->setParam('action', 'publishedPosts');
 
         $this->viewModelFactory
             ->shouldReceive('createFor')
@@ -98,15 +97,15 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    public function testActivePostsWithTagCanBeAccessed()
+    public function testPublishedPostsWithTagCanBeAccessed()
     {
         $tag = 'bar';
         $posts = new \ArrayObject;
 
         $this->routeParam->shouldReceive('mapPageTo')->with($this->queryInterface);
         $this->params->shouldReceive('fromRoute')->with('tag')->andReturn($tag);
-        $this->queryInterface->shouldReceive('findActivePostsByTag')->with($tag)->andReturn($posts);
-        $this->routeMatch->setParam('action', 'activePosts');
+        $this->queryInterface->shouldReceive('findPublishedPostsByTag')->with($tag)->andReturn($posts);
+        $this->routeMatch->setParam('action', 'publishedPosts');
 
         $this->viewModelFactory
             ->shouldReceive('createFor')
@@ -120,16 +119,16 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    public function testActivePostWithPostCanBeAccessed()
+    public function testPublishedPostWithPostCanBeAccessed()
     {
         $id = 'foo';
         $post = 'bar';
 
         $this->params->shouldReceive('fromRoute')->with('id')->andReturn($id);
         $this->cryptEngine->shouldReceive('decrypt')->with($id)->andReturn($id);
-        $this->queryInterface->shouldReceive('findActivePostById')->with($id)->andReturn($post);
+        $this->queryInterface->shouldReceive('findPublishedPostById')->with($id)->andReturn($post);
 
-        $this->routeMatch->setParam('action', 'activePost');
+        $this->routeMatch->setParam('action', 'publishedPost');
 
         $this->viewModelFactory
             ->shouldReceive('create')
@@ -143,15 +142,15 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    public function testActivePostWithoutPostCanBeAccessed()
+    public function testPublishedPostWithoutPostCanBeAccessed()
     {
         $id = 'foo';
 
         $this->params->shouldReceive('fromRoute')->with('id')->andReturn($id);
         $this->cryptEngine->shouldReceive('decrypt')->with($id)->andReturn($id);
-        $this->queryInterface->shouldReceive('findActivePostById')->with($id)->andReturn(null);
+        $this->queryInterface->shouldReceive('findPublishedPostById')->with($id)->andReturn(null);
 
-        $this->routeMatch->setParam('action', 'activePost');
+        $this->routeMatch->setParam('action', 'publishedPost');
         $result = $this->fixture->dispatch($this->request);
         $response = $this->fixture->getResponse();
 
@@ -159,14 +158,14 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(404, $response->getStatusCode());
     }
 
-    public function testActivePostWithNullDecryptionCanBeAccessed()
+    public function testPublishedPostWithNullDecryptionCanBeAccessed()
     {
         $id = 'foo';
 
         $this->params->shouldReceive('fromRoute')->with('id')->andReturn($id);
         $this->cryptEngine->shouldReceive('decrypt')->with($id)->andReturn(null);
 
-        $this->routeMatch->setParam('action', 'activePost');
+        $this->routeMatch->setParam('action', 'publishedPost');
         $result = $this->fixture->dispatch($this->request);
         $response = $this->fixture->getResponse();
 

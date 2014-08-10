@@ -9,17 +9,17 @@ interface PostQueryInterface extends Pageable
     /**
      * @return Post[]|\Countable|\IteratorAggregate
      */
-    public function findActivePosts();
+    public function findPublishedPosts();
 
     /**
      * @param string $tag
      * @return Post[]|\Countable|\IteratorAggregate
      */
-    public function findActivePostsByTag($tag);
+    public function findPublishedPostsByTag($tag);
 
     /**
      * @param string|integer $id
      * @return Post|null
      */
-    public function findActivePostById($id);
+    public function findPublishedPostById($id);
 }

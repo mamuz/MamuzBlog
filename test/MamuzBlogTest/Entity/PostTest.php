@@ -80,11 +80,11 @@ class PostTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($result, $this->fixture);
     }
 
-    public function testMutateAndAccessActive()
+    public function testMutateAndAccessPublished()
     {
-        $this->assertFalse($this->fixture->isActive());
-        $result = $this->fixture->setActive(true);
-        $this->assertTrue($this->fixture->isActive());
+        $this->assertFalse($this->fixture->isPublished());
+        $result = $this->fixture->setPublished(true);
+        $this->assertTrue($this->fixture->isPublished());
         $this->assertSame($result, $this->fixture);
     }
 

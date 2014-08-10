@@ -33,33 +33,33 @@ class PostQueryController extends AbstractActionController
     }
 
     /**
-     * Active post entries retrieval
+     * Published post entries retrieval
      *
      * @return ModelInterface
      */
-    public function activePostsAction()
+    public function publishedPostsAction()
     {
         $this->routeParam()->mapPageTo($this->queryService);
 
         if ($tag = $this->params()->fromRoute('tag')) {
-            $collection = $this->queryService->findActivePostsByTag($tag);
+            $collection = $this->queryService->findPublishedPostsByTag($tag);
         } else {
-            $collection = $this->queryService->findActivePosts();
+            $collection = $this->queryService->findPublishedPosts();
         }
 
         return $this->viewModelFactory()->createFor($collection);
     }
 
     /**
-     * Active post entry retrieval
+     * Published post entry retrieval
      *
      * @return ModelInterface|null
      */
-    public function activePostAction()
+    public function publishedPostAction()
     {
         $encryptedId = $this->params()->fromRoute('id');
         if ($decryptedId = $this->cryptEngine->decrypt($encryptedId)) {
-            $post = $this->queryService->findActivePostById($decryptedId);
+            $post = $this->queryService->findPublishedPostById($decryptedId);
         }
 
         if (!isset($post)) {
