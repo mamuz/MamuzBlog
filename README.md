@@ -22,6 +22,10 @@
 - Hyperlinks also ends with slugified post titles to meet SEO.
 - Views are twitter-Bootstrap compatible.
 
+### Screenshot
+
+![MamuzBlog](https://cloud.githubusercontent.com/assets/4173317/3939228/7da6e0b8-24c4-11e4-9100-ea735366fcd1.png)
+
 ## Installation
 
 The recommended way to install
