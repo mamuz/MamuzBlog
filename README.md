@@ -89,6 +89,8 @@ Tag listing is provided by route `blogTags` and default range is 10 items.
 
 Create an entity in `MamuzBlogPost` repository and tag it in related `MamuzBlogTag`.
 
+*Admin Module to provide an interface for that is planned.*
+
 ## Workflow
 
 If routing to a dedicated post found by published flag and encrypted identity is successful,
@@ -99,4 +101,3 @@ otherwise it will set a 404 status code to the http response object.
 
 - **Posts**: Published articles about any issues which are listed chronological in a blog.
 - **Tag**: Category to group related posts to a specific issue.
-
