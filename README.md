@@ -63,7 +63,7 @@ Create database tables with command line tool provided by
 Encryption is supported by [`hashids/hashids`](https://github.com/ivanakimov/hashids.php)
 and have to be configured by copy `./vendor/mamuz-blog/config/crypt.local.php.dist`
 to `./config/autoload/crypt.local.php`. Be sure that this file is not under version control.
-The only thing you have to do is changing `salt` value to any string.
+The only thing you have to do is changing `salt` value to any complex string.
 
 ### Default configuration
 
