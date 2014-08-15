@@ -24,7 +24,7 @@
 
 ### Screenshot
 
-![MamuzBlog](https://cloud.githubusercontent.com/assets/4173317/3939375/26d27e8a-24c6-11e4-8fd4-e4e1ced9652d.png)
+|![MamuzBlog](https://cloud.githubusercontent.com/assets/4173317/3939375/26d27e8a-24c6-11e4-8fd4-e4e1ced9652d.png)|
 
 ## Installation
 
