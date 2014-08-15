@@ -23,7 +23,7 @@ return array(
                 'options' => array(
                     'route'       => '/blog/post[/:id][/:title]',
                     'constraints' => array(
-                        'id'    => '[a-zA-Z0-9]{9,}',
+                        'id' => '[a-zA-Z0-9]+',
                         'title' => '[a-zA-Z0-9_+%-]+',
                     ),
                     'defaults'    => array(

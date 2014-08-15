@@ -12,16 +12,15 @@
 [![Latest Unstable Version](https://poser.pugx.org/mamuz/mamuz-blog/v/unstable.svg)](https://packagist.org/packages/mamuz/mamuz-blog)
 [![License](https://poser.pugx.org/mamuz/mamuz-blog/license.svg)](https://packagist.org/packages/mamuz/mamuz-blog)
 
-## Domain
+## Features
 
- - This module provides a read only blog feature.
- - Post content is rendered with a markdown parser.
- - Each post can have one or more tag.
- - Posts are searchable by tag or encrypted identity.
- - View of posts list is provided, same is true for tags.
- - To keep security rules links to a dedicated post contains an encrypted identity.
- - Links to dedicated posts also ends with slugified post title to meet SEO.
- - Views are twitter-Bootstrap 2 and twitter-Bootstrap 3 compatible.
+- This module provides a blog based on ZF2 and Doctrine2.
+- Posts are rendered by a markdown parser.
+- Posts are taggable and searchable.
+- Post listing is provided, same is true for tags.
+- Hyperlinks to dedicated posts are secured by encrypted identities.
+- Hyperlinks also ends with slugified post titles to meet SEO.
+- Views are twitter-Bootstrap compatible.
 
 ## Installation
 
@@ -38,7 +37,7 @@ The recommended way to install
 ```
 
 After that run `composer update` and enable this module for ZF2 by adding
-`MamuzBlog` to the `modules` key in `./config/application.config.php`:
+`MamuzBlog` to `modules` in `./config/application.config.php`:
 
 ```php
 // ...
@@ -53,58 +52,51 @@ and be sure that you have already [configured database connection](https://githu
 Create database tables with command line tool provided by
 [`DoctrineORMModule`](https://github.com/doctrine/DoctrineORMModule):
 
-### Dump the sql to fire it manually
 ```sh
-./vendor/bin/doctrine-module orm:schema-tool:update --dump-sql
-```
-
-### Fire sql automaticly
-
-```sh
-./vendor/bin/doctrine-module orm:schema-tool:update --force
+./vendor/bin/doctrine-module orm:schema-tool:update
 ```
 
 ## Configuration
 
-### Post identity encryption
+### Post identity encryption for hyperlinks
 
-This is supported by [`hashids/hashids`](https://github.com/ivanakimov/hashids.php)
-and wrapped by an own adapter. This adapter have to be configured by copy `./vendor/mamuz-blog/config/crypt.local.php.dist`
-to `./config/autoload/crypt.local.php` and be sure that file is not under version control.
-The only one you have to do is to change `salt` value.
-If you change `minLength` value, you have to consider the route `id` parameter
-constraint for route `blogPublishedPost` in default configuration.
+Encryption is supported by [`hashids/hashids`](https://github.com/ivanakimov/hashids.php)
+and have to be configured by copy `./vendor/mamuz-blog/config/crypt.local.php.dist`
+to `./config/autoload/crypt.local.php`. Be sure that this file is not under version control.
+The only thing you have to do is changing `salt` value to any string.
 
 ### Default configuration
 
-Excepts encryption configuration this module is already configured out of the box, but you can overwrite it by
-adding a config file in `./config/autoload` directory.
+Besides configuration for identity encryption this module is usable out of the box,
+but you can overwrite default configuration by adding a config file in `./config/autoload` directory.
 For default configuration see
 [`module.config.php`](https://github.com/mamuz/MamuzBlog/blob/master/config/module.config.php)
 
-### Pagination Range
+### Pagination
+
+Listings of posts and tags includes a pagination feature, which seperates
+views to a default range. Default range is overwritable by adding a config file in `./config/autoload` directory.
 
 #### Posts
 
-Listing of posts is provided by route `blogPublishedPosts`. List includes a pagination feature, which seperates
-views to a default range of 2 items. Default range is overwritable by adding a config file in `./config/autoload` directory.
-See `mamuz-blog/pagination/range/post` key in
-[`module.config.php`](https://github.com/mamuz/MamuzBlog/blob/master/config/module.config.php).
+Post listing is provided by route `blogPublishedPosts` and default range is two items.
 
 #### Tags
 
-Listing of tags is provided by route `blogTags`. List includes a pagination feature, which seperates
-views to a default range of 10 items. Default range is overwritable by adding a config file in `./config/autoload` directory.
-See `mamuz-blog/pagination/range/tag` key in
-[`module.config.php`](https://github.com/mamuz/MamuzBlog/blob/master/config/module.config.php).
+Tag listing is provided by route `blogTags` and default range is 10 items.
 
-## Creating new Posts
+## Creating a new Post
 
-Create new entities in `MamuzBlogPost` database table and tag it in related database table `MamuzBlogTag`.
-Content will be rendered with a markdown parser.
+Create an entity in `MamuzBlogPost` repository and tag it in related `MamuzBlogTag`.
 
 ## Workflow
 
-If routing is successful to a post entity or to post entities found by published flag,
-post content will be responsed in a new view model. Otherwise in case of fetching one entity which doesnt exist
-it will set a 404 status code to http response object.
+If routing to a dedicated post found by published flag and encrypted identity is successful,
+post content will be responsed in a new view model rendered as markdown,
+otherwise it will set a 404 status code to the http response object.
+
+## Terminology
+
+- **Posts**: Published articles about any issues which are listed chronological in a blog.
+- **Tag**: Category to group related posts to a specific issue.
+
