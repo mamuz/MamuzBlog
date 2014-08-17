@@ -59,26 +59,14 @@ abstract class AbstractQuery implements Pageable
         $query = $this->getQuery();
         $query->setFirstResult($firstResult)->setMaxResults($maxResults);
 
-        $results = $this->trigger(
-            Event::PRE_PAGINATION_CREATE,
-            array('query' => $query),
-            function ($result) {
-                return ($result instanceof Paginator);
-            }
-        );
+        $results = $this->trigger(Event::PRE_PAGINATION_CREATE, array('query' => $query));
         if ($results->stopped()) {
             return $results->last();
         }
 
         $paginator = new Paginator($query);
 
-        $this->trigger(
-            Event::POST_PAGINATION_CREATE,
-            array(
-                'query'     => $query,
-                'paginator' => $paginator,
-            )
-        );
+        $this->trigger(Event::POST_PAGINATION_CREATE, array('query' => $query, 'paginator' => $paginator));
 
         return $paginator;
     }
