@@ -103,7 +103,7 @@ otherwise it will set a 404 status code to the http response object.
 
 ## Events
 
-For the sake of simplicity `Event` is used for FQN `MamuzBlog\EventManager\Event`.
+For the sake of simplicity `Event` is used for FQN [`MamuzBlog\EventManager\Event`](https://github.com/mamuz/MamuzBlog/blob/master/src/MamuzBlog/EventManager/Event.php).
 
 The following events are triggered by `Event::IDENTIFIER` *mamuz-blog*:
 
