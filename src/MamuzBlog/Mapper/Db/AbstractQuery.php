@@ -60,8 +60,8 @@ abstract class AbstractQuery implements Pageable
         $query->setFirstResult($firstResult)->setMaxResults($maxResults);
 
         $results = $this->trigger(Event::PRE_PAGINATION_CREATE, array('query' => $query));
-        if ($results->stopped()) {
-            return $results->last();
+        if ($results->stopped() && ($paginator = $results->last()) instanceof Paginator) {
+            return $paginator;
         }
 
         $paginator = new Paginator($query);
