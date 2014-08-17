@@ -24,7 +24,7 @@ trait AwareTrait
     public function getEventManager()
     {
         if (!$this->eventManager instanceof EventManagerInterface) {
-            $this->eventManager = $this->createEventManager();
+            $this->setEventManager($this->createEventManager());
         }
 
         return $this->eventManager;
