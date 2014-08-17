@@ -109,8 +109,8 @@ The following events are triggered by `Event::IDENTIFIER` *mamuz-blog*:
 
 Name                     | Constant                          | Description
 ------------------------ | --------------------------------- | -----------
-*createPaginator.pre*    | `Event::PRE_PAGINATION_CREATE`    | Before pagination creation for posts/tags
-*createPaginator.post*   | `Event::POST_PAGINATION_CREATE`   | After pagination creation for posts/tags
+*createPaginator.pre*    | `Event::PRE_PAGINATION_CREATE`    | Before pagination creation for posts/tags listing
+*createPaginator.post*   | `Event::POST_PAGINATION_CREATE`   | After pagination creation for posts/tags listing
 *findPublishedPost.pre*  | `Event::PRE_FIND_PUBLISHED_POST`  | Before dedicated post retrieval
 *findPublishedPost.post* | `Event::POST_FIND_PUBLISHED_POST` | After dedicated post retrieval
 
