@@ -30,13 +30,7 @@ class PostQuery extends AbstractQuery implements PostQueryInterface
 
         $post = $this->getEntityManager()->find(self::REPOSITORY, $id);
 
-        $this->trigger(
-            Event::POST_FIND_PUBLISHED_POST,
-            array(
-                'id'   => $id,
-                'post' => $post,
-            )
-        );
+        $this->trigger(Event::POST_FIND_PUBLISHED_POST, array('id' => $id, 'post' => $post));
 
         return $post;
     }
