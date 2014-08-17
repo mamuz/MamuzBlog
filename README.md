@@ -10,7 +10,7 @@
 [![Latest Stable Version](https://poser.pugx.org/mamuz/mamuz-blog/v/stable.svg)](https://packagist.org/packages/mamuz/mamuz-blog)
 [![Latest Unstable Version](https://poser.pugx.org/mamuz/mamuz-blog/v/unstable.svg)](https://packagist.org/packages/mamuz/mamuz-blog)
 [![Total Downloads](https://poser.pugx.org/mamuz/mamuz-blog/downloads.svg)](https://packagist.org/packages/mamuz/mamuz-blog)
-[![Size](https://reposs.herokuapp.com/?path=mamuz/MamuzBlog)
+[![Size](https://reposs.herokuapp.com/?path=mamuz/MamuzBlog)](https://reposs.herokuapp.com/?path=mamuz/MamuzBlog)
 [![License](https://poser.pugx.org/mamuz/mamuz-blog/license.svg)](https://packagist.org/packages/mamuz/mamuz-blog)
 
 ## Features
