@@ -36,10 +36,12 @@ trait AwareTrait
     private function createEventManager()
     {
         return new EventManager(
-            array(
-                __CLASS__,
-                get_class($this),
-                Event::IDENTIFIER,
+            array_unique(
+                array(
+                    __CLASS__,
+                    get_class($this),
+                    Event::IDENTIFIER,
+                )
             )
         );
     }
