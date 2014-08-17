@@ -101,6 +101,19 @@ If routing to a dedicated post found by published flag and encrypted identity is
 post content will be responsed in a new view model rendered as markdown,
 otherwise it will set a 404 status code to the http response object.
 
+## Events
+
+For the sake of simplicity `Event` is used for FQN `MamuzBlog\EventManager\Event`.
+
+The following events are triggered by `Event::IDENTIFIER` (*mamuz-blog*):
+
+Name                     | Constant                          | Description
+------------------------ | --------------------------------- | -----------
+*createPaginator.pre*    | `Event::PRE_PAGINATION_CREATE`    | Before pagination creation for post and tag listing
+*createPaginator.post*   | `Event::POST_PAGINATION_CREATE`   | After pagination creation for post and tag listing
+*findPublishedPost.pre*  | `Event::PRE_FIND_PUBLISHED_POST`  | Before dedicated post retrieval
+*findPublishedPost.post* | `Event::POST_FIND_PUBLISHED_POST` | After dedicated post retrieval
+
 ## Terminology
 
 - **Posts**: Published articles about any issues which are listed chronological in a blog.

@@ -4,11 +4,15 @@ namespace MamuzBlog\Mapper\Db;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use MamuzBlog\EventManager\AwareTrait as EventManagerAwareTrait;
+use MamuzBlog\EventManager\Event;
 use MamuzBlog\Feature\Pageable;
 use MamuzBlog\Options\RangeInterface;
 
 abstract class AbstractQuery implements Pageable
 {
+    use EventManagerAwareTrait;
+
     /** @var EntityManagerInterface */
     private $entityManager;
 
@@ -55,7 +59,28 @@ abstract class AbstractQuery implements Pageable
         $query = $this->getQuery();
         $query->setFirstResult($firstResult)->setMaxResults($maxResults);
 
-        return new Paginator($query);
+        $results = $this->trigger(
+            Event::PRE_PAGINATION_CREATE,
+            array('query' => $query),
+            function ($result) {
+                return ($result instanceof Paginator);
+            }
+        );
+        if ($results->stopped()) {
+            return $results->last();
+        }
+
+        $paginator = new Paginator($query);
+
+        $this->trigger(
+            Event::POST_PAGINATION_CREATE,
+            array(
+                'query'     => $query,
+                'paginator' => $paginator,
+            )
+        );
+
+        return $paginator;
     }
 
     /**
