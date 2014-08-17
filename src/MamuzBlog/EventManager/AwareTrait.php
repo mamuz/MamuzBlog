@@ -47,13 +47,12 @@ trait AwareTrait
     }
 
     /**
-     * @param  string        $event
-     * @param  array|object  $argv
-     * @param  callable|null $callback
+     * @param  string       $event
+     * @param  array|object $argv
      * @return \Zend\EventManager\ResponseCollection
      */
-    protected function trigger($event, $argv, $callback = null)
+    protected function trigger($event, $argv)
     {
-        return $this->getEventManager()->trigger($event, $this, $argv, $callback);
+        return $this->getEventManager()->trigger($event, $this, $argv);
     }
 }
