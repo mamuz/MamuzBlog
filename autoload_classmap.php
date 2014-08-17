@@ -25,6 +25,8 @@ return array(
         __DIR__ . '/src/MamuzBlog/DomainManager/ProviderInterface.php',
     'MamuzBlog\Entity\Post'                               => __DIR__ . '/src/MamuzBlog/Entity/Post.php',
     'MamuzBlog\Entity\Tag'                                => __DIR__ . '/src/MamuzBlog/Entity/Tag.php',
+    'MamuzBlog\EventManager\AwareTrait'                   => __DIR__ . '/src/MamuzBlog/EventManager/AwareTrait.php',
+    'MamuzBlog\EventManager\Event'                        => __DIR__ . '/src/MamuzBlog/EventManager/Event.php',
     'MamuzBlog\Feature\Pageable'                          => __DIR__ . '/src/MamuzBlog/Feature/Pageable.php',
     'MamuzBlog\Feature\PostQueryInterface'                => __DIR__ . '/src/MamuzBlog/Feature/PostQueryInterface.php',
     'MamuzBlog\Feature\TagQueryInterface'                 => __DIR__ . '/src/MamuzBlog/Feature/TagQueryInterface.php',

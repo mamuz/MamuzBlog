@@ -14,18 +14,26 @@
     "minimum-stability": "dev",
     "prefer-stable"    : true,
     "require"          : {
-        "php"                         : ">=5.4",
-        "ext-intl"                    : "*",
-        "zendframework/zendframework" : "~2.3.1",
-        "doctrine/doctrine-orm-module": "0.*",
-        "maglnet/magl-markdown"       : "1.*",
-        "neilime/zf2-twb-bundle"      : "2.*@stable",
-        "hashids/hashids"             : "0.3.*@dev",
-        "cocur/slugify"               : "0.*"
+        "php"                              : ">=5.4",
+        "ext-intl"                         : "*",
+        "zendframework/zend-stdlib"        : "~2.3",
+        "zendframework/zend-mvc"           : "~2.3",
+        "zendframework/zend-servicemanager": "~2.3",
+        "zendframework/zend-eventmanager"  : "~2.3",
+        "zendframework/zend-modulemanager" : "~2.3",
+        "zendframework/zend-loader"        : "~2.3",
+        "zendframework/zend-view"          : "~2.3",
+        "zendframework/zend-http"          : "~2.3",
+        "zendframework/zend-form"          : "~2.3",
+        "doctrine/doctrine-orm-module"     : "0.*",
+        "maglnet/magl-markdown"            : "1.*",
+        "neilime/zf2-twb-bundle"           : "2.*@stable",
+        "hashids/hashids"                  : "0.3.*@dev",
+        "cocur/slugify"                    : "0.*"
     },
     "require-dev"      : {
         "satooshi/php-coveralls": "0.6.*",
-        "phpunit/phpunit": "4.2.*",
+        "phpunit/phpunit"       : "4.2.*",
         "mockery/mockery"       : "0.9.*"
     },
     "autoload"         : {
