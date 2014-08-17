@@ -2,7 +2,6 @@
 
 namespace MamuzBlog\Mapper\Db;
 
-use MamuzBlog\Entity\Post;
 use MamuzBlog\EventManager\Event;
 use MamuzBlog\Feature\PostQueryInterface;
 use MamuzBlog\Options\Constraint;
@@ -17,13 +16,7 @@ class PostQuery extends AbstractQuery implements PostQueryInterface
 
     public function findPublishedPostById($id)
     {
-        $results = $this->trigger(
-            Event::PRE_FIND_PUBLISHED_POST,
-            array('id' => $id),
-            function ($result) {
-                return ($result instanceof Post);
-            }
-        );
+        $results = $this->trigger(Event::PRE_FIND_PUBLISHED_POST, array('id' => $id));
         if ($results->stopped()) {
             return $results->last();
         }
