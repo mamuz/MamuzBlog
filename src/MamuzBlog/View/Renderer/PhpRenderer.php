@@ -7,10 +7,12 @@ use Zend\View\Renderer\PhpRenderer as ZendPhpRenderer;
 /**
  * @method string markdown($text)
  * @method string anchor($href, $title, $content, $class = null)
+ * @method string anchorBookmark($href, $title, $content, $class = null)
  * @method string hashId($id)
  * @method string slugify($value)
  * @method string panel($header, $content, $footer)
  * @method string postMeta(\MamuzBlog\Entity\Post $entity)
+ * @method string permaLink(\MamuzBlog\Entity\Post $entity)
  * @method string tag(\MamuzBlog\Entity\Tag $entity)
  * @method string tagList()
  * @method string tagAnchor($tagName, $content)

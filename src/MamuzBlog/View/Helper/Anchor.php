@@ -30,6 +30,17 @@ class Anchor extends AbstractHelper
             $class = '';
         }
 
-        return '<a title="' . $title . '" href="' . $href . '"' . $class . '>'. $content . '</a>';
+        return sprintf(
+            $this->getTemplate(),
+            $title,
+            $href,
+            $class,
+            $content
+        );
+    }
+
+    protected function getTemplate()
+    {
+        return '<a title="%1$s" href="%2$s"%3$s>%4$s</a>';
     }
 }

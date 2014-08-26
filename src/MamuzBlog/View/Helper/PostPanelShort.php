@@ -17,13 +17,7 @@ class PostPanelShort extends PostPanel
 
     private function createUrl()
     {
-        $this->url = $this->getRenderer()->url(
-            'blogPublishedPost',
-            array(
-                'title' => $this->getRenderer()->slugify($this->entity->getTitle()),
-                'id'    => $this->getRenderer()->hashId($this->entity->getId())
-            )
-        );
+        $this->url = $this->getRenderer()->permaLink($this->entity);
     }
 
     /**
@@ -31,7 +25,7 @@ class PostPanelShort extends PostPanel
      */
     protected function createHeader()
     {
-        $this->header = $this->getRenderer()->anchor($this->getUrl(), 'Go to post', $this->entity->getTitle());
+        $this->header = $this->getRenderer()->anchorBookmark($this->getUrl(), 'Go to post', $this->entity->getTitle());
     }
 
     /**
@@ -40,6 +34,6 @@ class PostPanelShort extends PostPanel
     protected function createContent()
     {
         $this->content = $this->getRenderer()->markdown($this->entity->getDescription())
-            . $this->getRenderer()->anchor($this->getUrl(), 'Go to post', 'Read more');
+            . $this->getRenderer()->anchorBookmark($this->getUrl(), 'Go to post', 'Read more');
     }
 }

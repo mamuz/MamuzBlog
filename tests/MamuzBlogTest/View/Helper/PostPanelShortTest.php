@@ -21,18 +21,14 @@ class PostPanelShortTest extends \PHPUnit_Framework_TestCase
         $this->post->shouldReceive('getTitle')->andReturn('title');
         $this->post->shouldReceive('getContent')->andReturn('content');
         $this->post->shouldReceive('getDescription')->andReturn('desc');
-        $this->post->shouldReceive('getId')->andReturn(12);
 
         $this->renderer = \Mockery::mock('Zend\View\Renderer\RendererInterface');
         $this->renderer->shouldReceive('markdown')->with('desc')->andReturn('_content_');
         $this->renderer->shouldReceive('hashId')->with(12)->andReturn('_hashId_');
         $this->renderer->shouldReceive('slugify')->with('title')->andReturn('_title_');
-        $this->renderer->shouldReceive('url')->with(
-            'blogPublishedPost',
-            array('title' => '_title_', 'id' => '_hashId_')
-        )->andReturn('url');
-        $this->renderer->shouldReceive('anchor')->with('url', 'Go to post', 'title')->andReturn('anchor1');
-        $this->renderer->shouldReceive('anchor')->with('url', 'Go to post', 'Read more')->andReturn('anchor2');
+        $this->renderer->shouldReceive('permaLink')->with($this->post)->andReturn('url');
+        $this->renderer->shouldReceive('anchorBookmark')->with('url', 'Go to post', 'title')->andReturn('anchor1');
+        $this->renderer->shouldReceive('anchorBookmark')->with('url', 'Go to post', 'Read more')->andReturn('anchor2');
         $this->renderer->shouldReceive('postMeta')->with($this->post)->andReturn('_meta_');
         $this->renderer->shouldReceive('panel')->with('anchor1', '_content_anchor2', '_meta_')->andReturn('_panel_');
 
@@ -40,7 +36,7 @@ class PostPanelShortTest extends \PHPUnit_Framework_TestCase
         $this->fixture->setView($this->renderer);
     }
 
-    public function testExtendingAbstractHelper()
+    public function testExtendingPostPanel()
     {
         $this->assertInstanceOf('MamuzBlog\View\Helper\PostPanel', $this->fixture);
     }

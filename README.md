@@ -20,6 +20,7 @@
 - Post listing is provided, same is true for tags.
 - Hyperlinks to dedicated posts are secured by encrypted identities.
 - Hyperlinks also ends with slugified post titles to meet SEO.
+- Hyperlinks are Permalinks.
 - Views are twitter-Bootstrap compatible.
 
 Screenshot |
@@ -118,3 +119,4 @@ Name                     | Constant                          | Description
 
 - **Posts**: Published articles about any issues which are listed chronological in a blog.
 - **Tag**: Category to group related posts to a specific issue.
+- **Permalink**: Human-readable and unchangeable hyperlink to a dedicated post or to a list of posts by a specific tag.

@@ -75,9 +75,11 @@ return array(
     'view_helpers'       => array(
         'invokables' => array(
             'anchor'         => 'MamuzBlog\View\Helper\Anchor',
+            'anchorBookmark' => 'MamuzBlog\View\Helper\AnchorBookmark',
             'panel'          => 'MamuzBlog\View\Helper\Panel',
             'tag'            => 'MamuzBlog\View\Helper\Tag',
             'tagAnchor'      => 'MamuzBlog\View\Helper\TagAnchor',
+            'permaLink'      => 'MamuzBlog\View\Helper\PermaLink',
             'postMeta'       => 'MamuzBlog\View\Helper\PostMeta',
             'postPanel'      => 'MamuzBlog\View\Helper\PostPanel',
             'postPanelShort' => 'MamuzBlog\View\Helper\PostPanelShort',

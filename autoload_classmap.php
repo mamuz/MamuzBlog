@@ -50,10 +50,12 @@ return array(
     'MamuzBlog\View\Helper\AbstractPagerFactory'          =>
         __DIR__ . '/src/MamuzBlog/View/Helper/AbstractPagerFactory.php',
     'MamuzBlog\View\Helper\Anchor'                        => __DIR__ . '/src/MamuzBlog/View/Helper/Anchor.php',
+    'MamuzBlog\View\Helper\AnchorBookmark' => __DIR__ . '/src/MamuzBlog/View/Helper/AnchorBookmark.php',
     'MamuzBlog\View\Helper\HashId'                        => __DIR__ . '/src/MamuzBlog/View/Helper/HashId.php',
     'MamuzBlog\View\Helper\HashIdFactory'                 => __DIR__ . '/src/MamuzBlog/View/Helper/HashIdFactory.php',
     'MamuzBlog\View\Helper\Pager'                         => __DIR__ . '/src/MamuzBlog/View/Helper/Pager.php',
     'MamuzBlog\View\Helper\Panel'                         => __DIR__ . '/src/MamuzBlog/View/Helper/Panel.php',
+    'MamuzBlog\View\Helper\PermaLink'      => __DIR__ . '/src/MamuzBlog/View/Helper/PermaLink.php',
     'MamuzBlog\View\Helper\PostMeta'                      => __DIR__ . '/src/MamuzBlog/View/Helper/PostMeta.php',
     'MamuzBlog\View\Helper\PostPagerFactory'              =>
         __DIR__ . '/src/MamuzBlog/View/Helper/PostPagerFactory.php',
