@@ -18,7 +18,7 @@ class AnchorTest extends \PHPUnit_Framework_TestCase
         $this->renderer->shouldReceive('translate')->with('title')->andReturn('_title_');
         $this->renderer->shouldReceive('escapeHtmlAttr')->with('_title_')->andReturn('title');
 
-        $this->fixture = new Anchor;
+        $this->fixture = new Anchor('<a title="%1$s" href="%2$s"%3$s>%4$s</a>');
         $this->fixture->setView($this->renderer);
     }
 

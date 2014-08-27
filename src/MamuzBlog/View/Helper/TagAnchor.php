@@ -25,7 +25,7 @@ class TagAnchor extends AbstractHelper
             'blogPublishedPosts',
             array('tag' => $tagName)
         );
-        return $this->getRenderer()->anchorBookmark($serverUrl . $url, 'Go to specific list', $content);
 
+        return $this->getRenderer()->anchorBookmark($serverUrl . $url, 'Go to specific list', $content);
     }
 }

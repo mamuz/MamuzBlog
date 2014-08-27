@@ -74,8 +74,6 @@ return array(
     ),
     'view_helpers'       => array(
         'invokables' => array(
-            'anchor'         => 'MamuzBlog\View\Helper\Anchor',
-            'anchorBookmark' => 'MamuzBlog\View\Helper\AnchorBookmark',
             'panel'          => 'MamuzBlog\View\Helper\Panel',
             'tag'            => 'MamuzBlog\View\Helper\Tag',
             'tagAnchor'      => 'MamuzBlog\View\Helper\TagAnchor',
@@ -85,11 +83,13 @@ return array(
             'postPanelShort' => 'MamuzBlog\View\Helper\PostPanelShort',
         ),
         'factories'  => array(
-            'hashId'    => 'MamuzBlog\View\Helper\HashIdFactory',
-            'postPager' => 'MamuzBlog\View\Helper\PostPagerFactory',
-            'tagPager'  => 'MamuzBlog\View\Helper\TagPagerFactory',
-            'tagList'   => 'MamuzBlog\View\Helper\TagListFactory',
-            'slugify'   => 'MamuzBlog\View\Helper\SlugFactory',
+            'anchor'         => 'MamuzBlog\View\Helper\AnchorFactory',
+            'anchorBookmark' => 'MamuzBlog\View\Helper\AnchorBookmarkFactory',
+            'hashId'         => 'MamuzBlog\View\Helper\HashIdFactory',
+            'postPager'      => 'MamuzBlog\View\Helper\PostPagerFactory',
+            'tagPager'       => 'MamuzBlog\View\Helper\TagPagerFactory',
+            'tagList'        => 'MamuzBlog\View\Helper\TagListFactory',
+            'slugify'        => 'MamuzBlog\View\Helper\SlugFactory',
         ),
     ),
     'view_manager'       => array(

@@ -4,6 +4,17 @@ namespace MamuzBlog\View\Helper;
 
 class Anchor extends AbstractHelper
 {
+    /** @var string */
+    private $template;
+
+    /**
+     * @param string $template
+     */
+    public function __construct($template)
+    {
+        $this->template = (string) $template;
+    }
+
     /**
      * {@link render()}
      */
@@ -31,16 +42,11 @@ class Anchor extends AbstractHelper
         }
 
         return sprintf(
-            $this->getTemplate(),
+            $this->template,
             $title,
             $href,
             $class,
             $content
         );
-    }
-
-    protected function getTemplate()
-    {
-        return '<a title="%1$s" href="%2$s"%3$s>%4$s</a>';
     }
 }
