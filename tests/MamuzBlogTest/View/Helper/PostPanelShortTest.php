@@ -26,7 +26,7 @@ class PostPanelShortTest extends \PHPUnit_Framework_TestCase
         $this->renderer->shouldReceive('markdown')->with('desc')->andReturn('_content_');
         $this->renderer->shouldReceive('hashId')->with(12)->andReturn('_hashId_');
         $this->renderer->shouldReceive('slugify')->with('title')->andReturn('_title_');
-        $this->renderer->shouldReceive('permaLink')->with($this->post)->andReturn('url');
+        $this->renderer->shouldReceive('permaLinkPost')->with($this->post)->andReturn('url');
         $this->renderer->shouldReceive('anchorBookmark')->with('url', 'Go to post', 'title')->andReturn('anchor1');
         $this->renderer->shouldReceive('anchorBookmark')->with('url', 'Go to post', 'Read more')->andReturn('anchor2');
         $this->renderer->shouldReceive('postMeta')->with($this->post)->andReturn('_meta_');

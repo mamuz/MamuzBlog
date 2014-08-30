@@ -23,7 +23,7 @@ return array(
                 'options' => array(
                     'route'       => '/blog/post[/:id][/:title]',
                     'constraints' => array(
-                        'id' => '[a-zA-Z0-9]+',
+                        'id'    => '[a-zA-Z0-9]+',
                         'title' => '[a-zA-Z0-9_+%-]+',
                     ),
                     'defaults'    => array(
@@ -77,7 +77,8 @@ return array(
             'panel'          => 'MamuzBlog\View\Helper\Panel',
             'tag'            => 'MamuzBlog\View\Helper\Tag',
             'tagAnchor'      => 'MamuzBlog\View\Helper\TagAnchor',
-            'permaLink'      => 'MamuzBlog\View\Helper\PermaLink',
+            'permaLinkPost'  => 'MamuzBlog\View\Helper\PermaLinkPost',
+            'permaLinkTag'   => 'MamuzBlog\View\Helper\PermaLinkTag',
             'postMeta'       => 'MamuzBlog\View\Helper\PostMeta',
             'postPanel'      => 'MamuzBlog\View\Helper\PostPanel',
             'postPanelShort' => 'MamuzBlog\View\Helper\PostPanelShort',

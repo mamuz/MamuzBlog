@@ -2,35 +2,26 @@
 
 namespace MamuzBlogTest\View\Helper;
 
-use MamuzBlog\View\Helper\PermaLink;
+use MamuzBlog\View\Helper\PermaLinkTag;
 
-class PermaLinkTest extends \PHPUnit_Framework_TestCase
+class PermaLinkTagTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var PermaLink */
+    /** @var PermaLinkTag */
     protected $fixture;
-
-    /** @var \MamuzBlog\Entity\Post | \Mockery\MockInterface */
-    protected $post;
 
     /** @var \Zend\View\Renderer\RendererInterface | \Mockery\MockInterface */
     protected $renderer;
 
     protected function setUp()
     {
-        $this->post = \Mockery::mock('MamuzBlog\Entity\Post');
-        $this->post->shouldReceive('getTitle')->andReturn('title');
-        $this->post->shouldReceive('getId')->andReturn(12);
-
         $this->renderer = \Mockery::mock('Zend\View\Renderer\RendererInterface');
-        $this->renderer->shouldReceive('hashId')->with(12)->andReturn('_hashId_');
-        $this->renderer->shouldReceive('slugify')->with('title')->andReturn('_title_');
         $this->renderer->shouldReceive('serverUrl')->andReturn('server_');
         $this->renderer->shouldReceive('url')->with(
-            'blogPublishedPost',
-            array('title' => '_title_', 'id' => '_hashId_')
+            'blogPublishedPosts',
+            array('tag' => 'tagname')
         )->andReturn('url');
 
-        $this->fixture = new PermaLink;
+        $this->fixture = new PermaLinkTag;
         $this->fixture->setView($this->renderer);
     }
 
@@ -41,12 +32,12 @@ class PermaLinkTest extends \PHPUnit_Framework_TestCase
 
     public function testRender()
     {
-        $permaLink = $this->fixture->render($this->post);
+        $permaLink = $this->fixture->render('tagname');
 
         $this->assertSame('server_url', $permaLink);
 
         $invoke = $this->fixture;
-        $permaLink = $invoke($this->post);
+        $permaLink = $invoke('tagname');
         $this->assertSame('server_url', $permaLink);
     }
 }

@@ -17,7 +17,7 @@ class PostPanelShort extends PostPanel
 
     private function createUrl()
     {
-        $this->url = $this->getRenderer()->permaLink($this->entity);
+        $this->url = $this->getRenderer()->permaLinkPost($this->entity);
     }
 
     /**

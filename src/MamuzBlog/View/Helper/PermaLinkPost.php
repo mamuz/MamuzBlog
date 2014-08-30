@@ -4,7 +4,7 @@ namespace MamuzBlog\View\Helper;
 
 use MamuzBlog\Entity\Post as PostEntity;
 
-class PermaLink extends AbstractHelper
+class PermaLinkPost extends AbstractHelper
 {
     /**
      * {@link render()}

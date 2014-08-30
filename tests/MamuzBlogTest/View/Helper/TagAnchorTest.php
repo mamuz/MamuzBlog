@@ -15,11 +15,10 @@ class TagAnchorTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->renderer = \Mockery::mock('Zend\View\Renderer\RendererInterface');
-        $this->renderer->shouldReceive('serverUrl')->andReturn('server_');
-        $this->renderer->shouldReceive('url')->with('blogPublishedPosts', array('tag' => 'tagname'))->andReturn('url');
+        $this->renderer->shouldReceive('permaLinkTag')->with('tagname')->andReturn('url');
         $this->renderer
             ->shouldReceive('anchorBookmark')
-            ->with('server_url', 'Go to specific list', 'content')->andReturn('anchor');
+            ->with('url', 'Go to specific list', 'content')->andReturn('anchor');
 
         $this->fixture = new TagAnchor;
         $this->fixture->setView($this->renderer);
