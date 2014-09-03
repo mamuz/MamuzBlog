@@ -91,7 +91,7 @@ class TagQueryTest extends \PHPUnit_Framework_TestCase
     public function testFindUsedTags()
     {
         $params = array('published' => true);
-        $dql = 'SELECT t FROM ' . $this->repository . ' t';
+        $dql = 'SELECT t, p FROM ' . $this->repository . ' t INNER JOIN t.posts p WHERE p.published = 1';
 
         $query = $this->createQuery($dql, $params);
 
@@ -114,7 +114,7 @@ class TagQueryTest extends \PHPUnit_Framework_TestCase
     public function testFindUsedTagsWithStoppedEvent()
     {
         $params = array('published' => true);
-        $dql = 'SELECT t FROM ' . $this->repository . ' t';
+        $dql = 'SELECT t, p FROM ' . $this->repository . ' t INNER JOIN t.posts p WHERE p.published = 1';
 
         $query = $this->createQuery($dql, $params);
 
@@ -137,7 +137,7 @@ class TagQueryTest extends \PHPUnit_Framework_TestCase
     public function testFindUsedTagsWithCollectionEvent()
     {
         $params = array('published' => true);
-        $dql = 'SELECT t FROM ' . $this->repository . ' t';
+        $dql = 'SELECT t, p FROM ' . $this->repository . ' t INNER JOIN t.posts p WHERE p.published = 1';
 
         $query = $this->createQuery($dql, $params);
 

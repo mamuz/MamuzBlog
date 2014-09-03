@@ -15,7 +15,8 @@ class TagQuery extends AbstractQuery implements TagQueryInterface
 
     protected function getQuery()
     {
-        $dql = 'SELECT t FROM ' . self::REPOSITORY . ' t';
+        $dql = 'SELECT t, p FROM ' . self::REPOSITORY . ' t INNER JOIN t.posts p WHERE p.published = 1';
+
         return $this->getEntityManager()->createQuery($dql);
     }
 }
