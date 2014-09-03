@@ -72,7 +72,7 @@ abstract class AbstractQuery implements Pageable
     }
 
     /**
-     * @return \Doctrine\ORM\QueryBuilder
+     * @return \Doctrine\ORM\Query
      */
     abstract protected function getQuery();
 }

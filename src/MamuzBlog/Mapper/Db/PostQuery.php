@@ -52,7 +52,7 @@ class PostQuery extends AbstractQuery implements PostQueryInterface
             . 'WHERE ' . $this->constraint->toString() . ' '
             . 'ORDER BY p.createdAt DESC';
 
-        /** @var \Doctrine\DBAL\Query\QueryBuilder $query */
+        /** @var \Doctrine\ORM\Query $query */
         $query = $this->getEntityManager()->createQuery($dql);
         $query->setParameters($this->constraint->toArray());
 
