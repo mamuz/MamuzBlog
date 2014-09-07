@@ -7,16 +7,16 @@ class PermaLinkTag extends AbstractHelper
     /**
      * {@link render()}
      */
-    public function __invoke($tagName)
+    public function __invoke($tagName = null)
     {
         return $this->render($tagName);
     }
 
     /**
-     * @param string $tagName
+     * @param string|null $tagName
      * @return string
      */
-    public function render($tagName)
+    public function render($tagName = null)
     {
         $serverUrl = $this->getRenderer()->serverUrl();
 

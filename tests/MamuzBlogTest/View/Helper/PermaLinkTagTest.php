@@ -16,10 +16,6 @@ class PermaLinkTagTest extends \PHPUnit_Framework_TestCase
     {
         $this->renderer = \Mockery::mock('Zend\View\Renderer\RendererInterface');
         $this->renderer->shouldReceive('serverUrl')->andReturn('server_');
-        $this->renderer->shouldReceive('url')->with(
-            'blogPublishedPosts',
-            array('tag' => 'tagname')
-        )->andReturn('url');
 
         $this->fixture = new PermaLinkTag;
         $this->fixture->setView($this->renderer);
@@ -32,12 +28,31 @@ class PermaLinkTagTest extends \PHPUnit_Framework_TestCase
 
     public function testRender()
     {
+        $this->renderer->shouldReceive('url')->with(
+            'blogPublishedPosts',
+            array('tag' => 'tagname')
+        )->andReturn('url');
         $permaLink = $this->fixture->render('tagname');
 
         $this->assertSame('server_url', $permaLink);
 
         $invoke = $this->fixture;
         $permaLink = $invoke('tagname');
+        $this->assertSame('server_url', $permaLink);
+    }
+
+    public function testRenderWithoutTagName()
+    {
+        $this->renderer->shouldReceive('url')->with(
+            'blogPublishedPosts',
+            array('tag' => null)
+        )->andReturn('url');
+        $permaLink = $this->fixture->render();
+
+        $this->assertSame('server_url', $permaLink);
+
+        $invoke = $this->fixture;
+        $permaLink = $invoke();
         $this->assertSame('server_url', $permaLink);
     }
 }
