@@ -32,9 +32,10 @@
         "cocur/slugify"                    : "0.*"
     },
     "require-dev"      : {
-        "satooshi/php-coveralls": "0.6.*",
-        "phpunit/phpunit"       : "4.2.*",
-        "mockery/mockery"       : "0.9.*"
+        "satooshi/php-coveralls"       : "0.6.*",
+        "phpunit/phpunit"              : "4.2.*",
+        "mockery/mockery"              : "0.9.*",
+        "mamuz/php-dependency-analysis": "0.1.*"
     },
     "autoload"         : {
         "psr-0": {
