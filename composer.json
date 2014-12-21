@@ -29,11 +29,11 @@
         "maglnet/magl-markdown"            : "1.*",
         "neilime/zf2-twb-bundle"           : "2.*@stable",
         "hashids/hashids": "1.0.*",
-        "cocur/slugify"                    : "0.*"
+        "cocur/slugify"  : "1.0.*"
     },
     "require-dev"      : {
         "satooshi/php-coveralls"       : "0.6.*",
-        "phpunit/phpunit"              : "4.3.*",
+        "phpunit/phpunit": "4.4.*",
         "mockery/mockery"              : "0.9.*",
         "mamuz/php-dependency-analysis": "0.2.*"
     },
