@@ -17,6 +17,7 @@ class Module implements
         $modules->loadModule('DoctrineModule');
         $modules->loadModule('DoctrineORMModule');
         $modules->loadModule('TwbBundle');
+        $modules->loadModule('MaglMarkdown');
 
         if ($modules instanceof ModuleManager) {
             $this->addDomainManager($modules);
