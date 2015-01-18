@@ -43,6 +43,7 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
         $moduleManager->shouldReceive('loadModule')->with('DoctrineModule');
         $moduleManager->shouldReceive('loadModule')->with('DoctrineORMModule');
         $moduleManager->shouldReceive('loadModule')->with('TwbBundle');
+        $moduleManager->shouldReceive('loadModule')->with('MaglMarkdown');
 
         $this->fixture->init($moduleManager);
     }
