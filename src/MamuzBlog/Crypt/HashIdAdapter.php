@@ -16,7 +16,13 @@ class HashIdAdapter implements AdapterInterface
 
     public function decrypt($value)
     {
-        return $this->hashIds->decode($value)[0];
+        $decryption = $this->hashIds->decode($value);
+
+        if (isset($decryption[0])) {
+            return $decryption[0];
+        }
+        
+        return null;
     }
 
     public function encrypt($value)

@@ -32,6 +32,13 @@ class HashIdAdapterTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($value . '_', $this->fixture->decrypt($value));
     }
 
+    public function testDecryptFailed()
+    {
+        $this->hashId->shouldReceive('decode')->andReturn(array());
+
+        $this->assertNull($this->fixture->decrypt(null));
+    }
+
     public function testEncrypt()
     {
         $value = 'foo';
