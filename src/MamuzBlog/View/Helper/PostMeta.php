@@ -30,7 +30,7 @@ class PostMeta extends AbstractHelper
      * @param \DateTime $dateTime
      * @return string
      */
-    private function createDate(\DateTime $dateTime)
+    protected function createDate(\DateTime $dateTime)
     {
         $dateString = $this->getRenderer()->dateFormat(
             $dateTime,
@@ -50,7 +50,7 @@ class PostMeta extends AbstractHelper
      * @param \Traversable $tags
      * @return string
      */
-    private function createBadges(\Traversable $tags)
+    protected function createBadges(\Traversable $tags)
     {
         $html = '';
 
