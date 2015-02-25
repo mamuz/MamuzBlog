@@ -102,7 +102,10 @@ class Pager extends AbstractHelper
     private function calculatePagesCountBy(\Countable $collection)
     {
         $totalCount = count($collection);
-        $this->pagesCount = ceil($totalCount / $this->range->getSize());
+
+        if ($rangeSize = $this->range->getSize()) {
+            $this->pagesCount = ceil($totalCount / $rangeSize);
+        }
     }
 
     /**
