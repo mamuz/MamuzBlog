@@ -39,7 +39,7 @@ class PostMeta extends AbstractHelper
         );
 
         $html = $this->getRenderer()->glyphicon('calendar')
-            . '<time datetime="' . $dateTime->format('Y-m-d') . '" pubdate="pubdate">'
+            . '<time datetime="' . $dateTime->format('Y-m-d') . '">'
             . $dateString
             . '</time>';
 
