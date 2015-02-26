@@ -58,7 +58,7 @@ class PostMetaTest extends \PHPUnit_Framework_TestCase
 
     public function testRender()
     {
-        $expected = '<span>icon<time datetime="2012-12-12" pubdate="pubdate">datestring</time></span>' . PHP_EOL
+        $expected = '<span>icon<time datetime="2012-12-12">datestring</time></span>' . PHP_EOL
             . '<span class="pull-right">anchor1' . PHP_EOL . 'anchor2' . PHP_EOL . '</span>';
 
         $this->assertSame($expected, $this->fixture->render($this->post));
