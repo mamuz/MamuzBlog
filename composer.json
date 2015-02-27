@@ -13,6 +13,9 @@
     ],
     "minimum-stability": "dev",
     "prefer-stable"    : true,
+    "suggest"          : {
+        "mamuz/mamuz-blog-feed": "To provide rss and/or atom feeds"
+    },
     "require"          : {
         "php"                              : ">=5.4",
         "ext-intl"                         : "*",
