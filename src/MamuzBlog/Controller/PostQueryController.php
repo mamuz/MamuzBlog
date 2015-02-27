@@ -68,7 +68,7 @@ class PostQueryController extends AbstractActionController
         }
 
         /** @var ServiceLocatorInterface $viewHelperManager */
-        $viewHelperManager = $this->getServiceLocator()->get('VieHelperManager');
+        $viewHelperManager = $this->getServiceLocator()->get('ViewHelperManager');
         /** @var callable $slugifier */
         $slugifier = $viewHelperManager->get('slugify');
         /** @var callable $permaLink */
