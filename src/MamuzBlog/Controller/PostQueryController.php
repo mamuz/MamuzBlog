@@ -6,6 +6,7 @@ use MamuzBlog\Crypt\AdapterInterface;
 use MamuzBlog\Feature\PostQueryInterface;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\ServiceManager\ServiceLocatorInterface;
 use Zend\View\Model\ModelInterface;
 
 /**
@@ -53,7 +54,7 @@ class PostQueryController extends AbstractActionController
     /**
      * Published post entry retrieval
      *
-     * @return ModelInterface|null
+     * @return ModelInterface|null|\Zend\Http\Response
      */
     public function publishedPostAction()
     {
@@ -64,6 +65,17 @@ class PostQueryController extends AbstractActionController
 
         if (!isset($post)) {
             return $this->nullResponse();
+        }
+
+        /** @var ServiceLocatorInterface $viewHelperManager */
+        $viewHelperManager = $this->getServiceLocator()->get('VieHelperManager');
+        /** @var callable $slugifier */
+        $slugifier = $viewHelperManager->get('slugify');
+        /** @var callable $permaLink */
+        $permaLink = $viewHelperManager->get('permaLinkPost');
+
+        if ($slugifier($post->getTitle()) !== $this->params()->fromRoute('title')) {
+            return $this->redirect()->toUrl($permaLink($post));
         }
 
         return $this->viewModelFactory()->create(array('post' => $post));

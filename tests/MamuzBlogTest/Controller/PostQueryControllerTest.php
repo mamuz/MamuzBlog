@@ -119,29 +119,6 @@ class PostQueryControllerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    public function testPublishedPostWithPostCanBeAccessed()
-    {
-        $id = 'foo';
-        $post = 'bar';
-
-        $this->params->shouldReceive('fromRoute')->with('id')->andReturn($id);
-        $this->cryptEngine->shouldReceive('decrypt')->with($id)->andReturn($id);
-        $this->queryInterface->shouldReceive('findPublishedPostById')->with($id)->andReturn($post);
-
-        $this->routeMatch->setParam('action', 'publishedPost');
-
-        $this->viewModelFactory
-            ->shouldReceive('create')
-            ->with(array('post' => $post))
-            ->andReturn($this->viewModel);
-
-        $result = $this->fixture->dispatch($this->request);
-        $response = $this->fixture->getResponse();
-
-        $this->assertSame($this->viewModel, $result);
-        $this->assertEquals(200, $response->getStatusCode());
-    }
-
     public function testPublishedPostWithoutPostCanBeAccessed()
     {
         $id = 'foo';
