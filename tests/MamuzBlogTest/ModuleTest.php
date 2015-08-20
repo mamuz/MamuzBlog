@@ -16,7 +16,6 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
 
     public function testImplementingFeatures()
     {
-        $this->assertInstanceOf('Zend\ModuleManager\Feature\AutoloaderProviderInterface', $this->fixture);
         $this->assertInstanceOf('Zend\ModuleManager\Feature\ConfigProviderInterface', $this->fixture);
         $this->assertInstanceOf('Zend\ModuleManager\Feature\InitProviderInterface', $this->fixture);
     }
@@ -25,16 +24,6 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
     {
         $expected = include __DIR__ . '/../../config/module.config.php';
         $this->assertSame($expected, $this->fixture->getConfig());
-    }
-
-    public function testAutoloaderConfigRetrieval()
-    {
-        $expected = array(
-            'Zend\Loader\ClassMapAutoloader',
-            'Zend\Loader\StandardAutoloader',
-        );
-
-        $this->assertSame($expected, array_keys($this->fixture->getAutoloaderConfig()));
     }
 
     public function testLoadingModules()

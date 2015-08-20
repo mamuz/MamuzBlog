@@ -19,6 +19,7 @@ class PostPanel extends AbstractHelper
     protected $footer;
 
     /**
+     * {@inheritdoc}
      * {@link render()}
      */
     public function __invoke(PostEntity $entity)

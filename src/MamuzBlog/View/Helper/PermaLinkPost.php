@@ -7,6 +7,7 @@ use MamuzBlog\Entity\Post as PostEntity;
 class PermaLinkPost extends AbstractHelper
 {
     /**
+     * {@inheritdoc}
      * {@link render()}
      */
     public function __invoke(PostEntity $entity)

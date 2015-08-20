@@ -34,6 +34,7 @@ class Pager extends AbstractHelper
     }
 
     /**
+     * {@inheritdoc}
      * {@link render()}
      */
     public function __invoke(\Countable $collection, array $params)

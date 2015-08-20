@@ -36,7 +36,7 @@ The recommended way to install
 ```json
 {
     "require": {
-        "mamuz/mamuz-blog": "1.*"
+        "mamuz/mamuz-blog": "*"
     }
 }
 ```

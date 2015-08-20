@@ -86,7 +86,9 @@ class Post
     private $modifiedAt;
 
     /**
-     * init datetime objects
+     * @param null           $id
+     * @param \DateTime|null $createdAt
+     * @param \DateTime|null $modifiedAt
      */
     public function __construct($id = null, \DateTime $createdAt = null, \DateTime $modifiedAt = null)
     {

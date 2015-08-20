@@ -16,6 +16,7 @@ class Anchor extends AbstractHelper
     }
 
     /**
+     * {@inheritdoc}
      * {@link render()}
      */
     public function __invoke($href, $title, $content, $class = null)

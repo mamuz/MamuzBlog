@@ -6,7 +6,6 @@ use MamuzBlog\Options\PaginationConfigProviderTrait;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
-use Zend\ServiceManager\ServiceManager;
 
 abstract class AbstractPagerFactory implements FactoryInterface
 {

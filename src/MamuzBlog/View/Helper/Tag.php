@@ -7,6 +7,7 @@ use MamuzBlog\Entity\Tag as TagEntity;
 class Tag extends AbstractHelper
 {
     /**
+     * {@inheritdoc}
      * {@link render()}
      */
     public function __invoke(TagEntity $entity)

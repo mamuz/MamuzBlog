@@ -1,48 +1,54 @@
 {
-    "name"             : "mamuz/mamuz-blog",
-    "type"             : "library",
-    "description"      : "Provides blog feature for ZF2 with Doctrine",
-    "homepage"         : "https://github.com/mamuz/MamuzBlog",
-    "license"          : "MIT",
-    "keywords"         : ["mamuz", "blog", "markdown", "zf2", "doctrine", "twitter-bootstrap"],
-    "authors"          : [
-        {
-            "name" : "Marco Muths",
-            "email": "mamuz.de@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable"    : true,
-    "suggest"          : {
-        "mamuz/mamuz-blog-feed": "To provide rss and/or atom feeds"
-    },
-    "require"          : {
-        "php"                              : ">=5.4",
-        "ext-intl"                         : "*",
-        "zendframework/zend-mvc"           : "~2.3",
-        "zendframework/zend-servicemanager": "~2.3",
-        "zendframework/zend-eventmanager"  : "~2.3",
-        "zendframework/zend-modulemanager" : "~2.3",
-        "zendframework/zend-loader"        : "~2.3",
-        "zendframework/zend-view"          : "~2.3",
-        "zendframework/zend-http"          : "~2.3",
-        "zendframework/zend-form"          : "~2.3",
-        "zendframework/zend-i18n"          : "~2.3",
-        "doctrine/doctrine-orm-module"     : "0.*",
-        "maglnet/magl-markdown"            : "1.*",
-        "neilime/zf2-twb-bundle"           : "2.*@stable",
-        "hashids/hashids"                  : "1.0.*",
-        "cocur/slugify"                    : "1.0.*"
-    },
-    "require-dev"      : {
-        "satooshi/php-coveralls"       : "0.6.*",
-        "phpunit/phpunit"              : "4.*",
-        "mockery/mockery"              : "0.9.*",
-        "mamuz/php-dependency-analysis": "0.*"
-    },
-    "autoload"         : {
-        "psr-0": {
-            "MamuzBlog\\": "src/"
-        }
+  "name": "mamuz/mamuz-blog",
+  "type": "library",
+  "description": "Provides blog feature for ZF2 with Doctrine",
+  "homepage": "https://github.com/mamuz/MamuzBlog",
+  "license": "MIT",
+  "keywords": [
+    "blog",
+    "markdown",
+    "zf2",
+    "doctrine",
+    "twitter-bootstrap"
+  ],
+  "authors": [
+    {
+      "name": "Marco Muths",
+      "email": "mamuz.de@gmail.com"
     }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "suggest": {
+    "mamuz/mamuz-blog-feed": "To provide rss and/or atom feeds"
+  },
+  "require": {
+    "php": ">=5.4",
+    "ext-intl": "*",
+    "zendframework/zend-mvc": "~2.3",
+    "zendframework/zend-servicemanager": "~2.3",
+    "zendframework/zend-eventmanager": "~2.3",
+    "zendframework/zend-modulemanager": "~2.3",
+    "zendframework/zend-loader": "~2.3",
+    "zendframework/zend-view": "~2.3",
+    "zendframework/zend-http": "~2.3",
+    "zendframework/zend-form": "~2.3",
+    "zendframework/zend-i18n": "~2.3",
+    "doctrine/doctrine-orm-module": "~0.8",
+    "maglnet/magl-markdown": "~1.3",
+    "neilime/zf2-twb-bundle": "~2.4",
+    "hashids/hashids": "~1.0.5",
+    "cocur/slugify": "~1.0"
+  },
+  "require-dev": {
+    "satooshi/php-coveralls": "0.6.*",
+    "phpunit/phpunit": "4.*",
+    "mockery/mockery": "0.9.*",
+    "mamuz/php-dependency-analysis": "0.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "MamuzBlog\\": "src/"
+    }
+  }
 }

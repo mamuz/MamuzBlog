@@ -5,6 +5,7 @@ namespace MamuzBlog\View\Helper;
 class Panel extends AbstractHelper
 {
     /**
+     * {@inheritdoc}
      * {@link render()}
      */
     public function __invoke($header, $content, $footer)

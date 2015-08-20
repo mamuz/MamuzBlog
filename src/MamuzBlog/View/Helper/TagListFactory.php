@@ -29,6 +29,4 @@ class TagListFactory implements FactoryInterface
 
         return new TagList($mvcEvent, $tagQueryService);
     }
-
 }
-

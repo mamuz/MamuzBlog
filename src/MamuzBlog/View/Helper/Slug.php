@@ -19,6 +19,7 @@ class Slug extends ZendAbstractHelper
     }
 
     /**
+     * {@inheritdoc}
      * {@link filter()}
      */
     public function __invoke($value)
