@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <title>Mamuzblog by mamuz</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Mamuzblog</h1>
-      <h2 class="project-tagline">Provides blog feature for ZF2 with Doctrine</h2>
-      <a href="https://github.com/mamuz/MamuzBlog" class="btn">View on GitHub</a>
-      <a href="https://github.com/mamuz/MamuzBlog/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/mamuz/MamuzBlog/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-    <section class="main-content">
-      <h1>
-<a id="mamuzblog" class="anchor" href="#mamuzblog" aria-hidden="true"><span class="octicon octicon-link"></span></a>MamuzBlog</h1>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Mamuzblog by mamuz</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Mamuzblog</h1>
+        <h2>Provides blog feature for ZF2 with Doctrine</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/mamuz/MamuzBlog/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/mamuz/MamuzBlog/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/mamuz/MamuzBlog" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="mamuzblog" class="anchor" href="#mamuzblog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>MamuzBlog</h1>
 
 <p><a href="https://travis-ci.org/mamuz/MamuzBlog"><img src="https://travis-ci.org/mamuz/MamuzBlog.svg?branch=master" alt="Build Status"></a>
 <a href="https://coveralls.io/r/mamuz/MamuzBlog?branch=master"><img src="https://coveralls.io/repos/mamuz/MamuzBlog/badge.png?branch=master" alt="Coverage Status"></a>
@@ -35,7 +44,7 @@
 <a href="https://packagist.org/packages/mamuz/mamuz-blog"><img src="https://poser.pugx.org/mamuz/mamuz-blog/license.svg" alt="License"></a></p>
 
 <h2>
-<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
 
 <ul>
 <li>This module provides a blog based on ZF2 and Doctrine2.</li>
@@ -62,13 +71,13 @@
 </table>
 
 <h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
 
 <p>The recommended way to install
 <a href="https://packagist.org/packages/mamuz/mamuz-blog"><code>mamuz/mamuz-blog</code></a> is through
 <a href="http://getcomposer.org/">composer</a> by adding dependency to your <code>composer.json</code>:</p>
 
-<div class="highlight highlight-json"><pre>{
+<div class="highlight highlight-source-json"><pre>{
     <span class="pl-s"><span class="pl-pds">"</span>require<span class="pl-pds">"</span></span>: {
         <span class="pl-s"><span class="pl-pds">"</span>mamuz/mamuz-blog<span class="pl-pds">"</span></span>: <span class="pl-s"><span class="pl-pds">"</span>*<span class="pl-pds">"</span></span>
     }
@@ -77,7 +86,7 @@
 <p>After that run <code>composer update</code> and enable this module for ZF2 by adding
 <code>MamuzBlog</code> to <code>modules</code> in <code>./config/application.config.php</code>:</p>
 
-<div class="highlight highlight-php"><pre><span class="pl-s1"><span class="pl-c">// ...</span></span>
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c">// ...</span></span>
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>modules<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">array</span>(</span>
 <span class="pl-s1">        <span class="pl-s"><span class="pl-pds">'</span>MamuzBlog<span class="pl-pds">'</span></span>,</span>
 <span class="pl-s1">    ),</span></pre></div>
@@ -88,13 +97,13 @@ and be sure that you have already <a href="https://github.com/doctrine/DoctrineO
 <p>Create database tables with command line tool provided by
 <a href="https://github.com/doctrine/DoctrineORMModule"><code>DoctrineORMModule</code></a>:</p>
 
-<div class="highlight highlight-sh"><pre>./vendor/bin/doctrine-module orm:schema-tool:update</pre></div>
+<div class="highlight highlight-source-shell"><pre>./vendor/bin/doctrine-module orm:schema-tool:update</pre></div>
 
 <h2>
-<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h2>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Configuration</h2>
 
 <h3>
-<a id="post-identity-encryption-for-hyperlinks" class="anchor" href="#post-identity-encryption-for-hyperlinks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Post identity encryption for hyperlinks</h3>
+<a id="post-identity-encryption-for-hyperlinks" class="anchor" href="#post-identity-encryption-for-hyperlinks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Post identity encryption for hyperlinks</h3>
 
 <p>Encryption is supported by <a href="https://github.com/ivanakimov/hashids.php"><code>hashids/hashids</code></a>
 and have to be configured by copy <code>./vendor/mamuz-blog/config/crypt.local.php.dist</code>
@@ -102,7 +111,7 @@ to <code>./config/autoload/crypt.local.php</code>. Be sure that this file is not
 The only thing you have to do is changing <code>salt</code> value to any complex string.</p>
 
 <h3>
-<a id="default-configuration" class="anchor" href="#default-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Default configuration</h3>
+<a id="default-configuration" class="anchor" href="#default-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Default configuration</h3>
 
 <p>Besides configuration for identity encryption this module is usable out of the box,
 but you can overwrite default configuration by adding a config file in <code>./config/autoload</code> directory.
@@ -110,37 +119,37 @@ For default configuration see
 <a href="https://github.com/mamuz/MamuzBlog/blob/master/config/module.config.php"><code>module.config.php</code></a></p>
 
 <h3>
-<a id="pagination" class="anchor" href="#pagination" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pagination</h3>
+<a id="pagination" class="anchor" href="#pagination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pagination</h3>
 
 <p>Listings of posts and tags includes a pagination feature, which seperates
 views to a default range. Default range is overwritable by adding a config file in <code>./config/autoload</code> directory.</p>
 
 <h4>
-<a id="posts" class="anchor" href="#posts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Posts</h4>
+<a id="posts" class="anchor" href="#posts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Posts</h4>
 
 <p>Post listing is provided by route <code>blogPublishedPosts</code> and default range is two items.</p>
 
 <h4>
-<a id="tags" class="anchor" href="#tags" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tags</h4>
+<a id="tags" class="anchor" href="#tags" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Tags</h4>
 
 <p>Tag listing is provided by route <code>blogTags</code> and default range is 10 items.</p>
 
 <h2>
-<a id="creating-a-new-post" class="anchor" href="#creating-a-new-post" aria-hidden="true"><span class="octicon octicon-link"></span></a>Creating a new Post</h2>
+<a id="creating-a-new-post" class="anchor" href="#creating-a-new-post" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating a new Post</h2>
 
 <p>Create an entity in <code>MamuzBlogPost</code> repository and tag it in related <code>MamuzBlogTag</code>.</p>
 
 <p><em>Admin Module to provide an interface for that is planned.</em></p>
 
 <h2>
-<a id="workflow" class="anchor" href="#workflow" aria-hidden="true"><span class="octicon octicon-link"></span></a>Workflow</h2>
+<a id="workflow" class="anchor" href="#workflow" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Workflow</h2>
 
 <p>If routing to a dedicated post found by published flag and encrypted identity is successful,
 post content will be responsed in a new view model rendered as markdown,
 otherwise it will set a 404 status code to the http response object.</p>
 
 <h2>
-<a id="events" class="anchor" href="#events" aria-hidden="true"><span class="octicon octicon-link"></span></a>Events</h2>
+<a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Events</h2>
 
 <p>For the sake of simplicity <code>Event</code> is used for FQN <a href="https://github.com/mamuz/MamuzBlog/blob/master/src/MamuzBlog/EventManager/Event.php"><code>MamuzBlog\EventManager\Event</code></a>.</p>
 
@@ -179,7 +188,7 @@ otherwise it will set a 404 status code to the http response object.</p>
 </table>
 
 <h2>
-<a id="terminology" class="anchor" href="#terminology" aria-hidden="true"><span class="octicon octicon-link"></span></a>Terminology</h2>
+<a id="terminology" class="anchor" href="#terminology" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Terminology</h2>
 
 <ul>
 <li>
@@ -189,15 +198,9 @@ otherwise it will set a 404 status code to the http response object.</p>
 <li>
 <strong>Permalink</strong>: Human-readable and unchangeable hyperlink to a dedicated post or to a list of posts by a specific tag.</li>
 </ul>
+      </section>
+    </div>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/mamuz/MamuzBlog">Mamuzblog</a> is maintained by <a href="https://github.com/mamuz">mamuz</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
+    
   </body>
 </html>
